@@ -108,24 +108,30 @@ div.main-content div.inner-space div.block{margin:0px 0px 30px 0px;}
 div.main-content div.inner-space ul.tasks{margin:0px;}
 div.main-content div.inner-space ul.tasks li{border:1px solid #cccccc;float:left;margin:-1px 0px 0px 0px;width:100%;}
 
-div.task{cursor:default;float:left;margin:15px 20px;width:770px;}
+div.task{cursor:default;float:left;margin:15px 20px;width:780px;}
 div.task div.line{background:no-repeat 0px 4px;clear:both;color:#333333;float:left;font-size:11px;margin:0px 0px 10px 0px;padding-left:22px;}
 div.task div.line label{color:#777777;display:block;float:none;font-size:9px;height:8px;width:auto;}
 div.task div.line span.unassigned{color:#9f2828;}
-div.task div.details{float:left;width:600px;}
+
+div.task div.details{float:left;margin:0px 20px 0px 0px;width:600px;}
 div.task div.details h3{font-size:13px;margin:0px 0px 5px 0px;}
 div.task div.details h3 span.identifier{color:#777777;display:block;font-size:12px;font-weight:bold;}
 div.task div.details div.description{color:#555555;margin:0px 0px 10px 0px;}
 div.task div.details div.description p{color:#555555;margin:0px;}
 div.task div.details div.line{background-image:url(../images/user.png);clear:none;margin:0px 40px 0px 0px;}
 
-div.task div.overview{float:right;width:110px;}
+div.task div.overview{float:left;width:110px;}
 div.task div.overview div.state{height:16px;font-size:12px;font-weight:bold;padding-top:4px;}
 div.task div.overview div.started{background-image:url(../images/started.png);}
 div.task div.overview div.stopped{background-image:url(../images/stopped.png);}
 div.task div.overview div.estimated_time{background-image:url(../images/estimated-time.png);}
 div.task div.overview div.target{background-image:url(../images/target.png);}
 div.task div.overview div.late{background-image:url(../images/late.png);}
+
+li div.task div.operations{display:none;}
+li:hover div.task div.operations{display:block;float:right;width:30px;}
+li:hover div.task div.operations a.delete{color:#cccccc;float:right;font-family:Arial;font-size:15px;font-weight:700;}
+li:hover div.task div.operations a:hover.delete{color:#f25a5a;}
 
 #doorway div.main-wrapper{margin:60px auto 0px auto;width:500px;}
 #doorway div.main-content{background:none;min-height:220px;}

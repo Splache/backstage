@@ -1,6 +1,6 @@
 <%= title_tasks_section(@section, @archived) %>
-<ul class="tasks">
+<ul class="tasks <%= @archived ? 'archived' : '' %>" id="list-tasks">
   <% @tasks.each do |task| %>
-    <li class="<%= cycle("even", "odd") %>"><%= render 'task', :task => task %></li>
+    <li class="odd" id="task-<%= task.id %>"><%= render 'task', :task => task %></li>
   <%- end %>
 </ul>

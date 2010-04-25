@@ -5,16 +5,24 @@
     <div class="line user"><label>Créé par :</label><%= link_to(task.creator.name, user_path(task.creator)) %></div>
     <div class="line user"><label>Assigné à :</label><%= task.worker ? link_to(task.worker.name, user_path(task.worker)) : '<span class="unassigned">Non assigné</span>' %></div>
   </div>
+  
   <div class="overview">
-    <% if task.started_on %>
-      <div class="line state started">En cours</div>
+    <% if @archived %>
+      
     <% else %>
-      <div class="line state stopped">Non démarré</div>
-    <% end %>
+      <% if task.started_on %>
+        <div class="line state started">En cours</div>
+      <% else %>
+        <div class="line state stopped">Non démarré</div>
+      <% end %>
     
-    <% if task.hours_estimated.to_i > 0 %>
-      <div class="line estimated_time"><label>Temps estimé :</label><%= task.hours_estimated %> heures</div>
+      <% if task.hours_estimated.to_i > 0 %>
+        <div class="line estimated_time"><label>Temps estimé :</label><%= task.hours_estimated %> heures</div>
+      <% end %>
+      <%= show_task_due_on(task) %>
     <% end %>
-    <%= show_task_due_on(task) %>
+  </div>
+  <div class="operations">
+    <%= link_to 'X', task_path(task), :method => :delete, :confirm => 'Êtes-vous sûr de vouloir détruire cette tâche ?', :class => 'delete' %>
   </div>
 </div>

@@ -7,9 +7,7 @@ class TasksController < ApplicationController
   end
   
   def show
-    @task = Task.first(:conditions => { :id => params[:id] })
     
-    redirect_to tasks_path unless @task
   end
   
   def new
@@ -20,9 +18,10 @@ class TasksController < ApplicationController
     @task = Task.new(params[:task])
     @task.created_by = current_user.id
     @task.project_id = current_project.id
-    
+        
     if @task.save
       @task.set_dates_from_params(params)
+      Task.regenerate_priorities if not @task.archived?
       redirect_to new_task_path
     else
       render :action => 'new'
@@ -34,10 +33,18 @@ class TasksController < ApplicationController
   end
   
   def update
-    @task = Task.find(params[:id])
+    @task = Task.first(:conditions => { :id => params[:id] })
     
-    if @task.update_attributes(params[:task])
+    if params[:insert_after]
+      @task.insert_after(params[:insert_after])
+      render :text => {'success' => params[:insert_after]}.to_json
+    elsif params[:insert_first]
+      @task.prioritize_to(1)
+      render :text => {'success' => 1}.to_json
+    elsif @task.update_attributes(params[:task])
       @task.set_dates_from_params(params)
+      @task.set_archive_status!
+      
       redirect_to tasks_path
     else
       render :action => "edit"
@@ -46,6 +53,8 @@ class TasksController < ApplicationController
   
   def destroy
     Task.find(params[:id]).destroy
+    Task.regenerate_priorities
+    
     redirect_to tasks_path
   end
   

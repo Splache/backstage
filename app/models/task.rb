@@ -4,6 +4,9 @@ class Task < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User', :foreign_key => 'created_by'
   belongs_to :worker, :class_name => 'User', :foreign_key => 'assigned_to'
   
+  named_scope :active, :conditions => "ended_on = '' OR ended_on IS NULL", :order => 'priority ASC'
+  named_scope :archived, :conditions => "ended_on != '' AND ended_on IS NOT NULL"
+  
   def self.all_from_section(section, user, archived)
     conditions = []
     conditions << (archived ? 'ended_on != ""' : 'ended_on = "" OR ended_on IS NULL')
@@ -11,9 +14,22 @@ class Task < ActiveRecord::Base
     
     conditions << "assigned_to = #{user.id}" if section == 'my_tasks'
     
-    #raise conditions.join(' AND ').inspect
+    if archived
+      order = 'ended_on DESC'
+    else
+      order = 'priority ASC'
+    end
     
-    return self.all(:conditions => conditions.join(' AND '))
+    return self.all(:conditions => conditions.join(' AND '), :order => order)
+  end
+  
+  def self.regenerate_priorities
+    position = 1
+    
+    self.active.each do |task|
+      Task.update_all("priority = #{position}", "id = #{task.id}" ) 
+      position += 1
+    end
   end
   
   def set_dates_from_params(params)
@@ -36,7 +52,49 @@ class Task < ActiveRecord::Base
     return natures
   end
   
+  def archived?
+    return (self.ended_on.to_s.empty? ? false : true)
+  end
+  
+  def set_archive_status!
+    if self.archived?
+      self.priority = 0
+      self.save
+    end
+    
+    Task.regenerate_priorities
+  end
+  
   def identifier
     return self.nature[0,1].upcase + '-' + self.identifier_no.to_s.rjust(6, '0')
+  end
+  
+  def insert_after(previous_task_id)
+    previous = Task.first(:conditions => {:id => previous_task_id })
+    
+    if self.priority > previous.priority
+      prioritize_to(previous.priority + 1)
+    else
+      prioritize_to(previous.priority)
+    end
+  end
+
+  def prioritize_to(new_priority)
+    position = 1
+    tasks = Task.active(:order => 'priority ASC')
+    
+    tasks.each do |task|
+      if self.id != task.id
+        position += 1 if new_priority == task.priority and self.priority > new_priority
+        
+        Task.update_all("priority = #{position}", "id = #{task.id}" ) 
+        position += 1
+        
+        position += 1 if new_priority == position and self.priority < new_priority
+      end
+    end
+    
+    self.priority = new_priority
+    self.save
   end
 end
