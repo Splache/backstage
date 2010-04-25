@@ -1,0 +1,4 @@
+JAVASCRIPT CONVENTION
+1. Global object in Upperase
+2. Only one var per function
+4. Mimic of this in function is called self

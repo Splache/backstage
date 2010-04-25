@@ -1,0 +1,6 @@
+<h2>Liste des usagers</h2>
+<ul>
+  <% @users.each do |user| %>
+    <li><%= link_to user.name, edit_user_path(user) %></li>
+  <%- end %>
+</ul>

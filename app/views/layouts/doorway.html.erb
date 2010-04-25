@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Backstage</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  
+  <%= stylesheet_link_tag "main.css" %>
+  <%= javascript_include_tag "jquery" %>
+  <%= javascript_include_tag "backstage/base" %>
+</head>
+
+<body id="doorway">
+  <div class="main-wrapper">
+    <div class="main-header">
+      <div class="top-bar">
+      
+      </div>
+      <div class="selection">
+        <p>Bienvenue</p>
+        <h1>Backstage</h1>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="inner-space">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

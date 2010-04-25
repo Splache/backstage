@@ -1,0 +1,19 @@
+<label>Prénom :</label>
+<%= f.text_field('first_name', :class => 'focus medium') %>
+
+<label>Nom :</label>
+<%= f.text_field('last_name', :class => 'medium') %>
+
+<label>Courriel :</label>
+<%= f.text_field('email', :class => 'medium') %>
+
+<label>Nom d'usager :</label>
+<%= f.text_field('login', :class => 'medium') %>
+
+<label>Password :</label>
+<%= f.password_field('password', :class => 'medium') %>
+
+<div class="buttons">
+  <%= submit_tag "Sauvegarder" %>
+  <%= link_to 'Annuler', :back %>
+</div>

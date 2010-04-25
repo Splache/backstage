@@ -1,0 +1,4 @@
+<div class="task">
+  <h3><%= link_to task.name, edit_task_path(task) %></h3>
+  <div class="description"><%= htmlize(task.description) %></div>
+</div>

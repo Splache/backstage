@@ -1,0 +1,11 @@
+<label>Nom d'usager :</label>
+<%= text_field_tag('login', params[:login], :class => 'focus') %>
+
+<label>Mot de passe :</label>
+<%= password_field_tag('password') %>
+
+<%= check_box_tag 'remember_me' %><label class="check">Restez connecté</label>
+
+<div class="buttons">
+  <%= submit_tag "Connecter" %>
+</div>

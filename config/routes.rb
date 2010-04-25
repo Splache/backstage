@@ -1,0 +1,17 @@
+ActionController::Routing::Routes.draw do |map|
+  map.root :controller => :sessions, :action => :new
+  
+  map.resources :code_files do |cf|
+    cf.resources :code_methods, :collection => {:generate => :post}
+  end
+  
+  map.documents_folder 'documents/folder/:folder_name.:format', :controller => 'documents', :action => 'index'
+  map.resources :documents
+  
+  map.resources :projects
+  map.resources :sessions
+  map.resources :users
+  
+  map.my_tasks 'my_tasks', :controller => 'tasks', :action => 'index', :section => 'my_tasks'
+  map.resources :tasks
+end

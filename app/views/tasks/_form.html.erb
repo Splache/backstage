@@ -1,0 +1,40 @@
+<label>Nom :</label>
+<%= f.text_field('name', :class => 'focus') %>
+
+<label>Notes :</label>
+<%= f.text_area('description', :class => 'small') %>
+
+<div class="form-block">
+  <label>Collection :</label>
+  <%= f.select("collection_id", Collection.all.collect {|c| [ c.name, c.id ] }, { :include_blank => true }, :class => 'medium') %>
+  
+  <label>Classification :</label>
+  <%= f.select("nature", Task.get_natures, {}, :class => 'medium') %>
+</div>
+
+<div class="form-block">
+  <label>Heures estimées :</label>
+  <%= f.text_field('hours_estimated', :class => 'small') %>
+  
+  <label>Heures réelles :</label>
+  <%= f.text_field('hours_actual', :class => 'small') %>
+</div>
+
+<div class="form-block">
+  <label><%= check_box_tag 'show_due_on', 1, (@task.due_on ? true : false), :id => "show_due_on" %> Requis le :</label>
+  <div id="fields_due_on" class="hidden-fields"><%= f.date_select('due_on', {:use_short_month => true, :order => [:day, :month, :year]}, {:class => 'date'}) %></div>
+  
+  <label><%= check_box_tag 'show_started_on', 1, (@task.started_on ? true : false), :id => "show_started_on" %> Débuté le :</label>
+  <div id="fields_started_on" class="hidden-fields"><%= f.date_select('started_on', {:use_short_month => true, :order => [:day, :month, :year]}, {:class => 'date'}) %></div>
+  
+  <label><%= check_box_tag 'show_ended_on', 1, (@task.ended_on ? true : false), :id => "show_ended_on" %>Terminé le :</label>
+  <div id="fields_ended_on" class="hidden-fields"><%= f.date_select('ended_on', {:use_short_month => true, :order => [:day, :month, :year]}, {:class => 'date'}) %></div>
+</div>
+
+<label>Assigné à :</label>
+<%= f.select("assigned_to", User.all.collect {|u| [ u.name, u.id ] }, { :include_blank => true }, :class => 'medium') %>
+
+<div class="buttons">
+  <%= submit_tag "Sauvegarder" %>
+  <%= link_to 'Annuler', :back %>
+</div>

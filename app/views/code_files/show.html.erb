@@ -1,0 +1,46 @@
+<div class="file-header">
+  <h2><span class="path"><%= @code_file.path %></span><%= @code_file.name %></h2>
+  <ul class="operations admin-tools">
+    <li><%= link_to 'Modifier le fichier', edit_code_file_path(@code_file) %></li>
+    <li><%= link_to 'Détruire le fichier', code_file_path(@code_file), :method => :delete, :confirm => 'Êtes-vous sur de vouloir détruire ce fichier ?' %></li>
+  </ul>
+</div>
+
+<% if not @code_file.description.empty? %>
+  <div class="block">
+    <h3>Description</h3>
+    <%= htmlize(@code_file.description) %>
+  </div>
+<% end %>
+
+<% if @code_file.path == 'app/models' %>
+  <div class="block">
+    <h3>Relations</h3>
+    <%= show_relationships(@code_file) %>
+  </div>
+<% end %>
+
+<% if @code_file.is_ruby_file? %>
+  <div class="block">
+    <h3>Méthodes de classe publiques</h3>
+    <ul class="operations admin-tools">
+      <li><%= link_to 'Ajouter une méthode', new_code_file_code_method_path(@code_file) %></li>
+      <li><%= link_to 'Générer les méthodes', generate_code_file_code_methods_path(@code_file), :method => :post, :confirm => 'Cette opération effecera toutes les méthodes de ce fichier. Voulez-vous continuer ?' %></li>
+    </ul>
+  
+    <% @code_file.code_methods.each do |m| %>
+      <% if not m.is_private? and m.nature == 'class' %>
+        <h4><%= m.name %></h4>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div class="block">
+    <h3>Méthodes d'instance publiques</h3>
+    <% @code_file.code_methods.each do |m| %>
+      <% if not m.is_private? and m.nature == 'instance' %>
+        <h4><%= m.name %></h4>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Backstage</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  
+  <%= stylesheet_link_tag "main.css" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" %>
+  <%= javascript_include_tag "backstage/base" %>
+</head>
+
+<body>
+  <div class="main-wrapper">
+    <div class="main-header">
+      <div class="top-bar">
+        <ul class="projects">
+          <% Project.all.each do |p| %>
+            <li><%= link_to p.name, project_path(p, :format => 'html') %></li>
+          <% end %>
+        </ul>
+        
+        <% if current_user %>
+          <ul class="users">
+            <li><%= link_to 'Éditer mon profil', edit_user_path(current_user) %></li>
+            <li><%= link_to 'Ajouter un usager', new_user_path %></li>
+            <li><%= link_to 'Déconnexion', session_path(1), :method => :delete, :class => 'disconnect' %></li>
+          </ul>
+        <% end %>
+      </div>
+      <div class="operation admin-tools">
+        <%= link_to 'Ajouter un fichier', new_code_file_path if in_section?('code') %>
+        <%= link_to 'Ajouter un document', new_document_path if in_section?('documents') %>
+        <%= link_to 'Ajouter une tâche', new_task_path if in_section?('tasks') %>
+      </div>
+      <div class="selection">
+        <p>Vous êtes présentement dans</p>
+        <h1><%= current_project.name %></h1>
+      </div>
+      
+    </div>
+    <div class="main-content">
+      <div class="navigations">
+        <ul class="choices">
+          <li class="first task <%= in_section?('tasks') ? 'selected' : '' %>"><%= link_to 'Tâches', tasks_path(:format => 'html') %></li>
+          <li class="help <%= in_section?('code') ? 'selected' : '' %>"><%= link_to 'Code', code_files_path(:format => 'html') %></li>
+          <li class="help <%= in_section?('documents') ? 'selected' : '' %>"><%= link_to 'Documents', documents_path(:format => 'html') %></li>
+        </ul>
+        <%= show_menu_code(@code_file) if in_section?('code') %>
+        <%= show_menu_documents(@document) if in_section?('documents') %>
+        <%= show_menu_tasks(@archived) if in_section?('tasks') %>
+      </div>
+      
+      <div class="inner-space">
+        <%= yield %>
+      </div>
+      
+      <div style="clear:both"></div>
+    </div>
+  </div>
+</body>
+</html>

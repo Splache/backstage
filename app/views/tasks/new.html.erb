@@ -1,0 +1,4 @@
+<h2>Ajouter une tâche</h2>
+<%- form_for(@task, :html => { :id => 'form-task' }) do |f| %>
+  <%= render 'form', :f => f %>
+<%- end %>

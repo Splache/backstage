@@ -1,0 +1,6 @@
+.DS_Store
+config/database.yml
+config/environment.rb
+db/schema.rb
+log/*
+tmp/*

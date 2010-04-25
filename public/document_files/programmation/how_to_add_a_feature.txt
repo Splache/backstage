@@ -1,0 +1,25 @@
+HOW TO ADD A FEATURE TO THE APPLICATION
+
+1. Condition : Always
+   File      : config/features/*.yml
+   Operation : Add the feature with its attributes (position, have_owner)
+   
+2. Condition : Always
+   File      : languages/fr/features/*.yml
+   Operation : Add the title and description of the feature
+   
+3. Condition : if it's a new controller
+   File      : /lib/app/security.rb
+   Method    : apply_admin_permissions
+   Operation : Add the new controller with its options
+  
+4. Condition : if the feature have an owner
+   File      : /app/model/*.rb
+   Operation : Add the method own_by?
+
+5. Condition : if its a new action
+   File      : /lib/app/security.rb
+   Method    : apply_admin_permissions
+   Operation : Add the action to the new controller
+   
+6. Operation : Login to the application and set the permission for each roles
