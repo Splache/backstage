@@ -6,6 +6,14 @@ module ApplicationHelper
     return text
   end
   
+  def in_section?(name)
+    case name
+      when 'code' then return (@code_files or @code_file) ? true : false
+      when 'documents' then return (@documents or @document) ? true : false
+      when 'tasks' then return (@tasks or @task) ? true : false
+    end
+  end
+  
   def link_code_files(text)
     ['link_code_file_name_pl', 'link_code_file_name', 'link_code_file'].each do |nature_link|
       if text.include?("[#{nature_link}_")
@@ -41,12 +49,14 @@ module ApplicationHelper
     return text
   end
   
-  def in_section?(name)
-    case name
-      when 'code' then return (@code_files or @code_file) ? true : false
-      when 'documents' then return (@documents or @document) ? true : false
-      when 'tasks' then return (@tasks or @task) ? true : false
+  def menu_files_item_is_visible?(code_file, current_file)
+    return false unless code_file
+    
+    if code_file.path.include?(current_file.path) or code_file.full_path == current_file.path
+      return true
     end
+    
+    return false
   end
   
   def show_menu_code(code_file=nil)
@@ -130,14 +140,6 @@ module ApplicationHelper
     content << '</div>'
   end
   
-  def show_sub_menu_tasks(title, archived, archive_folder)
-    content = []
-    
-    
-    
-    return content.join
-  end
-  
   def show_relationships(code_file)
     relations = code_file.relations
     content = []
@@ -160,16 +162,6 @@ module ApplicationHelper
     end
     
     return content.join
-  end
-  
-  def menu_files_item_is_visible?(code_file, current_file)
-    return false unless code_file
-    
-    if code_file.path.include?(current_file.path) or code_file.full_path == current_file.path
-      return true
-    end
-    
-    return false
   end
   
   def title_tasks_section(section, archived)
