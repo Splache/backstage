@@ -23,7 +23,7 @@ class TasksController < ApplicationController
     
     if @task.save
       @task.set_dates_from_params(params)
-      redirect_to tasks_path
+      redirect_to new_task_path
     else
       render :action => 'new'
     end
@@ -61,7 +61,7 @@ class TasksController < ApplicationController
     if params[:archived]
       session[:task_archived] = (params[:archived] == '0' ? false : true) 
     elsif not session[:task_archived]
-      session[:task_section] = false
+      session[:task_archived] = false
     end
     @archived = session[:task_archived]
   end

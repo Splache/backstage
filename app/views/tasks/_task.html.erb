@@ -1,4 +1,20 @@
 <div class="task">
-  <h3><%= link_to task.name, edit_task_path(task) %></h3>
-  <div class="description"><%= htmlize(task.description) %></div>
+  <div class="details">
+    <h3><span class="identifier"><%= task.identifier %></span> <%= link_to task.name, edit_task_path(task) %></h3>
+    <div class="description"><%= htmlize(task.description) %></div>
+    <div class="line user"><label>Créé par :</label><%= link_to(task.creator.name, user_path(task.creator)) %></div>
+    <div class="line user"><label>Assigné à :</label><%= task.worker ? link_to(task.worker.name, user_path(task.worker)) : '<span class="unassigned">Non assigné</span>' %></div>
+  </div>
+  <div class="overview">
+    <% if task.started_on %>
+      <div class="line state started">En cours</div>
+    <% else %>
+      <div class="line state stopped">Non démarré</div>
+    <% end %>
+    
+    <% if task.hours_estimated.to_i > 0 %>
+      <div class="line estimated_time"><label>Temps estimé :</label><%= task.hours_estimated %> heures</div>
+    <% end %>
+    <%= show_task_due_on(task) %>
+  </div>
 </div>

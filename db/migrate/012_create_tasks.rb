@@ -5,6 +5,7 @@ class CreateTasks < ActiveRecord::Migration
 		  t.column "created_by", :integer, :null => false
 		  t.column "assigned_to", :integer, :default => 0
 		  t.column "collection_id", :integer, :default => 0
+			t.column "identifier_no", :integer, :default => 0
 			t.column "name", :string, :null => false
 			t.column "description", :text
 			t.column "nature", :string

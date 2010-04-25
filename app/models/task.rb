@@ -16,6 +16,14 @@ class Task < ActiveRecord::Base
     return self.all(:conditions => conditions.join(' AND '))
   end
   
+  def set_dates_from_params(params)
+    self.due_on = '' if params[:show_due_on] != '1'
+    self.started_on = '' if params[:show_started_on] != '1'
+    self.ended_on = '' if params[:show_ended_on] != '1'
+    
+    self.save
+  end
+  
   def self.get_natures
     natures = []
     natures << ['Développement', 'development']
@@ -28,11 +36,7 @@ class Task < ActiveRecord::Base
     return natures
   end
   
-  def set_dates_from_params(params)
-    self.due_on = '' if params[:show_due_on] != '1'
-    self.started_on = '' if params[:show_started_on] != '1'
-    self.ended_on = '' if params[:show_ended_on] != '1'
-    
-    self.save
+  def identifier
+    return self.nature[0,1].upcase + '-' + self.identifier_no.to_s.rjust(6, '0')
   end
 end
