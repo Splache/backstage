@@ -1,2 +1,0 @@
-YAML Convention:
-1. When logical, each item should be place in alphabetical order.

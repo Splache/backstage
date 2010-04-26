@@ -2,5 +2,6 @@
 config/database.yml
 config/environment.rb
 db/schema.rb
+public/document_files/*
 log/*
 tmp/*
