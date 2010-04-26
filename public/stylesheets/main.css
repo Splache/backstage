@@ -134,7 +134,7 @@ li:hover div.task div.operations a.delete{color:#cccccc;float:right;font-family:
 li:hover div.task div.operations a:hover.delete{color:#f25a5a;}
 
 #doorway div.main-wrapper{margin:60px auto 0px auto;width:500px;}
-#doorway div.main-content{background:none;min-height:220px;}
+#doorway div.main-content{background:none;min-height:250px;}
 #doorway div.main-content div.inner-space{margin:20px;width:460px;}
 #doorway div.main-content div.inner-space div.form{margin:0px auto;width:150px;}
 #doorway div.main-content div.inner-space div.form input{margin:0px 0px 10px 0px;width:130px;}
