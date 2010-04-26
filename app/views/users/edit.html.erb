@@ -1,4 +1,8 @@
-<h2>Modifier <%= @user.name %></h2>
+<% if current_user == @user %>
+  <h2>Éditer mon profil</h2>
+<% else %>
+  <h2>Modifier <%= @user.name %></h2>
+<% end %>
 <%- form_for(@user) do |f| %>
   <%= render 'form', :f => f %>
 <%- end %>

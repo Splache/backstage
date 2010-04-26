@@ -11,7 +11,13 @@ class TasksController < ApplicationController
   end
   
   def new
-    @task = Task.new
+    template = Task.last(:order => 'id ASC')
+    
+    @task = current_project.tasks.build
+    @task.nature = template.nature
+    @task.started_on = template.started_on
+    @task.ended_on = template.ended_on
+    @task.assigned_to = template.assigned_to
   end
   
   def create
@@ -22,7 +28,7 @@ class TasksController < ApplicationController
     if @task.save
       @task.set_dates_from_params(params)
       Task.regenerate_priorities if not @task.archived?
-      redirect_to new_task_path
+      redirect_to tasks_path
     else
       render :action => 'new'
     end
