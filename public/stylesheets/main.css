@@ -124,6 +124,7 @@ div.task div.overview{float:left;width:110px;}
 div.task div.overview div.state{height:16px;font-size:12px;font-weight:bold;padding-top:4px;}
 div.task div.overview div.started{background-image:url(../images/started.png);}
 div.task div.overview div.stopped{background-image:url(../images/stopped.png);}
+div.task div.overview div.calendar{background-image:url(../images/calendar.png);}
 div.task div.overview div.estimated_time{background-image:url(../images/estimated-time.png);}
 div.task div.overview div.target{background-image:url(../images/target.png);}
 div.task div.overview div.late{background-image:url(../images/late.png);}

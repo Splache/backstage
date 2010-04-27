@@ -10,12 +10,8 @@
     <% if @archived %>
       
     <% else %>
-      <% if task.started_on %>
-        <div class="line state started">En cours</div>
-      <% else %>
-        <div class="line state stopped">Non démarré</div>
-      <% end %>
-    
+      <%= show_start_date(task) %>
+      
       <% if task.hours_estimated.to_i > 0 %>
         <div class="line estimated_time"><label>Temps estimé :</label><%= task.hours_estimated %> heures</div>
       <% end %>
