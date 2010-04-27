@@ -23,23 +23,6 @@ class Task < ActiveRecord::Base
     return self.all(:conditions => conditions.join(' AND '), :order => order)
   end
   
-  def self.regenerate_priorities
-    position = 1
-    
-    self.active.each do |task|
-      Task.update_all("priority = #{position}", "id = #{task.id}" ) 
-      position += 1
-    end
-  end
-  
-  def set_dates_from_params(params)
-    self.due_on = '' if params[:show_due_on] != '1'
-    self.started_on = '' if params[:show_started_on] != '1'
-    self.ended_on = '' if params[:show_ended_on] != '1'
-    
-    self.save
-  end
-  
   def self.get_natures
     natures = []
     natures << ['Développement', 'development']
@@ -52,17 +35,26 @@ class Task < ActiveRecord::Base
     return natures
   end
   
+  def self.regenerate_priorities
+    position = 1
+    
+    self.active.each do |task|
+      Task.update_all("priority = #{position}", "id = #{task.id}" ) 
+      position += 1
+    end
+  end
+  
+  
   def archived?
     return (self.ended_on.to_s.empty? ? false : true)
   end
   
-  def set_archive_status!
-    if self.archived?
-      self.priority = 0
-      self.save
-    end
+  def nature_human
+    natures = Task.get_natures
     
-    Task.regenerate_priorities
+    natures.each { |n| return n[0] if n[1] == self.nature }
+    
+    return ''
   end
   
   def identifier
@@ -96,5 +88,31 @@ class Task < ActiveRecord::Base
     
     self.priority = new_priority
     self.save
+  end
+  
+  def set_archive_status!
+    if self.archived?
+      self.priority = 0
+      self.save
+    end
+    
+    Task.regenerate_priorities
+  end
+  
+  def set_dates_from_params(params)
+    self.due_on = '' if params[:show_due_on] != '1'
+    self.started_on = '' if params[:show_started_on] != '1'
+    self.ended_on = '' if params[:show_ended_on] != '1'
+    
+    self.save
+  end
+  
+  def set_identifier
+    template = Task.first(:conditions => {:project_id => self.project_id, :nature => self.nature }, :order => 'identifier_no DESC')
+    
+    if template
+      self.identifier_no = template.identifier_no + 1
+      self.save
+    end
   end
 end

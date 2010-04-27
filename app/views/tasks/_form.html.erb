@@ -1,6 +1,3 @@
-<label>Identifiant :</label>
-<%= f.text_field('identifier_no', :class => 'focus small') %>
-
 <label>Nom :</label>
 <%= f.text_field('name') %>
 
@@ -12,7 +9,11 @@
   <%= f.select("collection_id", Collection.all.collect {|c| [ c.name, c.id ] }, { :include_blank => true }, :class => 'medium') %>
   
   <label>Classification :</label>
-  <%= f.select("nature", Task.get_natures, {}, :class => 'medium') %>
+  <% if @task.new_record? %>
+    <%= f.select("nature", Task.get_natures, {}, :class => 'medium') %>
+  <% else %>
+    <%= @task.nature_human %>
+  <% end %>
 </div>
 
 <div class="form-block">

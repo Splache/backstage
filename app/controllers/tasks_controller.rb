@@ -15,8 +15,6 @@ class TasksController < ApplicationController
     
     @task = current_project.tasks.build
     @task.nature = template.nature
-    @task.started_on = template.started_on
-    @task.ended_on = template.ended_on
     @task.assigned_to = template.assigned_to
   end
   
@@ -24,9 +22,9 @@ class TasksController < ApplicationController
     @task = Task.new(params[:task])
     @task.created_by = current_user.id
     @task.project_id = current_project.id
-        
     if @task.save
       @task.set_dates_from_params(params)
+      @task.set_identifier
       Task.regenerate_priorities if not @task.archived?
       redirect_to tasks_path
     else
