@@ -1,7 +1,8 @@
 module ApplicationHelper
   def htmlize(text)
     text = textilize(text)
-    text = link_code_files(text)
+    text = link_to_internal(text, 'code_file')
+    text = link_to_internal(text, 'code_method')
     
     return text
   end
@@ -14,8 +15,8 @@ module ApplicationHelper
     end
   end
   
-  def link_code_files(text)
-    ['link_code_file_name_pl', 'link_code_file_name', 'link_code_file'].each do |nature_link|
+  def link_to_internal(text, model)
+    ["link_#{model}_name_pl", "link_#{model}_name", "link_#{model}"].each do |nature_link|
       if text.include?("[#{nature_link}_")
         new_text = []
         parts = text.split("[#{nature_link}_")
@@ -25,13 +26,15 @@ module ApplicationHelper
             file_id, part_content = part.split(']',2)
           
             if file_id.to_i > 0
-              code_file = CodeFile.first(:conditions => { :id => file_id.to_i })
+              record = model.camelize.constantize.first(:conditions => { :id => file_id.to_i })
             
-              if code_file
+              if record
                 case nature_link
-                  when 'link_code_file' then new_text << link_to(code_file.full_path, code_file_path(code_file, :format => 'html'))
-                  when 'link_code_file_name' then new_text << link_to(code_file.name_without_extension, code_file_path(code_file, :format => 'html'))
-                  when 'link_code_file_name_pl' then new_text << link_to(code_file.name_without_extension(true), code_file_path(code_file, :format => 'html'))
+                  when 'link_code_file' then new_text << link_to(record.full_path, code_file_path(record, :format => 'html'))
+                  when 'link_code_file_name' then new_text << link_to(record.name_without_extension, code_file_path(record, :format => 'html'))
+                  when 'link_code_file_name_pl' then new_text << link_to(record.name_without_extension(true), code_file_path(record, :format => 'html'))
+                  when 'link_code_method' then new_text << link_to(record.name_with_file(true), code_file_path(record.code_file, :format => 'html', :anchor => "m#{record.id}"))
+                  when 'link_code_method_name' then new_text << link_to(record.name_with_file(true), code_file_path(record.code_file, :format => 'html', :anchor => "m#{record.id}"))
                 end
                 new_text << part_content
                 appended = true

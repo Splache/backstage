@@ -69,4 +69,8 @@ class CodeMethod < ActiveRecord::Base
   def self.line_start_private_block?(line)
     return line.include?('private')
   end
+  
+  def name_with_file(full_path=false)
+    return (full_path ? self.code_file.full_path : self.code_file.name) + '#' + self.name
+  end
 end
