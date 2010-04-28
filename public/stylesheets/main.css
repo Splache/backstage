@@ -105,6 +105,12 @@ div.main-content div.inner-space div.file-header{width:100%;}
 div.main-content div.inner-space div.file-header ul.operations{margin:-70px 0px 0px 0px;}
 div.main-content div.inner-space div.block{margin:0px 0px 30px 0px;}
 
+div.main-content div.inner-space div.method{margin:0px 0px 0px 0px;}
+div.main-content div.inner-space div.method h4 a{color:#333333;}
+div.main-content div.inner-space div.method h4 a:hover{color:#1a6268;}
+div.main-content div.inner-space div.method h4 span.parameters{color:#35a42d;}
+div.main-content div.inner-space div.method div.block{margin:0px 0px 25px 0px;}
+
 div.main-content div.inner-space ul.tasks{margin:0px;}
 div.main-content div.inner-space ul.tasks li{border:1px solid #cccccc;float:left;margin:-1px 0px 0px 0px;width:100%;}
 

@@ -37,6 +37,14 @@ class CodeMethod < ActiveRecord::Base
     cm.save
   end
   
+  def self.get_natures
+    natures = []
+    natures << ['Classe', 'class']
+    natures << ['Instance', 'instance']
+    
+    return natures
+  end
+  
   def self.parse_raw_parameters(raw)
     raw_parameters = raw.split(',')
     

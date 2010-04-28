@@ -1,0 +1,13 @@
+<div class="method">
+  <h4><%= link_to show_method_name(m), edit_code_file_code_method_path(:code_file_id => m.code_file_id, :id => m.id) %></h4>
+  <% if false #not m.parameters.to_s.empty? %>
+    <div class="block">
+      <%= show_method_parameters(m.parameters) %>
+    </div>
+  <% end %>
+  <% if not m.description.to_s.empty? %>
+    <div class="block">
+      <%= htmlize(m.description) %>
+    </div>
+  <% end %>
+</div>
