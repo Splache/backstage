@@ -1,0 +1,7 @@
+#doorway div.main-wrapper{margin:60px auto 0px auto;width:500px;}
+#doorway div.main-content{background:none;min-height:250px;}
+#doorway div.main-content div.inner-space{margin:20px;width:460px;}
+#doorway div.main-content div.inner-space div.form{margin:0px auto;width:150px;}
+#doorway div.main-content div.inner-space div.form input{margin:0px 0px 10px 0px;width:130px;}
+#doorway div.main-content div.inner-space div.form input[type=submit]{margin:10px 0px 10px 0px;width:auto;}
+#doorway div.main-content div.inner-space div.form input[type=checkbox]{width:auto;}

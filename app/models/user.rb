@@ -2,6 +2,7 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
 	has_many :assignments, :class_name => 'Task', :foreign_key => 'assigned_to'
+	has_many :comments, :order => "created_at ASC", :dependent => :destroy
 	has_many :tasks, :class_name => 'Task', :foreign_key => 'created_by'
   
 	validates_presence_of :email, :first_name, :last_name, :login

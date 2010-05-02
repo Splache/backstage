@@ -1,6 +1,6 @@
 <div class="file-header">
   <h2><span class="path"><%= @code_file.path %></span><%= @code_file.name %></h2>
-  <ul class="operations admin-tools">
+  <ul class="operations">
     <li><%= link_to 'Modifier le fichier', edit_code_file_path(@code_file) %></li>
     <li><%= link_to 'Détruire le fichier', code_file_path(@code_file), :method => :delete, :confirm => 'Êtes-vous sur de vouloir détruire ce fichier ?' %></li>
   </ul>
@@ -23,7 +23,7 @@
 <% if @code_file.is_ruby_file? %>
   <div class="block">
     <h3>Méthodes de classe publiques</h3>
-    <ul class="operations admin-tools">
+    <ul class="operations">
       <% if false %>
         <li><%= link_to 'Ajouter une méthode', new_code_file_code_method_path(@code_file) %></li>
       <% end %>

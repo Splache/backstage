@@ -1,0 +1,18 @@
+body{background-color:#a5cccc;color:#333333;font-family:"Lucida Grande", Tahoma, Verdana;font-size:12px;margin:0px;padding:0px;}
+h1{color:#000000;font-size:30px;margin:0px 0px 20px 0px;padding:0px;}
+h2{color:#8fb048;font-size:22px;margin:0px 0px 20px 0px;padding:0px;}
+h3{color:#8dafb2;font-size:18px;margin:0px 0px 8px 0px;padding:0px;}
+h4{color:#333333;font-size:13px;font-weight:bold;margin:10px 0px 8px 0px;padding:0px;}
+a{color:#288a93;text-decoration:none;}
+a:hover{color:#1a6268;}
+a:active{outline:0;}
+a:focus{outline:0;}
+p{color:#333333;line-height:18px;margin:0px 0px 20px 0px;padding:0px;}
+ul{list-style:none;margin:0px;padding:0px;}
+ul li{list-style:none;margin:0px 0px 6px 0px;padding:0px;}
+ul li.even{background-color:#e8f2f2;}
+ul li.odd{background-color:#eff6f6;}
+ol{margin:0px 0px 20px 0px;padding:0px;}
+ol li{margin:0px 0px 6px 40px;padding:0px;}
+
+div.float-anchor{clear:both;}

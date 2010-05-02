@@ -4,10 +4,18 @@
   <title>Backstage</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   
-  <%= stylesheet_link_tag "main.css" %>
+  <%= stylesheet_link_tag "base.css" %>
+  <%= stylesheet_link_tag "form.css" %>
+  <%= stylesheet_link_tag "layout.css" %>
+  <%= stylesheet_link_tag "code_files.css" %>
+  <%= stylesheet_link_tag "tasks.css" %>
   <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
   <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" %>
+  <script type="text/javascript">var $j = jQuery.noConflict();</script>
   <%= javascript_include_tag "backstage/base" %>
+  <%= javascript_include_tag "backstage/tasks" %>
+  <%= javascript_include_tag "backstage/form/custom_combo.js" %>
+  
 </head>
 
 <body>
@@ -28,7 +36,7 @@
           </ul>
         <% end %>
       </div>
-      <div class="operation admin-tools">
+      <div class="operation">
         <%= link_to 'Ajouter un fichier', new_code_file_path if in_section?('code') %>
         <%= link_to 'Ajouter un document', new_document_path if in_section?('documents') %>
         <%= link_to 'Ajouter une tâche', new_task_path if in_section?('tasks') %>
@@ -48,7 +56,7 @@
         </ul>
         <%= show_menu_code(@code_file) if in_section?('code') %>
         <%= show_menu_documents(@document) if in_section?('documents') %>
-        <%= show_menu_tasks(@archived) if in_section?('tasks') %>
+        <%= render "#{tasks_path}/filters" if in_section?('tasks') %>
       </div>
       
       <div class="inner-space">

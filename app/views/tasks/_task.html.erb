@@ -4,6 +4,7 @@
     <div class="description"><%= htmlize(task.description) %></div>
     <div class="line user"><label>Créé par :</label><%= link_to(task.creator.name, user_path(task.creator)) %></div>
     <div class="line user"><label>Assigné à :</label><%= task.worker ? link_to(task.worker.name, user_path(task.worker)) : '<span class="unassigned">Non assigné</span>' %></div>
+    <div class="line comments"><label>Voir les</label><%= link_to("Commentaires (#{task.comments.length})", '#', :class => 'open-comments') %></div>
   </div>
   
   <div class="overview">
@@ -20,5 +21,20 @@
   </div>
   <div class="operations">
     <%= link_to 'X', task_path(task), :method => :delete, :confirm => 'Êtes-vous sûr de vouloir détruire cette tâche ?', :class => 'delete' %>
+  </div>
+  
+  <div class="wrapper-comments">
+    <div class="box">
+      <div class="heading">
+        <%= link_to 'X', '#', :class => 'close-comments' %>
+        <h3><span class="identifier"><%= task.identifier %></span>: <%= task.name %></h3>
+      </div>
+      <ul class="comments">
+        <% task.comments.each do |comment| %>
+          <%= render "#{comments_path}/comment", :comment => comment %>
+        <% end %>
+      </ul>
+      <div class="float-anchor"></div>
+    </div>
   </div>
 </div>

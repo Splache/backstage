@@ -1,4 +1,24 @@
 module TaskHelper
+  def show_menu_tasks(archived)
+    content = []
+    
+    content << '<ul class="tree">'
+    content << '<li class="level1 folder show">' + link_to('Toutes les tâches',  tasks_path(:section => 'root')) + '</li>'
+    content << '<li class="level1 folder show"><strong>' + link_to('Mes tâches',  my_tasks_path) + '</strong></li>'
+    content << '<li class="level1 folder show" style="cursor:default">Par catégorie</li>'
+    Task.get_natures.each { |t| content << '<li class="level2 folder show">' + link_to(t[0],  tasks_path(:section => t[1])) + '</li>' }
+
+    content << '</ul>'
+    
+    content << '<div class="sub-navigation">'
+    if archived
+      content << link_to('Afficher les tâches en cours', tasks_path(:archived => 0), :class => 'current')
+    else
+      content << link_to('Afficher les tâches archivées', tasks_path(:archived => 1), :class => 'archive')
+    end
+    content << '</div>'
+  end
+  
   def show_task_due_on(task)
     content = []
     if task.due_on

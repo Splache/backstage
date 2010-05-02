@@ -1,8 +1,10 @@
 class Task < ActiveRecord::Base
-  belongs_to :project
   belongs_to :collection
   belongs_to :creator, :class_name => 'User', :foreign_key => 'created_by'
+  belongs_to :project
   belongs_to :worker, :class_name => 'User', :foreign_key => 'assigned_to'
+  
+  has_many :comments, :order => "created_at ASC", :dependent => :destroy
   
   named_scope :active, :conditions => "ended_on = '' OR ended_on IS NULL", :order => 'priority ASC'
   named_scope :archived, :conditions => "ended_on != '' AND ended_on IS NOT NULL"

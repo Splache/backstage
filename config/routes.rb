@@ -6,6 +6,8 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :code_methods
   
+  map.resources :comments
+  
   map.documents_folder 'documents/folder/:folder_name.:format', :controller => 'documents', :action => 'index'
   map.resources :documents
   

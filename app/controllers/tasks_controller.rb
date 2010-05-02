@@ -4,6 +4,9 @@ class TasksController < ApplicationController
   
   def index
     @tasks = Task.all_from_section(@section, current_user, @archived)
+    
+    @comment = Comment.new
+    @comment.user_id = current_user.id
   end
   
   def show

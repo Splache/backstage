@@ -1,0 +1,24 @@
+label{clear:both;display:block;margin:0px 0px 3px 0px;}
+label.check{display:inline;margin:0px 0px 3px 10px;}
+label input{margin:0px 3px 0px 0px;}
+input{font-family:"Lucida Grande", Tahoma, Verdana;font-size:12px;margin:0px 0px 20px 0px;width:400px;}
+input.medium{width:150px;}
+input.small{width:70px;}
+input[type=submit]{margin:10px 20px 0px 0px;width:auto;}
+input[type=checkbox]{width:auto;}
+textarea{font-family:"Lucida Grande", Tahoma, Verdana;font-size:12px;height:200px;margin:0px 0px 20px 0px;width:700px;}
+textarea#document_description{height:400px;}
+textarea.small{height:100px;}
+select{font-family:"Lucida Grande", Tahoma, Verdana;font-size:12px;margin:0px 0px 20px 0px;width:400px;}
+select.medium{width:170px;}
+select.date{width:60px;}
+
+div.custom-combo{cursor:default;float:left;height:20px;width:120px;}
+div.custom-combo div.selection{border:1px solid #eeeeee;color:#666666;float:left;height:15px;margin:0px 5px 0px -3px;overflow:hidden;padding:2px 3px;width:90px;white-space:nowrap;}
+div.custom-combo ul.options{background-color:#ffffff;border:1px solid #cccccc;display:none;margin:20px 0px 0px -3px;min-width:96px;position:absolute;overflow:hidden;z-index:20;}
+div.custom-combo ul.options li{padding:2px 6px;width:100%;}
+div.custom-combo ul.options li.selected{display:none;}
+
+div.custom-combo:hover div.selection{background-color:#ffffff;border:1px solid #999999;color:#555555;position:absolute;z-index:21;}
+div.custom-combo:hover ul.options{display:block;}
+div.custom-combo:hover ul.options li:hover{background-color:#eaeaea;}
