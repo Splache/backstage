@@ -16,3 +16,36 @@ ol{margin:0px 0px 20px 0px;padding:0px;}
 ol li{margin:0px 0px 6px 40px;padding:0px;}
 
 div.float-anchor{clear:both;}
+
+.ico{background:url(../images/icons.png) no-repeat top left;display:block;float:left;height:16px;margin:0px 4px 0px 0px;width:16px;}
+.ico-add{background-position:0px 0px;}
+.ico-assigned_to{background-position:-192px 0px;}
+.ico-archive{background-position:-240px 0px;}
+.ico-calendar{background-position:-128px 0px;}
+.ico-collection{background-position:-304px 0px;}
+.ico-comments{background-position:-208px 0px;}
+.ico-current{background-position:-224px 0px;}
+.ico-delete{background-position:-32px 0px;}
+.ico-edit{background-position:-16px 0px;}
+.ico-file{background-position:-112px 0px;}
+.ico-folder{background-position:-96px 0px;}
+.ico-gear{background-position:-288px 0px;}
+.ico-help{background-position:-272px 0px;}
+.ico-hold{background-position:-64px 0px;}
+.ico-late{background-position:-176px 0px;}
+.ico-move{background-position:-336px 0px;}
+.ico-nature{background-position:-320px 0px;}
+.ico-started{background-position:-48px 0px;}
+.ico-stopped{background-position:-80px 0px;}
+.ico-target{background-position:-160px 0px;}
+.ico-time{background-position:-144px 0px;}
+.ico-tasks{background-position:-256px 0px;}
+.ico-user{background-position:-192px 0px;}
+
+
+
+
+
+
+
+

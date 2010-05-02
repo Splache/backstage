@@ -1,11 +1,32 @@
-div#task-filters{margin:20px;}
-div#task-filters div.filter{float:left;margin:0px 0px 5px 0px;padding-left:22px;}
-div#task-filters div.filter label{float:left;width:120px;}
+div#task-filters{margin:20px 20px;}
+div#task-filters h5{color:#3c3c3c;font-size:18px;font-weight:normal;margin:0px 0px 20px 0px;padding:0px}
+div#task-filters div.filter{clear:both;cursor:pointer;float:left;height:30px;margin:0px 0px 5px 0px;width:285px;}
+div#task-filters div.filter label{color:#666666;cursor:pointer;float:left;font-size:12px;height:16px;line-height:16px;margin:6px 0px 0px 8px;overflow:hidden;width:105px;}
+div#task-filters div.filter label span.ico{height:32px;margin-top:-16px;}
 div#task-filters div.filter select{width:150px;}
+div#task-filters div.custom-combo div.selection{height:24px;width:142px;}
+div#task-filters div.custom-combo ul.options{width:148px;}
+
+div#task-filters div.custom-combo{display:none;height:30px;margin:1px 0px 0px 0px;width:145px;}
+div#task-filters div.custom-combo div.selection{border:none;color:#444444;height:16px;margin:0px 5px 0px -3px;padding:6px 3px;width:142px;}
+div#task-filters div.custom-combo ul.options{margin:28px 0px 0px -3px;width:165px;}
+div#task-filters div.custom-combo ul.options li{color:#555555;margin:0px;padding:6px 6px;}
+div#task-filters div.custom-combo ul.options li.selected{display:none;}
+
+
+
+
+div#task-filters div.filter-combo.active{background:url(../images/filter-combo.png) no-repeat top left;}
+div#task-filters div.filter-button-small.active{background:url(../images/filter-button-small.png) no-repeat top left;}
+div#task-filters div.active label span.ico{margin-top:0px;}
+div#task-filters div.active div.custom-combo{display:block;}
+div#task-filters div:hover.active{background-position:bottom left;}
 
 
 div.main-content div.inner-space ul.tasks{margin:0px;width:790px;}
 div.main-content div.inner-space ul.tasks li{border:1px solid #cccccc;float:left;margin:-1px 0px 0px 0px;width:100%;}
+div.main-content div.inner-space ul.tasks li.empty{border:none;}
+div.main-content div.inner-space ul.tasks li.loading{background:url(../images/loading.gif) no-repeat;border:none;height:30px;margin:0px 0px 0px -2px;}
 
 div.task{cursor:default;float:left;margin:15px 20px;width:770px;}
 div.task div.line{background:no-repeat 0px 4px;clear:both;color:#333333;float:left;font-size:11px;margin:0px 0px 10px 0px;padding-left:22px;}

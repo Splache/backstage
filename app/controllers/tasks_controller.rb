@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
-  before_filter :authenticated?, :init_section
+  before_filter :authenticated?, :init_filters
   layout 'standard'
   
   def index
-    @tasks = Task.all_from_section(@section, current_user, @archived)
+    @tasks = Task.all_from_filters(current_user, session[:task_filters])
     
     @comment = Comment.new
     @comment.user_id = current_user.id
@@ -65,20 +65,22 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
   
-  def init_section
-    if params[:section]
-      session[:task_section] = params[:section] 
-    elsif not session[:task_section]
-      session[:task_section] = 'my_tasks'
+  def init_filters
+    session[:task_filters] = { :assigned_to => current_user.id } if not session[:task_filters]
+    
+    if params[:filter]
+      set_filter(:assigned_to)
+      set_filter(:nature)
+      set_filter(:move)
+      set_filter(:archive)
     end
     
-    @section = session[:task_section]
-    
-    if params[:archived]
-      session[:task_archived] = (params[:archived] == '0' ? false : true) 
-    elsif not session[:task_archived]
-      session[:task_archived] = false
+    @filters = session[:task_filters]
+  end
+  
+  def set_filter(filter)
+    if params[:filter][filter]
+      session[:task_filters][filter] = params[:filter][filter] == '$remove$' ? nil : params[:filter][filter] 
     end
-    @archived = session[:task_archived]
   end
 end

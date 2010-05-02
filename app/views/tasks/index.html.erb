@@ -1,6 +1,4 @@
-<%= title_tasks_section(@section, @archived) %>
-<ul class="tasks <%= @archived ? 'archived' : '' %>" id="list-tasks">
-  <% @tasks.each do |task| %>
-    <li class="odd" id="task-<%= task.id %>"><%= render 'task', :task => task %></li>
-  <%- end %>
-</ul>
+<div id="tasks">
+  <%= title_tasks_section(@filters) %>
+  <%= render "#{tasks_path}/list", :tasks => @tasks %>
+</div>

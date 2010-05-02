@@ -5,16 +5,42 @@ BACKSTAGE.Tasks = function(){
   this.initialize = function(){
     if($j('#form-task').length > 0){ init_form(); }
     if($j('#list-tasks').length > 0){ init_list(); }
+    if($j('#task-filters').length > 0){ init_filters(); }
+  };
+  
+  apply_filter = function(filter){
+    var field = filter.find('input[type=hidden]'),
+        field_name = field.attr('name');
+        field_value = field.val()
+        url = '';
+        
+    if(!filter.hasClass('active')){ field_value = '$remove$'; }
+    
+    url = '/tasks.js?' + field_name + '=' + field_value;
+    
+    loading_task_list_data();
+    
+    $j.get(url, function(data){ reload_task_list(data); }, 'html');
+  };
+  
+  close_comments = function(box){
+    box.fadeOut();
+    if(is_sortable){ $j('#list-tasks').sortable("enable"); }
   };
   
   get_task_id_from_item = function(item){
     return item.attr('id').replace('task-', '');
   };
   
+  init_filters = function(){
+    $j('#task-filters div.filter label').click(function(){ toggle_filter($j(this).closest('div.filter')); })
+    $j('#task-filters div.filter input.custom-combo').bind('updated', function(){ apply_filter($j(this).closest('div.filter')); });
+  };
+  
   init_form = function(){
     var date_fields = ['due_on', 'started_on', 'ended_on'];
     
-    $.each(date_fields, function(){
+    $j.each(date_fields, function(){
       $j('#show_' + this).click(function(){ set_state_fields(this.id.replace('show_', '')); });
       set_state_fields(this);
     });
@@ -31,14 +57,18 @@ BACKSTAGE.Tasks = function(){
     $j('#list-tasks a.close-comments').click(function(){ close_comments($j(this).closest('div.wrapper-comments')); });
   };
   
+  loading_task_list_data = function(){
+    $j('#tasks').html('<li class="loading">&nbsp;</li>');
+  };
+  
   open_comments = function(task){
     if(is_sortable){ $j('#list-tasks').sortable("disable"); }
     task.find('div.wrapper-comments').fadeIn();
   };
   
-  close_comments = function(box){
-    box.fadeOut();
-    if(is_sortable){ $j('#list-tasks').sortable("enable"); }
+  reload_task_list = function(data){
+    $j('#tasks').html(data);
+    init_list();
   };
   
   set_state_fields = function(name){
@@ -47,6 +77,16 @@ BACKSTAGE.Tasks = function(){
     }else{
      $j('#fields_' + name).addClass('hidden-fields'); 
     }
+  };
+  
+  toggle_filter = function(filter){
+    if(filter.hasClass('active')){
+      filter.removeClass('active');
+    }else{
+      filter.addClass('active');
+    }
+    
+    apply_filter(filter);
   };
   
   update_priority = function(task){
@@ -61,7 +101,7 @@ BACKSTAGE.Tasks = function(){
       params.insert_first = 1;
     }
     
-    $.ajax({ type: "POST", url: '/tasks/' + task_id, data: params, dataType: 'json' });  
+    $j.ajax({ type: "POST", url: '/tasks/' + task_id, data: params, dataType: 'json' });  
   };
 };
 BACKSTAGE.Tasks = new BACKSTAGE.Tasks();

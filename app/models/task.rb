@@ -9,20 +9,29 @@ class Task < ActiveRecord::Base
   named_scope :active, :conditions => "ended_on = '' OR ended_on IS NULL", :order => 'priority ASC'
   named_scope :archived, :conditions => "ended_on != '' AND ended_on IS NOT NULL"
   
-  def self.all_from_section(section, user, archived)
+  def self.all_from_filters(user, filters)
     conditions = []
-    conditions << (archived ? 'ended_on != ""' : 'ended_on = "" OR ended_on IS NULL')
-    get_natures.each { |n| conditions << "nature = '#{n[1]}'" if section == n[1] }
+    conditions << (filters[:archive] ? 'ended_on != ""' : 'ended_on = "" OR ended_on IS NULL')
+    parameters = []
     
-    conditions << "assigned_to = #{user.id}" if section == 'my_tasks'
+    get_natures.each { |n| conditions << "nature = '#{n[1]}'" if filters[:nature] == n[1] }
     
-    if archived
-      order = 'ended_on DESC'
-    else
-      order = 'priority ASC'
+    conditions << "assigned_to = #{filters[:assigned_to].to_i}" if filters[:assigned_to]
+    
+    if filters[:move]
+      conditions << "updated_at >= ?"
+      parameters << Time.now - filters[:move].to_i.days 
     end
     
-    return self.all(:conditions => conditions.join(' AND '), :order => order)
+    #if archived
+    #  order = 'ended_on DESC'
+    #else
+      order = 'priority ASC'
+    #end
+    
+    conditions = [conditions.join(' AND '), parameters].flatten
+    
+    return self.all(:conditions => conditions, :order => order)
   end
   
   def self.get_natures

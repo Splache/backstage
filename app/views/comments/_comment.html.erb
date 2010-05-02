@@ -1,8 +1,8 @@
 <li class="comment" id="comment-<%= comment.id %>">
   <div class="details">
-    <div class="line user"><%= comment.user.name %></div>
-    <div class="line date"><%= comment.created_at.strftime('%d-%m-%Y') %></div>
-    <div class="line time"><%= comment.created_at.strftime('%H:%M') %></div>
+    <div class="line ico ico-user"><%= comment.user.name %></div>
+    <div class="line ico ico-date"><%= comment.created_at.strftime('%d-%m-%Y') %></div>
+    <div class="line ico ico-time"><%= comment.created_at.strftime('%H:%M') %></div>
   </div>
   <div class="text">
     <%= htmlize(comment.description) %>

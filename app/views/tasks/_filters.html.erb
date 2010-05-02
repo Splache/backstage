@@ -1,11 +1,7 @@
 <div class="filters" id="task-filters">
-  <div class="filter move">
-    <label>Mouvements</label><%= select_tag "filter[move]", options_for_select([['Dernière 24h', 1], ['2 dernier jours', 2], ['Dernière semaine', 7], ['Dernier mois', 31]]), :class => 'custom-combo', :id => 'filter-move' %>
-  </div>
-  <div class="filter user">
-    <label>Assigné à</label><%= select_tag "filter[user]", options_for_select(User.all.collect{|u| [u.name, u.id]}, :selected => 2), :class => 'custom-combo', :id => 'filter-user' %>
-  </div>
-  <div class="filter move">
-    <label>Catégories</label><%= select_tag "filter[category]", options_for_select(Task.get_natures()), :class => 'custom-combo', :id => 'filter-category' %>
-  </div>
+  <h5>Filtres</h5>
+  <%= task_filter_combo_tag('move', 'Mouvements', [['Dernières 24h', '1'], ['2 derniers jours', '2'], ['Dernière semaine', '7'], ['Dernier mois', '31']], @filters) %>
+  <%= task_filter_combo_tag('assigned_to', 'Assigné à', User.all.collect{|u| [u.name, u.id]}, @filters) %>
+  <%= task_filter_combo_tag('nature', 'Catégorie', Task.get_natures(), @filters) %>
+  <%= task_filter_button_tag('archive', 'Archives', @filters) %>
 </div>

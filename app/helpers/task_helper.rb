@@ -19,6 +19,8 @@ module TaskHelper
     content << '</div>'
   end
   
+  
+  
   def show_task_due_on(task)
     content = []
     if task.due_on
@@ -59,5 +61,51 @@ module TaskHelper
     end
     
     return content.join
+  end
+  
+  def task_filter_button_tag(id, name, filters)
+    content = []
+    selection = filters[id.to_sym]
+    
+    css_class = ['filter', 'filter-button-small']
+    css_class << id
+    css_class << 'active' if selection
+    
+    content << '<div class="' + css_class.join(' ') + '">'
+    content << '<label><span class="ico ico-' + id + '">&nbsp;</span>' + name + '</label>'
+    content << hidden_field_tag("filter[#{id}]", selection)
+    content << '</div>'
+    
+    return content.join
+  end
+  
+  def task_filter_combo_tag(id, name, values, filters)
+    content = []
+    selection = filters[id.to_sym]
+    
+    css_class = ['filter', 'filter-combo']
+    css_class << id
+    css_class << 'active' if selection
+    
+    content << '<div class="' + css_class.join(' ') + '">'
+    content << '<label><span class="ico ico-' + id + '">&nbsp;</span>' + name + '</label>'
+    content << select_tag("filter[#{id}]", options_for_select(values, :selected => selection), :class => 'custom-combo', :id => "filter-#{id}")
+    content << '</div>'
+    
+    return content.join
+  end
+  
+  def title_tasks_section(filters)
+    
+    text = 'Liste des tâches'
+    if current_user.id = filters[:assigned_to]
+      text = 'Mes tâches'
+    else
+      Task.get_natures.each { |t| text = t[0] if t[1] == filters[:nature] }
+    end
+    
+    sub = filters[:archive] ? '<span class="path">Archive</span>' + filters[:archive].to_s : ''
+    
+    return '<h2>' + sub + text + '</h2>'
   end
 end

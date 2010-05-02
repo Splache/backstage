@@ -1,0 +1,9 @@
+<ul class="tasks <%= @filters[:archive] ? 'archived' : '' %>" id="list-tasks">
+  <% if tasks.empty? %>
+    <li class="empty">Aucune tâche de disponible</li>
+  <% else %>
+    <% tasks.each do |task| %>
+      <li class="odd" id="task-<%= task.id %>"><%= render 'task', :task => task %></li>
+    <% end %>
+  <% end %>
+</ul>

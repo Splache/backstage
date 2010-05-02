@@ -144,17 +144,4 @@ module ApplicationHelper
     
     return content.join
   end
-  
-  def title_tasks_section(section, archived)
-    text = 'Liste des tâches'
-    if section == 'my_tasks'
-      text = 'Mes tâches'
-    else
-      Task.get_natures.each { |t| text = t[0] if t[1] == section }
-    end
-    
-    sub = archived ? '<span class="path">Archive</span>' : ''
-    
-    return '<h2>' + sub + text + '</h2>'
-  end
 end
