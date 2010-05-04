@@ -9,6 +9,10 @@ class Task < ActiveRecord::Base
   named_scope :active, :conditions => "ended_on = '' OR ended_on IS NULL", :order => 'priority ASC'
   named_scope :archived, :conditions => "ended_on != '' AND ended_on IS NOT NULL"
   
+  
+  #*************************************************************************************
+  # PUBLIC CLASS METHODS
+  #*************************************************************************************
   def self.all_from_filters(user, filters)
     conditions = []
     conditions << (filters[:archive] ? 'ended_on != ""' : 'ended_on = "" OR ended_on IS NULL')
@@ -48,6 +52,7 @@ class Task < ActiveRecord::Base
     natures << ['Production', 'production']
     natures << ['Communication', 'communication']
     natures << ['Interface et linguistique', 'interface']
+    natures << ['Test', 'test']
     
     return natures
   end
@@ -74,16 +79,11 @@ class Task < ActiveRecord::Base
   end
   
   
+  #*************************************************************************************
+  # PUBLIC METHODS
+  #*************************************************************************************
   def archived?
     return (self.ended_on.to_s.empty? ? false : true)
-  end
-  
-  def nature_human
-    natures = Task.get_natures
-    
-    natures.each { |n| return n[0] if n[1] == self.nature }
-    
-    return ''
   end
   
   def identifier
@@ -93,13 +93,17 @@ class Task < ActiveRecord::Base
   def insert_after(previous_task_id)
     previous = Task.first(:conditions => {:id => previous_task_id })
     
-    
-    
     if self.priority > previous.priority
       prioritize_to(previous.priority + 1)
     else
       prioritize_to(previous.priority)
     end
+  end
+  
+  def nature_human
+    Task.get_natures.each { |n| return n[0] if n[1] == self.nature }
+    
+    return ''
   end
 
   def prioritize_to(new_priority)

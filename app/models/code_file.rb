@@ -2,6 +2,10 @@ class CodeFile < ActiveRecord::Base
   belongs_to :project
 	has_many :code_methods, :order => "nature ASC, name ASC", :dependent => :destroy
 	
+	
+	#*************************************************************************************
+  # PUBLIC METHODS
+  #*************************************************************************************
 	def full_path
 	  return [self.path, self.name].delete_if{|f| f.empty? }.join('/')
   end
@@ -16,6 +20,10 @@ class CodeFile < ActiveRecord::Base
   
   def is_ruby_file?
     return (File.extname(self.name) == '.rb')
+  end
+  
+  def line_declare_relationship?(line)
+    return (line.include?('belongs_to ') or line.include?('has_many '))
   end
   
   def name_without_extension(pluralize=false)
@@ -39,10 +47,6 @@ class CodeFile < ActiveRecord::Base
     return all_relations
   end
   
-  def line_declare_relationship?(line)
-    return (line.include?('belongs_to ') or line.include?('has_many '))
-  end
-  
   def parse_relation_from_line(line)
     relation = { :nature => 'belongs_to', :model_name => '', :code_file => nil }
     
@@ -64,5 +68,4 @@ class CodeFile < ActiveRecord::Base
     
     return relation
   end
-  
 end
