@@ -1,10 +1,10 @@
 <div class="task">
   <div class="details">
     <h3><span class="identifier"><%= task.identifier %></span> <%= link_to task.name, edit_task_path(task) %></h3>
-    <div class="description"><%= htmlize(task.description) %></div>
-    <div class="line user"><label>Créé par :</label><%= link_to(task.creator.name, user_path(task.creator)) %></div>
-    <div class="line user"><label>Assigné à :</label><%= task.worker ? link_to(task.worker.name, user_path(task.worker)) : '<span class="unassigned">Non assigné</span>' %></div>
-    <div class="line comments"><label>Voir les</label><%= link_to("Commentaires (#{task.comments.length})", '#', :class => 'open-comments') %></div>
+    <div class="wrapper-description"><div class="description"><%= htmlize(task.description) %></div></div>
+    <%= task_line_detail('user', 'Créé par', link_to(task.creator.name, user_path(task.creator))) %>
+    <%= task_line_detail('user', 'Assigné à', (task.worker ? link_to(task.worker.name, user_path(task.worker)) : '<span class="unassigned">Non assigné</span>')) %>
+    <%= task_line_detail('comments', 'Voir les', link_to("Commentaires (#{task.comments.length})", '#', :class => 'open-comments'), :class => 'comments') %>    
   </div>
   
   <div class="overview">
@@ -14,7 +14,7 @@
       <%= show_start_date(task) %>
       
       <% if task.hours_estimated.to_i > 0 %>
-        <div class="line estimated_time"><label>Temps estimé :</label><%= task.hours_estimated %> heures</div>
+        <div class="line"><%= icon('time') %><div class="content"><label>Temps estimé :</label><%= task.hours_estimated %> heures</div></div>
       <% end %>
       <%= show_task_due_on(task) %>
     <% end %>

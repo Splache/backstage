@@ -5,6 +5,10 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all_from_filters(current_user, session[:task_filters])
     
+    if request.format == 'js'
+      sleep 2
+    end
+    
     @comment = Comment.new
     @comment.user_id = current_user.id
   end
@@ -23,12 +27,13 @@ class TasksController < ApplicationController
   
   def create
     @task = Task.new(params[:task])
+    @task.priority = 1
     @task.created_by = current_user.id
     @task.project_id = current_project.id
     if @task.save
       @task.set_dates_from_params(params)
       @task.set_identifier
-      Task.regenerate_priorities if not @task.archived?
+      Task.regenerate_priorities(current_project.id, :skip_task => @task) if not @task.archived?
       redirect_to tasks_path
     else
       render :action => 'new'
@@ -60,7 +65,7 @@ class TasksController < ApplicationController
   
   def destroy
     Task.find(params[:id]).destroy
-    Task.regenerate_priorities
+    Task.regenerate_priorities(current_project.id)
     
     redirect_to tasks_path
   end

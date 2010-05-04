@@ -15,6 +15,5 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sessions
   map.resources :users
   
-  map.my_tasks 'my_tasks', :controller => 'tasks', :action => 'index', :section => 'my_tasks'
   map.resources :tasks
 end

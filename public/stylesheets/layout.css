@@ -3,25 +3,24 @@ div.hidden-fields{margin:0px 0px 20px 0px;}
 div.hidden-fields input{display:none;}
 div.hidden-fields select{display:none;}
 
-a.link-edit{background:url(../images/edit.png) no-repeat top left;float:left;height:16px;margin:0px 0px 0px 20px;text-indent:-9999px;width:16px;}
-a.link-delete{background:url(../images/delete.png) no-repeat top left;float:left;height:16px;margin:0px 0px 0px 5px;text-indent:-9999px;width:16px;}
-
 div.main-wrapper{background-color:#ffffff;margin:0px auto;width:1200px;}
 
-div.main-header{background-color:#8fb048;height:120px;width:100%;}
-div.main-header div.top-bar{background-color:#2f2d2d;height:30px;width:100%;}
+div.main-header{background-color:#8fb048;height:115px;overflow:hidden;width:100%;}
+div.main-header div.top-bar{background-color:#2f2d2d;height:25px;overflow:hidden;width:100%;}
 div.main-header div.top-bar ul{margin:0px;padding:0px;}
 div.main-header div.top-bar ul li{float:left;list-style:none;margin:5px 20px;padding:0px;}
-div.main-header div.top-bar ul li a{color:#ffffff;font-size:14px;text-decoration:none;}
-div.main-header div.top-bar ul.users{float:right;}
-div.main-header div.top-bar ul.users li{margin:7px 15px;}
+div.main-header div.top-bar ul li a{color:#ffffff;font-size:12px;text-decoration:none;}
+div.main-header div.top-bar ul.users{float:right;margin-right:10px;}
+div.main-header div.top-bar ul.users li{margin:4px 15px;}
 div.main-header div.top-bar ul.users li a{font-size:10px;}
 div.main-header div.top-bar ul.users li a:hover{color:#8FB048;}
 div.main-header div.top-bar ul.users li a:hover.disconnect{color:#ff6a1a;}
-div.main-header div.selection{margin:20px;}
-div.main-header div.selection p{margin:0px 0px -5px 0px;}
+div.main-header div.shadow{background:url(../images/head-shadow.png) top left repeat-x;height:90px;position:absolute;width:1200px;}
+div.main-header div.logo{float:left;height:90px;margin:0px 0px 0px 10px;overflow:hidden;}
+div.main-header div.logo img{margin:-8px 0px 0px 0px;}
 div.main-header div.operation{float:right;margin:32px 20px 0px 20px;}
-div.main-header div.operation a{background:url(../images/add.png) no-repeat 5px 5px #a1c651;border:1px solid #82a636;color:#333333;font-size:13px;font-weight:normal;padding:5px 15px 5px 30px;text-decoration:none;}
+div.main-header div.operation a{background:#a1c651;border:1px solid #82a636;color:#333333;display:block;font-size:13px;font-weight:normal;padding:5px 15px 5px 0px;text-decoration:none;}
+div.main-header div.operation a span{margin:0px 5px 0px 10px;}
 div.main-header div.operation a:hover{border:1px solid #bdd784;}
 
 div.main-content{background:url(../images/main-content.gif) repeat-y top left;border-bottom:1px solid #999999;min-height:400px;}
@@ -30,24 +29,16 @@ div.main-content div.navigations{background-color:#eeeeee;border-right:1px solid
 
 div.main-content div.navigations ul.choices{background-color:#dddddd;border-bottom:1px solid #cccccc;height:30px;margin:0px;padding:0px;width:100%;}
 div.main-content div.navigations ul.choices li{background:no-repeat 15px 7px;cursor:pointer;float:left;height:100%;margin:0px 0px 0px 0px;overflow:hidden;}
-div.main-content div.navigations ul.choices li.help{background-image:url(../images/help.png);}
-div.main-content div.navigations ul.choices li.task{background-image:url(../images/task.png);}
 div.main-content div.navigations ul.choices li:hover{background-color:#ffffff;}
-div.main-content div.navigations ul.choices li a{color:#666666;display:block;font-size:12px;font-weight:bold;height:100%;padding:8px 15px 0px 36px;}
+div.main-content div.navigations ul.choices li a{color:#666666;display:block;font-size:12px;font-weight:bold;height:100%;padding:8px 15px 0px 15px;}
 div.main-content div.navigations ul.choices li.selected{background-color:#eeeeee;border:1px solid #cccccc;border-bottom:1px solid #eeeeee;border-top:none;}
 div.main-content div.navigations ul.choices li.selected a{color:#444444;}
 div.main-content div.navigations ul.choices li.first{border-left:none;}
 
-div.main-content div.navigations div.sub-navigation{background-color:#dddddd;height:30px;margin:0px 0px 0px 0px;width:100%;}
-div.main-content div.navigations div.sub-navigation a{background:0px 1px no-repeat;color:#555555;font-size:11px;font-weight:bold;display:block;float:left;margin:7px 20px;padding:2px 0px 4px 20px;}
-div.main-content div.navigations div.sub-navigation a:hover{color:#333333;}
-div.main-content div.navigations div.sub-navigation a.archive{background-image:url(../images/archive.png);}
-div.main-content div.navigations div.sub-navigation a.current{background-image:url(../images/current.png);}
 div.main-content div.navigations ul.tree{margin:10px 0px 20px 0px;}
-div.main-content div.navigations ul.tree li{background:url(../images/file.png) no-repeat top left;display:none;height:16px;margin:0px 0px 3px 0px;padding-left:18px;}
-div.main-content div.navigations ul.tree li.folder{background-image:url(../images/folder.png);}
+div.main-content div.navigations ul.tree li{display:none;height:16px;margin:0px 0px 3px 0px;}
 div.main-content div.navigations ul.tree li a{color:#274447;float:left;text-decoration:none;}
-div.main-content div.navigations ul.tree li a.operation{display:none;}
+div.main-content div.navigations ul.tree li a.operation{display:none;float:left;margin:0px 0px 0px 20px;text-indent:-9999px;}
 div.main-content div.navigations ul.tree li:hover a.operation{display:block;}
 div.main-content div.navigations ul.tree li.undefined a{color:#f00;}
 div.main-content div.navigations ul.tree li.level0{display:block;margin-left:0px;}

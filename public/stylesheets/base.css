@@ -1,5 +1,5 @@
 body{background-color:#a5cccc;color:#333333;font-family:"Lucida Grande", Tahoma, Verdana;font-size:12px;margin:0px;padding:0px;}
-h1{color:#000000;font-size:30px;margin:0px 0px 20px 0px;padding:0px;}
+h1{color:#c6db9a;float:left;font-size:65px;font-weight:normal;margin:28px 0px 0px 20px;padding:0px;}
 h2{color:#8fb048;font-size:22px;margin:0px 0px 20px 0px;padding:0px;}
 h3{color:#8dafb2;font-size:18px;margin:0px 0px 8px 0px;padding:0px;}
 h4{color:#333333;font-size:13px;font-weight:bold;margin:10px 0px 8px 0px;padding:0px;}
@@ -16,6 +16,8 @@ ol{margin:0px 0px 20px 0px;padding:0px;}
 ol li{margin:0px 0px 6px 40px;padding:0px;}
 
 div.float-anchor{clear:both;}
+
+span.loading-bar{background:url(../images/loading-bar.gif) no-repeat;float:left;height:20px;margin:6px 0px 0px 30px;position:absolute;width:220px;}
 
 .ico{background:url(../images/icons.png) no-repeat top left;display:block;float:left;height:16px;margin:0px 4px 0px 0px;width:16px;}
 .ico-add{background-position:0px 0px;}
@@ -35,8 +37,8 @@ div.float-anchor{clear:both;}
 .ico-late{background-position:-176px 0px;}
 .ico-move{background-position:-336px 0px;}
 .ico-nature{background-position:-320px 0px;}
-.ico-started{background-position:-48px 0px;}
-.ico-stopped{background-position:-80px 0px;}
+.ico-started{background-position:-80px 0px;}
+.ico-stopped{background-position:-48px 0px;}
 .ico-target{background-position:-160px 0px;}
 .ico-time{background-position:-144px 0px;}
 .ico-tasks{background-position:-256px 0px;}

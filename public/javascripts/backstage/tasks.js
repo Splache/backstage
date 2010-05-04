@@ -55,10 +55,11 @@ BACKSTAGE.Tasks = function(){
     
     $j('#list-tasks a.open-comments').click(function(){ open_comments($j(this).closest('div.task')); });
     $j('#list-tasks a.close-comments').click(function(){ close_comments($j(this).closest('div.wrapper-comments')); });
+    $j('#list-tasks div.description').click(function(){ toggle_description($j(this)); });
   };
   
   loading_task_list_data = function(){
-    $j('#tasks').html('<li class="loading">&nbsp;</li>');
+    $j('#tasks h2').append('<span class="loading-bar">&nbsp;</span>');
   };
   
   open_comments = function(task){
@@ -76,6 +77,18 @@ BACKSTAGE.Tasks = function(){
       $j('#fields_' + name).removeClass('hidden-fields');
     }else{
      $j('#fields_' + name).addClass('hidden-fields'); 
+    }
+  };
+  
+  toggle_description = function(description){
+    var wrapper = description.closest('div.wrapper-description');
+    
+    if(description.outerHeight() <= 40){ return ''; }
+    
+    if(wrapper.css('max-height') == '40px'){
+      wrapper.animate({ 'max-height': description.outerHeight() + 'px'}, 500);
+    }else{
+      wrapper.animate({ 'max-height': '40px'}, 500);
     }
   };
   
@@ -100,6 +113,8 @@ BACKSTAGE.Tasks = function(){
     }else{
       params.insert_first = 1;
     }
+    
+    alert(params.insert_after);
     
     $j.ajax({ type: "POST", url: '/tasks/' + task_id, data: params, dataType: 'json' });  
   };

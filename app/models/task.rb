@@ -23,11 +23,7 @@ class Task < ActiveRecord::Base
       parameters << Time.now - filters[:move].to_i.days 
     end
     
-    #if archived
-    #  order = 'ended_on DESC'
-    #else
-      order = 'priority ASC'
-    #end
+    order = filters[:archive] ? 'ended_on DESC' : 'priority ASC'
     
     conditions = [conditions.join(' AND '), parameters].flatten
     
@@ -46,10 +42,22 @@ class Task < ActiveRecord::Base
     return natures
   end
   
-  def self.regenerate_priorities
+  def self.regenerate_priorities(project_id, options={})
+    options.reverse_merge!(:skip_task => nil)
     position = 1
     
-    self.active.each do |task|
+    conditions = ['project_id = ?', "ended_on = '' OR ended_on IS NULL"]
+    parameters = [project_id]
+    
+    if options[:skip_task]
+      conditions << 'id != ?'
+      parameters << options[:skip_task].id
+    end
+    
+    tasks = Task.all(:conditions => [conditions.join(' AND '), parameters].flatten, :order => 'priority ASC')
+    
+    tasks.each do |task|
+      position += 1 if options[:skip_task] and position == options[:skip_task].priority
       Task.update_all("priority = #{position}", "id = #{task.id}" ) 
       position += 1
     end
@@ -75,6 +83,8 @@ class Task < ActiveRecord::Base
   def insert_after(previous_task_id)
     previous = Task.first(:conditions => {:id => previous_task_id })
     
+    
+    
     if self.priority > previous.priority
       prioritize_to(previous.priority + 1)
     else
@@ -83,31 +93,14 @@ class Task < ActiveRecord::Base
   end
 
   def prioritize_to(new_priority)
-    position = 1
-    tasks = Task.active(:order => 'priority ASC')
-    
-    tasks.each do |task|
-      if self.id != task.id
-        position += 1 if new_priority == task.priority and self.priority > new_priority
-        
-        Task.update_all("priority = #{position}", "id = #{task.id}" ) 
-        position += 1
-        
-        position += 1 if new_priority == position and self.priority < new_priority
-      end
-    end
-    
     self.priority = new_priority
     self.save
+    
+    Task.regenerate_priorities(self.project_id, :skip_task => self)
   end
   
   def set_archive_status!
-    if self.archived?
-      self.priority = 0
-      self.save
-    end
-    
-    Task.regenerate_priorities
+    prioritize_to((self.archived? ? 0 : 1))
   end
   
   def set_dates_from_params(params)

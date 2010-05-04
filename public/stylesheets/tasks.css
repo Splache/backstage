@@ -1,21 +1,14 @@
 div#task-filters{margin:20px 20px;}
-div#task-filters h5{color:#3c3c3c;font-size:18px;font-weight:normal;margin:0px 0px 20px 0px;padding:0px}
+div#task-filters h5{color:#3c3c3c;font-size:18px;font-weight:normal;margin:0px 0px 10px 0px;padding:0px}
 div#task-filters div.filter{clear:both;cursor:pointer;float:left;height:30px;margin:0px 0px 5px 0px;width:285px;}
 div#task-filters div.filter label{color:#666666;cursor:pointer;float:left;font-size:12px;height:16px;line-height:16px;margin:6px 0px 0px 8px;overflow:hidden;width:105px;}
 div#task-filters div.filter label span.ico{height:32px;margin-top:-16px;}
 div#task-filters div.filter select{width:150px;}
-div#task-filters div.custom-combo div.selection{height:24px;width:142px;}
-div#task-filters div.custom-combo ul.options{width:148px;}
-
 div#task-filters div.custom-combo{display:none;height:30px;margin:1px 0px 0px 0px;width:145px;}
-div#task-filters div.custom-combo div.selection{border:none;color:#444444;height:16px;margin:0px 5px 0px -3px;padding:6px 3px;width:142px;}
-div#task-filters div.custom-combo ul.options{margin:28px 0px 0px -3px;width:165px;}
+div#task-filters div.custom-combo div.selection{border:none;color:#444444;height:14px;margin:0px 5px 0px -3px;padding:6px 3px;width:142px;}
+div#task-filters div.custom-combo ul.options{border-top:none;margin:29px 0px 0px -3px;width:165px;}
 div#task-filters div.custom-combo ul.options li{color:#555555;margin:0px;padding:6px 6px;}
 div#task-filters div.custom-combo ul.options li.selected{display:none;}
-
-
-
-
 div#task-filters div.filter-combo.active{background:url(../images/filter-combo.png) no-repeat top left;}
 div#task-filters div.filter-button-small.active{background:url(../images/filter-button-small.png) no-repeat top left;}
 div#task-filters div.active label span.ico{margin-top:0px;}
@@ -28,29 +21,30 @@ div.main-content div.inner-space ul.tasks li{border:1px solid #cccccc;float:left
 div.main-content div.inner-space ul.tasks li.empty{border:none;}
 div.main-content div.inner-space ul.tasks li.loading{background:url(../images/loading.gif) no-repeat;border:none;height:30px;margin:0px 0px 0px -2px;}
 
+
 div.task{cursor:default;float:left;margin:15px 20px;width:770px;}
-div.task div.line{background:no-repeat 0px 4px;clear:both;color:#333333;float:left;font-size:11px;margin:0px 0px 10px 0px;padding-left:22px;}
+div.task div.line{background:no-repeat 0px 4px;clear:both;color:#333333;float:left;font-size:11px;margin:0px 0px 10px 0px;}
+div.task div.line span.ico{float:left;margin:3px 5px 0px 0px;}
+div.task div.line div.content{float:left;}
 div.task div.line label{color:#777777;display:block;float:none;font-size:9px;height:8px;width:auto;}
 div.task div.line span.unassigned{color:#9f2828;}
 
 div.task div.details{float:left;margin:0px 20px 0px 0px;width:590px;}
 div.task div.details h3{font-size:13px;margin:0px 0px 5px 0px;}
 div.task div.details h3 span.identifier{color:#777777;display:block;font-size:12px;font-weight:bold;}
-div.task div.details div.description{color:#555555;margin:0px 0px 10px 0px;}
-div.task div.details div.description p{color:#555555;margin:0px;}
+div.task div.details div.wrapper-description{max-height:40px;margin:0px 0px 10px 0px;overflow:hidden;}
+div.task div.details div.description{color:#666666;cursor:pointer;margin:0px 0px 10px 0px;}
+div.task div.details div.description p{color:#666666;margin:0px;}
+div.task div.details div.description ul{border:none;float:none;margin:20px;}
+div.task div.details div.description ul li{border:none;float:none;margin:0px 0px 3px 0px;}
+div.task div.details div:hover.description{color:#444444;}
+div.task div.details div:hover.description p{color:#444444;}
+div.task div.details div.wrapper-description.full{height:auto;}
 div.task div.details div.line{clear:none;margin:0px 40px 0px 0px;}
-div.task div.details div.user{background-image:url(../images/user.png);}
-div.task div.details div.comments{background-image:url(../images/comments.png);}
 div.task div.details div.comments a{color:#5d540e;}
 
 div.task div.overview{float:left;width:110px;}
-div.task div.overview div.state{height:16px;font-size:12px;font-weight:bold;padding-top:4px;}
-div.task div.overview div.started{background-image:url(../images/started.png);}
-div.task div.overview div.stopped{background-image:url(../images/stopped.png);}
-div.task div.overview div.calendar{background-image:url(../images/calendar.png);}
-div.task div.overview div.estimated_time{background-image:url(../images/estimated-time.png);}
-div.task div.overview div.target{background-image:url(../images/target.png);}
-div.task div.overview div.late{background-image:url(../images/late.png);}
+div.task div.overview div.state div.content{height:16px;font-size:12px;font-weight:bold;margin-top:4px;}
 
 li div.task div.operations{display:none;}
 li:hover div.task div.operations{display:block;float:right;margin-right:20px;width:30px;}
