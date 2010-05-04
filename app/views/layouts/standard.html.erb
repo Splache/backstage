@@ -37,7 +37,7 @@
         <% end %>
       </div>
       <div class="shadow"></div>
-      <div class="logo"><img src="../images/logo.png" alt="Backstage" /></div>
+      <div class="logo"><%= image_tag('logo.png', :alt => 'Backstage') %></div>
       <h1><%= current_project.name %></h1>
       <div class="operation">
         <%= link_icon_to('Ajouter un fichier', new_code_file_path, :icon => 'add') if in_section?('code') %>

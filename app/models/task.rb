@@ -23,6 +23,16 @@ class Task < ActiveRecord::Base
       parameters << Time.now - filters[:move].to_i.days 
     end
     
+    if filters[:search]
+      filters[:search].split(' ').each do |term|
+        unless term.empty?
+          conditions << '(name LIKE ? OR description LIKE ?)'
+          parameters << "%#{term}%"
+          parameters << "%#{term}%"
+        end
+      end
+    end
+    
     order = filters[:archive] ? 'ended_on DESC' : 'priority ASC'
     
     conditions = [conditions.join(' AND '), parameters].flatten

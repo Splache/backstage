@@ -9,7 +9,7 @@ BACKSTAGE.Tasks = function(){
   };
   
   apply_filter = function(filter){
-    var field = filter.find('input[type=hidden]'),
+    var field = filter.find('input'),
         field_name = field.attr('name');
         field_value = field.val()
         url = '';
@@ -35,6 +35,9 @@ BACKSTAGE.Tasks = function(){
   init_filters = function(){
     $j('#task-filters div.filter label').click(function(){ toggle_filter($j(this).closest('div.filter')); })
     $j('#task-filters div.filter input.custom-combo').bind('updated', function(){ apply_filter($j(this).closest('div.filter')); });
+    $j('#task-filters div.filter input[type=text]').keypress(function(event){ 
+      if (event.keyCode === 13) { apply_filter($j(this).closest('div.filter')); }
+    });
   };
   
   init_form = function(){
@@ -95,6 +98,7 @@ BACKSTAGE.Tasks = function(){
   toggle_filter = function(filter){
     if(filter.hasClass('active')){
       filter.removeClass('active');
+      filter.find('input[type=text]').val('');
     }else{
       filter.addClass('active');
     }

@@ -6,7 +6,7 @@ class TasksController < ApplicationController
     @tasks = Task.all_from_filters(current_user, session[:task_filters])
     
     if request.format == 'js'
-      sleep 2
+      #sleep 2
     end
     
     @comment = Comment.new
@@ -78,6 +78,7 @@ class TasksController < ApplicationController
       set_filter(:nature)
       set_filter(:move)
       set_filter(:archive)
+      set_filter(:search)
     end
     
     @filters = session[:task_filters]

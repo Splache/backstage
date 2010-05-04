@@ -71,6 +71,22 @@ module TaskHelper
     return content.join
   end
   
+  def task_filter_text_field_tag(id, name, filters)
+    content = []
+    selection = filters[id.to_sym]
+    
+    css_class = ['filter', 'filter-input']
+    css_class << id
+    css_class << 'active' if selection
+    
+    content << '<div class="' + css_class.join(' ') + '">'
+    content << '<label><span class="ico ico-' + id + '">&nbsp;</span>' + name + '</label>'
+    content << text_field_tag("filter[#{id}]", selection, :id => "filter-#{id}")
+    content << '</div>'
+    
+    return content.join
+  end
+  
   def task_line_detail(icon, label, content, options={})
     options.reverse_merge!(:class => '')
     

@@ -10,12 +10,12 @@ class SessionsController < ApplicationController
   end
  
   def new
-    redirect_to my_tasks_path if current_user
+    redirect_to tasks_path if current_user
   end
  
 	def create
 		if authenticate!
-		  redirect_to my_tasks_path
+		  redirect_to tasks_path
 		else
 		  redirect_to root_path
 		end

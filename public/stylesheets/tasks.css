@@ -1,18 +1,21 @@
 div#task-filters{margin:20px 20px;}
 div#task-filters h5{color:#3c3c3c;font-size:18px;font-weight:normal;margin:0px 0px 10px 0px;padding:0px}
-div#task-filters div.filter{clear:both;cursor:pointer;float:left;height:30px;margin:0px 0px 5px 0px;width:285px;}
+div#task-filters div.filter{background:no-repeat top left;clear:both;cursor:pointer;float:left;height:30px;margin:0px 0px 5px 0px;width:285px;}
 div#task-filters div.filter label{color:#666666;cursor:pointer;float:left;font-size:12px;height:16px;line-height:16px;margin:6px 0px 0px 8px;overflow:hidden;width:105px;}
 div#task-filters div.filter label span.ico{height:32px;margin-top:-16px;}
 div#task-filters div.filter select{width:150px;}
+div#task-filters div.filter input{border:none;background:transparent;color:#444444;display:none;font-size:12px;height:20px;margin:2px 0px 0px 0px;padding-top:5px;width:150px;}
 div#task-filters div.custom-combo{display:none;height:30px;margin:1px 0px 0px 0px;width:145px;}
 div#task-filters div.custom-combo div.selection{border:none;color:#444444;height:14px;margin:0px 5px 0px -3px;padding:6px 3px;width:142px;}
 div#task-filters div.custom-combo ul.options{border-top:none;margin:29px 0px 0px -3px;width:165px;}
 div#task-filters div.custom-combo ul.options li{color:#555555;margin:0px;padding:6px 6px;}
 div#task-filters div.custom-combo ul.options li.selected{display:none;}
-div#task-filters div.filter-combo.active{background:url(../images/filter-combo.png) no-repeat top left;}
-div#task-filters div.filter-button-small.active{background:url(../images/filter-button-small.png) no-repeat top left;}
+div#task-filters div.filter-combo.active{background-image:url(../images/filter-combo.png);}
+div#task-filters div.filter-button-small.active{background-image:url(../images/filter-button-small.png);}
+div#task-filters div.filter-input.active{background-image:url(../images/filter-input.png);}
 div#task-filters div.active label span.ico{margin-top:0px;}
 div#task-filters div.active div.custom-combo{display:block;}
+div#task-filters div.active input[type=text]{display:block;}
 div#task-filters div:hover.active{background-position:bottom left;}
 
 
