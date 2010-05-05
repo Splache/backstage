@@ -1,5 +1,5 @@
 BACKSTAGE.Tasks = function(){
-  var get_task_id_from_item, init_form, init_list, set_state_fields, update_priority,
+  var apply_filter, close_comments, get_task_id_from_item, init_filters, init_form, init_list, loading_task_list_data, open_comments, reload_task_list, set_state_fields, toggle_description, toggle_filter, update_priority,
       is_sortable = true;
   
   this.initialize = function(){
@@ -10,8 +10,8 @@ BACKSTAGE.Tasks = function(){
   
   apply_filter = function(filter){
     var field = filter.find('input'),
-        field_name = field.attr('name');
-        field_value = field.val()
+        field_name = field.attr('name'),
+        field_value = field.val(),
         url = '';
         
     if(!filter.hasClass('active')){ field_value = '$remove$'; }
@@ -33,7 +33,7 @@ BACKSTAGE.Tasks = function(){
   };
   
   init_filters = function(){
-    $j('#task-filters div.filter label').click(function(){ toggle_filter($j(this).closest('div.filter')); })
+    $j('#task-filters div.filter label').click(function(){ toggle_filter($j(this).closest('div.filter')); });
     $j('#task-filters div.filter input.custom-combo').bind('updated', function(){ apply_filter($j(this).closest('div.filter')); });
     $j('#task-filters div.filter input[type=text]').keypress(function(event){ 
       if (event.keyCode === 13) { apply_filter($j(this).closest('div.filter')); }
@@ -88,7 +88,7 @@ BACKSTAGE.Tasks = function(){
     
     if(description.outerHeight() <= 40){ return ''; }
     
-    if(wrapper.css('max-height') == '40px'){
+    if(wrapper.css('max-height') === '40px'){
       wrapper.animate({ 'max-height': description.outerHeight() + 'px'}, 500);
     }else{
       wrapper.animate({ 'max-height': '40px'}, 500);
@@ -111,14 +111,11 @@ BACKSTAGE.Tasks = function(){
         params = { _method:'PUT' },
         task_id = get_task_id_from_item(task);
     
-    
     if(previous.length > 0){
       params.insert_after = get_task_id_from_item(previous);
     }else{
       params.insert_first = 1;
     }
-    
-    alert(params.insert_after);
     
     $j.ajax({ type: "POST", url: '/tasks/' + task_id, data: params, dataType: 'json' });  
   };

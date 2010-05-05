@@ -14,7 +14,7 @@ BACKSTAGE.Base = function(){
     
     $j("input.focus").focus();
     $j("select.custom-combo").each(function(){
-      combo = new BACKSTAGE.Form.CustomCombo()
+      combo = new BACKSTAGE.Form.CustomCombo();
       combo.initialize($j(this));
     });
   };
