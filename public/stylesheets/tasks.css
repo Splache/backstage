@@ -33,9 +33,10 @@ div.task div.line label{color:#777777;display:block;float:none;font-size:9px;hei
 div.task div.line span.unassigned{color:#9f2828;}
 
 div.task div.details{float:left;margin:0px 20px 0px 0px;width:590px;}
-div.task div.details h3{font-size:13px;margin:0px 0px 5px 0px;}
-div.task div.details h3 span.identifier{color:#777777;display:block;font-size:12px;font-weight:bold;}
-div.task div.details div.wrapper-description{max-height:40px;margin:0px 0px 10px 0px;overflow:hidden;}
+div.task div.details h3{float:left;font-size:13px;margin:0px 0px 5px 0px;}
+div.task div.details h3 span.identifier{color:#777777;display:inline;font-size:12px;font-weight:bold;margin-right:10px;}
+div.task div.details span.ico-nature{cursor:pointer;float:left;margin:0px 0px 0px 10px;}
+div.task div.details div.wrapper-description{clear:left;max-height:40px;margin:0px 0px 10px 0px;overflow:hidden;}
 div.task div.details div.description{color:#666666;cursor:pointer;margin:0px 0px 10px 0px;}
 div.task div.details div.description p{color:#666666;margin:0px;}
 div.task div.details div.description ul{border:none;float:none;margin:20px;}
@@ -69,3 +70,10 @@ div.task div.wrapper-comments ul.comments li.comment div.details div.date{paddin
 div.task div.wrapper-comments ul.comments li.comment div.details div.time{font-size:14px;margin-bottom:10px;}
 div.task div.wrapper-comments ul.comments li.comment div.text{float:left;font-size:12px;margin:13px 0px 20px 0px;width:460px;}
 div.task div.wrapper-comments ul.comments li.comment div.text p{color:#555555;margin:0px;}
+
+
+div.task.preview div.details h3{float:left;margin:0px;width:auto;}
+div.task.preview div.details div.inner{display:none;}
+div.task.preview div.overview{margin:0px;}
+div.task.preview div.line{display:none;}
+div.task.preview div.state{display:block;margin:0px;}

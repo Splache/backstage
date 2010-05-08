@@ -3,6 +3,6 @@
   <%= task_filter_combo_tag('move', 'Mouvements', [['Dernières 24h', '1'], ['2 derniers jours', '2'], ['Dernière semaine', '7'], ['Dernier mois', '31']], @filters) %>
   <%= task_filter_combo_tag('assigned_to', 'Assigné à', User.all.collect{|u| [u.name, u.id.to_s]}, @filters) %>
   <%= task_filter_combo_tag('nature', 'Catégorie', Task.get_natures(), @filters) %>
-  <%= task_filter_button_tag('archive', 'Archives', @filters) %>
   <%= task_filter_text_field_tag('search', 'Recherche', @filters) %>
+  <%= task_filter_button_tag('archive', 'Archives', @filters) %>
 </div>

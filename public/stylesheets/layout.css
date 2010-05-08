@@ -15,10 +15,10 @@ div.main-header div.top-bar ul.users li{margin:4px 15px;}
 div.main-header div.top-bar ul.users li a{font-size:10px;}
 div.main-header div.top-bar ul.users li a:hover{color:#8FB048;}
 div.main-header div.top-bar ul.users li a:hover.disconnect{color:#ff6a1a;}
-div.main-header div.shadow{background:url(../images/head-shadow.png) top left repeat-x;height:90px;position:absolute;width:1200px;}
+div.main-header div.shadow{background:url(../images/head-shadow.png) top left repeat-x;height:90px;position:absolute;width:1200px;z-index:5;}
 div.main-header div.logo{float:left;height:90px;margin:0px 0px 0px 10px;overflow:hidden;}
 div.main-header div.logo img{margin:-8px 0px 0px 0px;}
-div.main-header div.operation{float:right;margin:32px 20px 0px 20px;}
+div.main-header div.operation{float:right;margin:32px 20px 0px 20px;position:relative;z-index:6;}
 div.main-header div.operation a{background:#a1c651;border:1px solid #82a636;color:#333333;display:block;font-size:13px;font-weight:normal;padding:5px 15px 5px 0px;text-decoration:none;}
 div.main-header div.operation a span{margin:0px 5px 0px 10px;}
 div.main-header div.operation a:hover{border:1px solid #bdd784;}

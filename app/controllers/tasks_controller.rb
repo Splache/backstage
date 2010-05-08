@@ -5,10 +5,6 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all_from_filters(current_user, session[:task_filters])
     
-    if request.format == 'js'
-      #sleep 2
-    end
-    
     @comment = Comment.new
     @comment.user_id = current_user.id
   end

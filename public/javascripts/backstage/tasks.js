@@ -59,10 +59,11 @@ BACKSTAGE.Tasks = function(){
     $j('#list-tasks a.open-comments').click(function(){ open_comments($j(this).closest('div.task')); });
     $j('#list-tasks a.close-comments').click(function(){ close_comments($j(this).closest('div.wrapper-comments')); });
     $j('#list-tasks div.description').click(function(){ toggle_description($j(this)); });
+    $j('#list-tasks span.ico-nature').click(function(){ toggle_task_item($j(this).closest('div.task')); });
   };
   
   loading_task_list_data = function(){
-    $j('#tasks h2').append('<span class="loading-bar">&nbsp;</span>');
+    $j('#task-filters h5').append('<span class="loading-bar">&nbsp;</span>');
   };
   
   open_comments = function(task){
@@ -71,6 +72,7 @@ BACKSTAGE.Tasks = function(){
   };
   
   reload_task_list = function(data){
+    $j('#task-filters h5 span.loading-bar').remove();
     $j('#tasks').html(data);
     init_list();
   };
@@ -104,6 +106,10 @@ BACKSTAGE.Tasks = function(){
     }
     
     apply_filter(filter);
+  };
+  
+  toggle_task_item = function(task){
+    task.toggleClass('preview');
   };
   
   update_priority = function(task){

@@ -1,4 +1,5 @@
 module ApplicationHelper
+  
   def htmlize(text)
     text = textilize(text)
     text = link_to_internal(text, 'code_file')
@@ -7,8 +8,11 @@ module ApplicationHelper
     return text
   end
   
-  def icon(name)
-    return '<span class="ico ico-' + name + '">&nbsp;</span>'
+  def icon(name, options={})
+    options.reverse_merge!(:id => nil)
+    
+    return content_tag(:span, '&nbsp;', :class => "ico ico-#{name}", :id => options[:id])
+    #return '<span class="ico ico-' + name + '">&nbsp;</span>'
   end
   
   def in_section?(name)
@@ -19,13 +23,13 @@ module ApplicationHelper
     end
   end
   
-  def link_icon_to(name, options={}, html_options=nil)
-    if html_options[:icon]
-      name = icon(html_options[:icon]) + name
-      html_options[:icon] = ''
+  def link_icon_to(name, path, options={}, html_options=nil)
+    if options[:icon]
+      name = icon(options[:icon]) + name
+      options[:icon] = nil
     end
     
-    return link_to(name, options, html_options)
+    return link_to(name, path, options, html_options)
   end
   
   def link_to_internal(text, model)

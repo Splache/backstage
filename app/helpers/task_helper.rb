@@ -2,21 +2,26 @@ module TaskHelper
   def show_task_due_on(task)
     return '' if not task.due_on
     
-    time_left = task.due_on - Date.today
+    time_left = task.due_on - (task.archived? ? task.ended_on : Date.today)
     
     if time_left >= 0
-      icon = 'target'
-      label = 'À remettre'
+      content = "#{time_left} jours"
       
-      case time_left
-        when 0 then content = 'Aujourd\'hui'
-        when 1 then content = 'Demain'
-        else
-          label << ' dans'
-          content = "#{time_left} jours"
+      if task.archived?
+        icon = 'target-on'
+        label = 'En avance de'
+      else
+        icon = 'target'
+        label = 'À remettre'
+      
+        case time_left
+          when 0 then content = 'Aujourd\'hui'
+          when 1 then content = 'Demain'
+          else label << ' dans'
+        end
       end
     else
-      icon = 'late'
+      icon = task.archived? ? 'target-out' : 'late'
       label = 'En retard de'
       content = "#{time_left * -1} jours"
     end
@@ -24,16 +29,29 @@ module TaskHelper
     return task_line_detail(icon, label, content)
   end
   
-  def show_start_date(task)
+  def show_task_estimation(task)
+    return task_line_detail('time', 'Temps estimé', "#{task.hours_estimated} heures") if not task.archived? and task.hours_estimated.to_i > 0
+  end
+  
+  def show_task_state(task)
+    if task.archived?
+      return task_line_detail('archived', '', 'Archivé', :class => 'state')
+    elsif task.started_on
+      return task_line_detail('started', '', 'En cours', :class => 'state')
+    else
+      return task_line_detail('stopped', '', 'Non démarré', :class => 'state')
+    end
+  end
+  
+  def show_task_calendar(task)
     content = []
     
-    if task.started_on
-      content << task_line_detail('started', '', 'En cours', :class => 'state')
-
+    if task.archived?
+      label = 'Terminé le'
+      content << task_line_detail('calendar', label, task.ended_on.strftime("%d-%m-%Y"))
+    elsif task.started_on
       label = (task.started_on <= Date.today) ? 'Débuté le' : 'À débuter le'
       content << task_line_detail('calendar', label, task.started_on.strftime("%d-%m-%Y"))
-    else
-      content << task_line_detail('stopped', '', 'Non démarré', :class => 'state')
     end
     
     return content.join

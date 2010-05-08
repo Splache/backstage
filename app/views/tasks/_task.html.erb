@@ -1,23 +1,19 @@
-<div class="task">
+<div class="task preview" id="task-<%= task.id %>">
   <div class="details">
-    <h3><span class="identifier"><%= task.identifier %></span> <%= link_to task.name, edit_task_path(task) %></h3>
-    <div class="wrapper-description"><div class="description"><%= htmlize(task.description) %></div></div>
-    <%= task_line_detail('user', 'Créé par', link_to(task.creator.name, user_path(task.creator))) %>
-    <%= task_line_detail('user', 'Assigné à', (task.worker ? link_to(task.worker.name, user_path(task.worker)) : '<span class="unassigned">Non assigné</span>')) %>
-    <%= task_line_detail('comments', 'Voir les', link_to("Commentaires (#{task.comments.length})", '#', :class => 'open-comments'), :class => 'comments') %>    
+    <h3><%= link_to "<span class=\"identifier\">#{task.identifier}</span>#{task.name}", edit_task_path(task) %></h3><%= icon('nature', :id => "toggle-task-#{task.id}") %>
+    <div class="inner">
+      <div class="wrapper-description"><div class="description"><%= htmlize(task.description) %></div></div>
+      <%= task_line_detail('user', 'Créé par', link_to(task.creator.name, user_path(task.creator))) %>
+      <%= task_line_detail('user', 'Assigné à', (task.worker ? link_to(task.worker.name, user_path(task.worker)) : '<span class="unassigned">Non assigné</span>')) %>
+      <%= task_line_detail('comments', 'Voir les', link_to("Commentaires (#{task.comments.length})", '#', :class => 'open-comments'), :class => 'comments') %>
+    </div>
   </div>
   
   <div class="overview">
-    <% if @filters[:archive] %>
-      
-    <% else %>
-      <%= show_start_date(task) %>
-      
-      <% if task.hours_estimated.to_i > 0 %>
-        <div class="line"><%= icon('time') %><div class="content"><label>Temps estimé :</label><%= task.hours_estimated %> heures</div></div>
-      <% end %>
-      <%= show_task_due_on(task) %>
-    <% end %>
+    <%= show_task_state(task) %>
+    <%= show_task_calendar(task) %>
+    <%= show_task_estimation(task) %>
+    <%= show_task_due_on(task) %>
   </div>
   <div class="operations">
     <%= link_to 'X', task_path(task), :method => :delete, :confirm => 'Êtes-vous sûr de vouloir détruire cette tâche ?', :class => 'delete' %>

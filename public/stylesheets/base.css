@@ -17,12 +17,13 @@ ol li{margin:0px 0px 6px 40px;padding:0px;}
 
 div.float-anchor{clear:both;}
 
-span.loading-bar{background:url(../images/loading-bar.gif) no-repeat;float:left;height:20px;margin:6px 0px 0px 30px;position:absolute;width:220px;}
+span.loading-bar{background:url(../images/loading-eeeeee.gif) no-repeat;float:left;height:32px;margin:-4px 0px 0px 5px;position:absolute;width:32px;}
 
 .ico{background:url(../images/icons.png) no-repeat top left;display:block;float:left;height:16px;margin:0px 4px 0px 0px;width:16px;}
 .ico-add{background-position:0px 0px;}
 .ico-assigned_to{background-position:-192px 0px;}
 .ico-archive{background-position:-240px 0px;}
+.ico-archived{background-position:-368px 0px;}
 .ico-calendar{background-position:-128px 0px;}
 .ico-collection{background-position:-304px 0px;}
 .ico-comments{background-position:-208px 0px;}
@@ -41,6 +42,8 @@ span.loading-bar{background:url(../images/loading-bar.gif) no-repeat;float:left;
 .ico-started{background-position:-80px 0px;}
 .ico-stopped{background-position:-48px 0px;}
 .ico-target{background-position:-160px 0px;}
+.ico-target-on{background-position:-384px 0px;}
+.ico-target-out{background-position:-400px 0px;}
 .ico-time{background-position:-144px 0px;}
 .ico-tasks{background-position:-256px 0px;}
 .ico-user{background-position:-192px 0px;}
