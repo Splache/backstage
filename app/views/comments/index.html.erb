@@ -1,0 +1,9 @@
+<div id="wrapper-comments">
+  <ul class="comments">
+    <% @comments.each do |comment| %>
+      <%= render "comment", :comment => comment %>
+    <% end %>
+    
+    <%= render "comment", :comment => @new_comment %>
+  </ul>
+</div>

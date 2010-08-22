@@ -1,0 +1,1 @@
+BACKSTAGE.Tools = function(){};

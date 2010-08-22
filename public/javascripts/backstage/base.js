@@ -13,6 +13,7 @@ BACKSTAGE.Base = function(){
     var combo;
     
     $j("input.focus").focus();
+    
     $j("select.custom-combo").each(function(){
       combo = new BACKSTAGE.Form.CustomCombo();
       combo.initialize($j(this));
@@ -31,6 +32,18 @@ BACKSTAGE.StringBuilder = function(){
   
   this.add = function(value) { content[position++] = value; };
   this.get = function() { return content.join(''); };
+};
+
+BACKSTAGE.is_d = function(content){ return (typeof(content) !== 'undefined'); };
+
+BACKSTAGE.merge_hash = function(options, default_options){ 
+  if(!BACKSTAGE.is_d(options)){ return default_options; }
+  
+  jQuery.each(default_options, function(key, value){
+    if(!BACKSTAGE.is_d(options[key])){ options[key] = value; }
+  });
+  
+  return options;
 };
 
 

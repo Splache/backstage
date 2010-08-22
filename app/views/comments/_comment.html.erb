@@ -1,10 +1,32 @@
-<li class="comment" id="comment-<%= comment.id %>">
+<% if comment.new_record? %>
+  <% form_path = dpath('project.task.comments') %>
+  <li class="comment new-comment" id="comment-new">
+<% else %>
+  <% form_path = dpath('project.task.comment', :id => comment.id) %>
+  <li class="comment" id="comment-<%= comment.id %>">
+<% end %>
+
   <div class="details">
-    <div class="line ico ico-user"><%= comment.user.name %></div>
-    <div class="line ico ico-date"><%= comment.created_at.strftime('%d-%m-%Y') %></div>
-    <div class="line ico ico-time"><%= comment.created_at.strftime('%H:%M') %></div>
+    <%= image_tag("users/avatar/#{comment.user.id}.jpg", :alt => comment.user.name, :class => 'avatar') %>
+    <div class="name"><%= comment.user.first_name %></div>
   </div>
-  <div class="text">
-    <%= htmlize(comment.description) %>
+  
+  <% if not comment.new_record? %>
+    <div class="date">Le <%= comment.created_at.strftime('%d-%m-%Y') %> à <%= comment.created_at.strftime('%H:%M') %></div>
+    <% if comment.user.id == current_user.id %>
+      <div class="operations">
+        <%= link_to 'Modifier', dpath('project.task.comment', :id => comment.id, :action => 'edit'), :class => 'ico ico-edit' %>
+        <%= link_to 'Supprimer', dpath('project.task.comment', :id => comment.id), :class => 'ico ico-delete' %>
+      </div>
+    <% end %>
+    <div class="text"><%= htmlize(comment.description) %></div>
+  <% end %>
+  
+  <div class="form">
+    <% form_for(comment, :url => form_path, :html => { :class => 'form-comment', :id => nil }) do |f| %>
+      <%= f.text_area('description', :class => 'small') %>
+      <%= submit_tag "Sauvegarder" %>
+      <%= link_to('Annuler', '#', :class => 'cancel') if not comment.new_record? %>
+    <% end %>
   </div>
 </li>

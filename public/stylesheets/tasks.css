@@ -1,22 +1,26 @@
-div#task-filters{margin:20px 20px;}
-div#task-filters h5{color:#3c3c3c;font-size:18px;font-weight:normal;margin:0px 0px 10px 0px;padding:0px}
-div#task-filters div.filter{background:no-repeat top left;clear:both;cursor:pointer;float:left;height:30px;margin:0px 0px 5px 0px;width:285px;}
-div#task-filters div.filter label{color:#666666;cursor:pointer;float:left;font-size:12px;height:16px;line-height:16px;margin:6px 0px 0px 8px;overflow:hidden;width:105px;}
-div#task-filters div.filter label span.ico{height:32px;margin-top:-16px;}
-div#task-filters div.filter select{width:150px;}
-div#task-filters div.filter input{border:none;background:transparent;color:#444444;display:none;font-size:12px;height:20px;margin:2px 0px 0px 0px;padding-top:5px;width:150px;}
-div#task-filters div.custom-combo{display:none;height:30px;margin:1px 0px 0px 0px;width:145px;}
-div#task-filters div.custom-combo div.selection{border:none;color:#444444;height:14px;margin:0px 5px 0px -3px;padding:6px 3px;width:142px;}
-div#task-filters div.custom-combo ul.options{border-top:none;margin:29px 0px 0px -3px;width:165px;}
-div#task-filters div.custom-combo ul.options li{color:#555555;margin:0px;padding:6px 6px;}
-div#task-filters div.custom-combo ul.options li.selected{display:none;}
-div#task-filters div.filter-combo.active{background-image:url(../images/filter-combo.png);}
-div#task-filters div.filter-button-small.active{background-image:url(../images/filter-button-small.png);}
-div#task-filters div.filter-input.active{background-image:url(../images/filter-input.png);}
-div#task-filters div.active label span.ico{margin-top:0px;}
-div#task-filters div.active div.custom-combo{display:block;}
-div#task-filters div.active input[type=text]{display:block;}
-div#task-filters div:hover.active{background-position:bottom left;}
+div#task-options{margin:20px 20px;}
+div#task-options h5{color:#3c3c3c;float:left;font-size:18px;font-weight:normal;margin:20px 0px 10px 0px;padding:0px}
+div#task-options h5:first-child{margin-top:0px;}
+div#task-options div.option{background:no-repeat top left;clear:both;cursor:pointer;float:left;height:30px;margin:0px 0px 5px 0px;width:285px;}
+div#task-options div.option label{color:#666666;cursor:pointer;float:left;font-size:12px;height:16px;line-height:16px;margin:6px 0px 0px 8px;overflow:hidden;width:105px;}
+div#task-options div.option label span.ico{height:32px;margin-top:-16px;}
+div#task-options div.option select{width:150px;}
+div#task-options div.option input{border:none;background:transparent;color:#444444;display:none;font-size:12px;height:20px;margin:2px 0px 0px 0px;padding-top:5px;width:150px;}
+div#task-options div.custom-combo{display:none;height:30px;margin:1px 0px 0px 0px;width:145px;}
+div#task-options div.custom-combo div.selection{border:none;color:#444444;height:14px;margin:0px 5px 0px -3px;padding:6px 3px;width:142px;}
+div#task-options div.custom-combo ul.options{border-top:none;margin:29px 0px 0px -3px;width:165px;}
+div#task-options div.custom-combo ul.options li{color:#555555;margin:0px;padding:6px 6px;}
+div#task-options div.custom-combo ul.options li.selected{display:none;}
+div#task-options div.list-template{clear:left;float:left;}
+div#task-options div.list-template div.option{clear:none;float:left;width:auto;}
+
+div#task-options div.option-combo.active{background-image:url(../images/option-combo.png);}
+div#task-options div.option-check.active{background-image:url(../images/option-button-small.png);}
+div#task-options div.option-input.active{background-image:url(../images/option-input.png);}
+div#task-options div.active label span.ico{margin-top:0px;}
+div#task-options div.active div.custom-combo{display:block;}
+div#task-options div.active input[type=text]{display:block;}
+div#task-options div:hover.active{background-position:bottom left;}
 
 
 div.main-content div.inner-space ul.tasks{margin:0px;width:790px;}
@@ -34,8 +38,8 @@ div.task div.line span.unassigned{color:#9f2828;}
 
 div.task div.details{float:left;margin:0px 20px 0px 0px;width:590px;}
 div.task div.details h3{float:left;font-size:13px;margin:0px 0px 5px 0px;}
-div.task div.details h3 span.identifier{color:#777777;display:inline;font-size:12px;font-weight:bold;margin-right:10px;}
-div.task div.details span.ico-nature{cursor:pointer;float:left;margin:0px 0px 0px 10px;}
+div.task div.details h3 span.identifier{color:#777777;display:inline;font-size:12px;font-weight:bold;margin-right:5px;}
+div.task div.details h3 span.ico{cursor:pointer;display:none;float:left;margin:0px 6px 0px 0px;}
 div.task div.details div.wrapper-description{clear:left;max-height:40px;margin:0px 0px 10px 0px;overflow:hidden;}
 div.task div.details div.description{color:#666666;cursor:pointer;margin:0px 0px 10px 0px;}
 div.task div.details div.description p{color:#666666;margin:0px;}
@@ -55,24 +59,30 @@ li:hover div.task div.operations{display:block;float:right;margin-right:20px;wid
 li:hover div.task div.operations a.delete{color:#cccccc;float:right;font-family:Arial;font-size:15px;font-weight:700;}
 li:hover div.task div.operations a:hover.delete{color:#f25a5a;}
 
-div.task div.wrapper-comments{background:url(../images/mask.png);display:none;height:100%;left:0px;position:absolute;top:0px;width:100%;}
-div.task div.wrapper-comments div.box{background:url(../images/bg-comments.png) #ffffff repeat-y;margin:100px auto;padding:0px;width:700px;}
-div.task div.wrapper-comments div.box div.heading{background-color:#2f2d2d;border:1px solid #2f2d2d;padding:0px;width:100%;}
-div.task div.wrapper-comments div.box div.heading h3{color:#ffffff;font-size:12px;margin:10px 20px;}
-div.task div.wrapper-comments div.box div.heading a.close-comments{color:#999999;display:block;float:right;font-family:Arial;font-size:15px;font-weight:700;margin:10px 20px 0px 0px;}
-div.task div.wrapper-comments div.box div.heading a:hover.close-comments{color:#cccccc;}
-div.task div.wrapper-comments ul.comments{border:1px solid #999999;border-bottom-color:#6c8181;border-top:0px;float:left;height:400px;margin:0px;overflow:auto;padding:0px;width:100%;}
-div.task div.wrapper-comments ul.comments li.comment{border:none;float:left;}
-div.task div.wrapper-comments ul.comments li.comment div.details{float:left;margin:1px 20px 0px 0px;width:170px;}
-div.task div.wrapper-comments ul.comments li.comment div.details div.line{margin:0px 0px 0px 20px;}
-div.task div.wrapper-comments ul.comments li.comment div.details div.user{background-repeat:no-repeat;margin-top:10px;padding-top:4px;padding-bottom:2px;}
-div.task div.wrapper-comments ul.comments li.comment div.details div.date{padding-top:0px;}
-div.task div.wrapper-comments ul.comments li.comment div.details div.time{font-size:14px;margin-bottom:10px;}
-div.task div.wrapper-comments ul.comments li.comment div.text{float:left;font-size:12px;margin:13px 0px 20px 0px;width:460px;}
-div.task div.wrapper-comments ul.comments li.comment div.text p{color:#555555;margin:0px;}
 
+div#box-comments h2{color:#288a93;}
+div#box-comments h2 span.identifier{color:#777777;}
+div#box-comments div.loading{background:url(../images/loading-bar.gif) no-repeat center top;color:#888888;font-size:14px;margin:175px 0px 0px 20px;padding:20px 0px 0px 0px;text-align:center;width:730px;}
+
+div#box-comments ul.comments{float:left;height:450px;margin:0px 0px 0px 0px;overflow:auto;padding:0px;width:734px;}
+div#box-comments ul.comments li.comment{border:none;float:left;margin:0px 0px 20px 0px;width:100%;}
+div#box-comments ul.comments li.comment div.details{float:left;margin:1px 0px 0px 10px;width:95px;}
+div#box-comments ul.comments li.comment div.details img.avatar{border:3px solid #dddddd;margin:0px 0px -3px 0px;width:65px;}
+div#box-comments ul.comments li.comment div.details div.name{background-color:#eeeeee;border:3px solid #dddddd;border-top:none;display:none;font-size:10px;margin:0px;text-align:center;width:65px;}
+div#box-comments ul.comments li.comment div:hover.details div.name{display:block;}
+div#box-comments ul.comments li.comment div.date{color:#288a93;float:left;font-size:11px;font-weight:bold;height:15px;margin:1px 0px 0px 0px;}
+div#box-comments ul.comments li.comment div.operations{display:none;float:left;margin:0px 0px 0px 20px;}
+div#box-comments ul.comments li.comment div.operations a.ico{cursor:pointer;margin:0px 8px 0px 0px;}
+div#box-comments ul.comments li.comment div.text{float:left;font-size:12px;margin:0px 0px 20px 0px;width:550px;}
+div#box-comments ul.comments li.comment div.text p{color:#555555;margin:0px;}
+div#box-comments ul.comments li.comment div.form{display:none;float:left;margin:3px 0px 20px 0px;width:550px;}
+div#box-comments ul.comments li.comment div.form textarea{border:1px solid #bbbbbb;margin:0px 0px 10px 0px;width:550px;}
+
+div#box-comments ul.comments li:hover.comment div.operations{display:block;}
+div#box-comments ul.comments li.new-comment div.form{display:block;}
 
 div.task.preview div.details h3{float:left;margin:0px;width:auto;}
+ul.tasks.preview li div.task div.details h3 span.ico{display:block;}
 div.task.preview div.details div.inner{display:none;}
 div.task.preview div.overview{margin:0px;}
 div.task.preview div.line{display:none;}

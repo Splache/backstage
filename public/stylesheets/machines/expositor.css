@@ -1,0 +1,8 @@
+div.expositor{background:url(/images/transparent-20.png);display:none;height:300px;left:0px;position:absolute;top:0px;width:300px;z-index:99;}
+
+div.expositor div.expositor-box{background:url(/images/modal.png);margin:0px auto;height:auto;overflow:hidden;width:auto;}
+div.expositor div.expositor-box div.expositor-head{float:left;height:45px;margin:35px 0px 0px 35px;width:730px;}
+div.expositor div.expositor-box div.expositor-head h2{color:#777777;float:left;font-size:16px;margin:4px 10px;}
+div.expositor div.expositor-box div.expositor-head div.btn-close{background:url(/images/expositor-close.png) no-repeat top left;cursor:pointer;float:right;height:40px;margin:-16px -16px 0px 0px;text-indent:-9999px;width:40px;}
+div.expositor div.expositor-box div.expositor-head div:hover.btn-close{background-position:bottom left;}
+div.expositor div.expositor-box div.expositor-content{float:left;height:300px;margin:0px 35px 0px 35px;}

@@ -10,12 +10,12 @@ class SessionsController < ApplicationController
   end
  
   def new
-    redirect_to tasks_path if current_user
+    dredirect_to('project.tasks', :project_id => Project.first.id) if current_user
   end
  
 	def create
 		if authenticate!
-		  redirect_to tasks_path
+		  dredirect_to('project.tasks', :project_id => Project.first.id)
 		else
 		  redirect_to root_path
 		end

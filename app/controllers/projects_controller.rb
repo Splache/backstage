@@ -7,7 +7,6 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    session[:current_project] = params[:id]
-    redirect_to code_files_path
+    dredirect_to('project.tasks', :project_id => params[:id])
   end
 end

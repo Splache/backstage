@@ -13,22 +13,23 @@ class Task < ActiveRecord::Base
   #*************************************************************************************
   # PUBLIC CLASS METHODS
   #*************************************************************************************
-  def self.all_from_filters(user, filters)
+  def self.all_from_options(user, options)
     conditions = []
-    conditions << (filters[:archive] ? 'ended_on != ""' : 'ended_on = "" OR ended_on IS NULL')
+    conditions << (options[:archive] ? 'ended_on != ""' : 'ended_on = "" OR ended_on IS NULL')
     parameters = []
     
-    get_natures.each { |n| conditions << "nature = '#{n[1]}'" if filters[:nature] == n[1] }
+    get_natures.each { |n| conditions << "nature = '#{n[1]}'" if options[:nature] == n[1] }
     
-    conditions << "assigned_to = #{filters[:assigned_to].to_i}" if filters[:assigned_to]
+    conditions << "assigned_to = #{options[:assigned_to].to_i}" if options[:assigned_to]
     
-    if filters[:move]
-      conditions << "updated_at >= ?"
-      parameters << Time.now - filters[:move].to_i.days 
+    if options[:move]
+      conditions << "(tasks.updated_at >= ? OR comments.updated_at >= ?)"
+      parameters << Time.now - options[:move].to_i.days
+      parameters << Time.now - options[:move].to_i.days
     end
     
-    if filters[:search]
-      filters[:search].split(' ').each do |term|
+    if options[:search]
+      options[:search].split(' ').each do |term|
         unless term.empty?
           conditions << '(name LIKE ? OR description LIKE ?)'
           parameters << "%#{term}%"
@@ -37,11 +38,11 @@ class Task < ActiveRecord::Base
       end
     end
     
-    order = filters[:archive] ? 'ended_on DESC' : 'priority ASC'
+    order = options[:archive] ? 'ended_on DESC' : 'priority ASC'
     
     conditions = [conditions.join(' AND '), parameters].flatten
     
-    return self.all(:conditions => conditions, :order => order)
+    return self.all(:conditions => conditions, :include => :comments, :order => order)
   end
   
   def self.get_natures

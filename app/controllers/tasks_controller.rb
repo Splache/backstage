@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
-  before_filter :authenticated?, :init_filters
+  before_filter :authenticated?, :init_options
   layout 'standard'
   
   def index
-    @tasks = Task.all_from_filters(current_user, session[:task_filters])
+    @tasks = Task.all_from_options(current_user, session[:task_options])
     
     @comment = Comment.new
     @comment.user_id = current_user.id
@@ -30,7 +30,7 @@ class TasksController < ApplicationController
       @task.set_dates_from_params(params)
       @task.set_identifier
       Task.regenerate_priorities(current_project.id, :skip_task => @task) if not @task.archived?
-      redirect_to tasks_path
+      dredirect_to('project.tasks')
     else
       render :action => 'new'
     end
@@ -52,8 +52,7 @@ class TasksController < ApplicationController
     elsif @task.update_attributes(params[:task])
       @task.set_dates_from_params(params)
       @task.set_archive_status!
-      
-      redirect_to tasks_path
+      dredirect_to('project.tasks')
     else
       render :action => "edit"
     end
@@ -63,26 +62,27 @@ class TasksController < ApplicationController
     Task.find(params[:id]).destroy
     Task.regenerate_priorities(current_project.id)
     
-    redirect_to tasks_path
+    dredirect_to('project.tasks')
   end
   
-  def init_filters
-    session[:task_filters] = { :assigned_to => current_user.id } if not session[:task_filters]
+  def init_options
+    session[:task_options] = { :archive => 0, :assigned_to => current_user.id, :template => 'item-full' } if not session[:task_options]
     
-    if params[:filter]
-      set_filter(:assigned_to)
-      set_filter(:nature)
-      set_filter(:move)
-      set_filter(:archive)
-      set_filter(:search)
+    if params[:option]
+      set_option(:assigned_to)
+      set_option(:nature)
+      set_option(:move)
+      set_option(:archive)
+      set_option(:search)
+      set_option(:template)
     end
     
-    @filters = session[:task_filters]
+    @options = session[:task_options]
   end
   
-  def set_filter(filter)
-    if params[:filter][filter]
-      session[:task_filters][filter] = params[:filter][filter] == '$remove$' ? nil : params[:filter][filter] 
+  def set_option(option)
+    if params[:option][option]
+      session[:task_options][option] = params[:option][option] == '$remove$' ? nil : params[:option][option] 
     end
   end
 end

@@ -19,11 +19,13 @@ div.float-anchor{clear:both;}
 
 span.loading-bar{background:url(../images/loading-eeeeee.gif) no-repeat;float:left;height:32px;margin:-4px 0px 0px 5px;position:absolute;width:32px;}
 
-.ico{background:url(../images/icons.png) no-repeat top left;display:block;float:left;height:16px;margin:0px 4px 0px 0px;width:16px;}
+.ico{background:url(../images/icons.png) no-repeat top left;display:block;float:left;font-size:0px;height:16px;margin:0px 4px 0px 0px;text-indent:-9999px;width:16px;}
 .ico-add{background-position:0px 0px;}
 .ico-assigned_to{background-position:-192px 0px;}
 .ico-archive{background-position:-240px 0px;}
 .ico-archived{background-position:-368px 0px;}
+.ico-block-closed{background-position:-416px 0px;}
+.ico-block-opened{background-position:-432px 0px;}
 .ico-calendar{background-position:-128px 0px;}
 .ico-collection{background-position:-304px 0px;}
 .ico-comments{background-position:-208px 0px;}
@@ -35,6 +37,8 @@ span.loading-bar{background:url(../images/loading-eeeeee.gif) no-repeat;float:le
 .ico-gear{background-position:-288px 0px;}
 .ico-help{background-position:-272px 0px;}
 .ico-hold{background-position:-64px 0px;}
+.ico-item-compact{background-position:-448px 0px;}
+.ico-item-full{background-position:-464px 0px;}
 .ico-late{background-position:-176px 0px;}
 .ico-move{background-position:-336px 0px;}
 .ico-nature{background-position:-320px 0px;}
@@ -44,6 +48,7 @@ span.loading-bar{background:url(../images/loading-eeeeee.gif) no-repeat;float:le
 .ico-target{background-position:-160px 0px;}
 .ico-target-on{background-position:-384px 0px;}
 .ico-target-out{background-position:-400px 0px;}
+.ico-template{background-position:-448px 0px;}
 .ico-time{background-position:-144px 0px;}
 .ico-tasks{background-position:-256px 0px;}
 .ico-user{background-position:-192px 0px;}

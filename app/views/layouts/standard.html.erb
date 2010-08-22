@@ -9,12 +9,18 @@
   <%= stylesheet_link_tag "layout.css" %>
   <%= stylesheet_link_tag "code_files.css" %>
   <%= stylesheet_link_tag "tasks.css" %>
+  <%= stylesheet_link_tag "machines/expositor.css" %>
   <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
   <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" %>
   <script type="text/javascript">var $j = jQuery.noConflict();</script>
   <%= javascript_include_tag "backstage/base" %>
   <%= javascript_include_tag "backstage/tasks" %>
-  <%= javascript_include_tag "backstage/form/custom_combo.js" %>
+  <%= javascript_include_tag "backstage/comments" %>
+  <%= javascript_include_tag "backstage/form/custom_combo" %>
+  <%= javascript_include_tag "backstage/form/candy" %>
+  <%= javascript_include_tag "backstage/machines/expositor" %>
+  <%= javascript_include_tag "backstage/tools/base" %>
+  <%= javascript_include_tag "backstage/tools/browser" %>
   
 </head>
 
@@ -24,7 +30,7 @@
       <div class="top-bar">
         <ul class="projects">
           <% Project.all.each do |p| %>
-            <li><%= link_to p.name, project_path(p) %></li>
+            <li><%= link_to p.name, dpath('project', :id => p.id) %></li>
           <% end %>
         </ul>
         
@@ -42,19 +48,19 @@
       <div class="operation">
         <%= link_icon_to('Ajouter un fichier', new_code_file_path, :icon => 'add') if in_section?('code') %>
         <%= link_icon_to('Ajouter un document', new_document_path, :icon => 'add') if in_section?('documents') %>
-        <%= link_icon_to('Ajouter une tâche', new_task_path, :icon => 'add') if in_section?('tasks') %>
+        <%= link_icon_to('Ajouter une tâche', dpath('project.task', :action => 'new'), :icon => 'add') if in_section?('tasks') %>
       </div>
     </div>
     <div class="main-content">
       <div class="navigations">
         <ul class="choices">
-          <li class="first <%= in_section?('tasks') ? 'selected' : '' %>"><%= link_icon_to 'Tâches', tasks_path, :icon => 'tasks' %></li>
+          <li class="first <%= in_section?('tasks') ? 'selected' : '' %>"><%= link_icon_to 'Tâches', dpath('project.tasks'), :icon => 'tasks' %></li>
           <li class="<%= in_section?('code') ? 'selected' : '' %>"><%= link_icon_to 'Code', code_files_path, :icon => 'help' %></li>
           <li class="<%= in_section?('documents') ? 'selected' : '' %>"><%= link_icon_to 'Documents', documents_path, :icon => 'help' %></li>
         </ul>
         <%= show_menu_code(@code_file) if in_section?('code') %>
         <%= show_menu_documents(@document) if in_section?('documents') %>
-        <%= render "#{tasks_path}/filters" if in_section?('tasks') %>
+        <%= render "#{tasks_path}/options" if in_section?('tasks') %>
       </div>
       
       <div class="inner-space">

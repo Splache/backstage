@@ -1,4 +1,17 @@
 module ApplicationHelper
+  def candy_form(name, record, options={}, &block)
+    options.reverse_merge!(:id => nil)
+    form = Elements::FormCandy.new(self, name, record) 
+    
+    if block_given?
+      concat(form.open_form(options[:id]), block)
+      yield form 
+      concat(form.close_form, block)
+    else
+      return form
+    end
+  end
+  
   
   def htmlize(text)
     text = textilize(text)
@@ -12,7 +25,6 @@ module ApplicationHelper
     options.reverse_merge!(:id => nil)
     
     return content_tag(:span, '&nbsp;', :class => "ico ico-#{name}", :id => options[:id])
-    #return '<span class="ico ico-' + name + '">&nbsp;</span>'
   end
   
   def in_section?(name)

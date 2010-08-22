@@ -6,14 +6,18 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :code_methods
   
-  map.resources :comments
-  
   map.documents_folder 'documents/folder/:folder_name.:format', :controller => 'documents', :action => 'index'
   map.resources :documents
   
-  map.resources :projects
+  map.resources :projects do |project|
+    project.resources :tasks do |task|
+      task.resources :comments
+    end
+  end
+  map.resources :tasks
+  map.resources :comments
+  
+  
   map.resources :sessions
   map.resources :users
-  
-  map.resources :tasks
 end

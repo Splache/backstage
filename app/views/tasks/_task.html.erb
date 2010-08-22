@@ -1,6 +1,6 @@
-<div class="task preview" id="task-<%= task.id %>">
+<div class="task <%= @options[:template] ? 'preview' : '' %>" id="task-<%= task.id %>">
   <div class="details">
-    <h3><%= link_to "<span class=\"identifier\">#{task.identifier}</span>#{task.name}", edit_task_path(task) %></h3><%= icon('nature', :id => "toggle-task-#{task.id}") %>
+    <h3><%= icon('block-closed', :id => "toggle-task-#{task.id}") %><%= link_to "<span class=\"identifier\">#{task.identifier}</span> #{truncate(task.name, 60)}", dpath('project.task', :id => task.id, :action => 'edit') %></h3>
     <div class="inner">
       <div class="wrapper-description"><div class="description"><%= htmlize(task.description) %></div></div>
       <%= task_line_detail('user', 'Créé par', link_to(task.creator.name, user_path(task.creator))) %>
@@ -16,21 +16,7 @@
     <%= show_task_due_on(task) %>
   </div>
   <div class="operations">
-    <%= link_to 'X', task_path(task), :method => :delete, :confirm => 'Êtes-vous sûr de vouloir détruire cette tâche ?', :class => 'delete' %>
-  </div>
-  
-  <div class="wrapper-comments">
-    <div class="box">
-      <div class="heading">
-        <%= link_to 'X', '#', :class => 'close-comments' %>
-        <h3><span class="identifier"><%= task.identifier %></span>: <%= task.name %></h3>
-      </div>
-      <ul class="comments">
-        <% task.comments.each do |comment| %>
-          <%= render "#{comments_path}/comment", :comment => comment %>
-        <% end %>
-      </ul>
-      <div class="float-anchor"></div>
-    </div>
+    <%= hidden_field_tag('ajax_path', dpath('project.task', :id => task.id), :id => nil) %>
+    <%= link_to 'X', dpath('project.task', :id => task.id), :method => :delete, :confirm => 'Êtes-vous sûr de vouloir détruire cette tâche ?', :class => 'delete' %>
   </div>
 </div>

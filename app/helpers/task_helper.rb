@@ -57,52 +57,14 @@ module TaskHelper
     return content.join
   end
   
-  def task_filter_button_tag(id, name, filters)
+  def task_option_radio_tag(id, items, options)
     content = []
-    selection = filters[id.to_sym]
     
-    css_class = ['filter', 'filter-button-small']
-    css_class << id
-    css_class << 'active' if selection
-    
-    content << '<div class="' + css_class.join(' ') + '">'
-    content << '<label><span class="ico ico-' + id + '">&nbsp;</span>' + name + '</label>'
-    content << hidden_field_tag("filter[#{id}]", selection)
+    content << '<div class="radio-group group-' + id + '" >'
+    items.each do |item|
+      
+    end
     content << '</div>'
-    
-    return content.join
-  end
-  
-  def task_filter_combo_tag(id, name, values, filters)
-    content = []
-    selection = filters[id.to_sym]
-    
-    css_class = ['filter', 'filter-combo']
-    css_class << id
-    css_class << 'active' if selection
-    
-    content << '<div class="' + css_class.join(' ') + '">'
-    content << '<label><span class="ico ico-' + id + '">&nbsp;</span>' + name + '</label>'
-    content << select_tag("filter[#{id}]", options_for_select(values, :selected => selection), :class => 'custom-combo', :id => "filter-#{id}")
-    content << '</div>'
-    
-    return content.join
-  end
-  
-  def task_filter_text_field_tag(id, name, filters)
-    content = []
-    selection = filters[id.to_sym]
-    
-    css_class = ['filter', 'filter-input']
-    css_class << id
-    css_class << 'active' if selection
-    
-    content << '<div class="' + css_class.join(' ') + '">'
-    content << '<label><span class="ico ico-' + id + '">&nbsp;</span>' + name + '</label>'
-    content << text_field_tag("filter[#{id}]", selection, :id => "filter-#{id}")
-    content << '</div>'
-    
-    return content.join
   end
   
   def task_line_detail(icon, label, content, options={})
@@ -118,16 +80,16 @@ module TaskHelper
     return line.join
   end
   
-  def title_tasks_section(filters)
+  def title_tasks_section(options)
     
     text = 'Liste des tâches'
-    if current_user.id = filters[:assigned_to]
+    if current_user.id = options[:assigned_to]
       text = 'Mes tâches'
     else
-      Task.get_natures.each { |t| text = t[0] if t[1] == filters[:nature] }
+      Task.get_natures.each { |t| text = t[0] if t[1] == options[:nature] }
     end
     
-    sub = filters[:archive] ? '<span class="path">Archive</span>' + filters[:archive].to_s : ''
+    sub = options[:archive] ? '<span class="path">Archive</span>' + options[:archive].to_s : ''
     
     return '<h2>' + sub + text + '</h2>'
   end
