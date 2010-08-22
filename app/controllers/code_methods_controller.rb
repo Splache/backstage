@@ -10,7 +10,7 @@ class CodeMethodsController < ApplicationController
     @code_method = CodeMethod.find(params[:id])
     
     if @code_method.update_attributes(params[:code_method])
-      redirect_to code_file_path(@code_method.code_file)
+      dredirect_to('project.code_file', :id => @code_method.code_file.id)
     else
       render :action => "edit"
     end
@@ -19,6 +19,6 @@ class CodeMethodsController < ApplicationController
   def generate
     CodeMethod.destroy_all("code_file_id = #{params[:code_file_id]}")
     CodeMethod.extract_from_file(params[:code_file_id])
-    redirect_to code_file_path(params[:code_file_id])
+    dredirect_to('project.code_file', :id => params[:code_file_id])
   end
 end

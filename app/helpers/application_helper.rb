@@ -59,11 +59,11 @@ module ApplicationHelper
             
               if record
                 case nature_link
-                  when 'link_code_file' then new_text << link_to(record.full_path, code_file_path(record))
-                  when 'link_code_file_name' then new_text << link_to(record.name_without_extension, code_file_path(record))
-                  when 'link_code_file_name_pl' then new_text << link_to(record.name_without_extension(true), code_file_path(record))
-                  when 'link_code_method' then new_text << link_to(record.name_with_file(true), code_file_path(record.code_file, :anchor => "m#{record.id}"))
-                  when 'link_code_method_name' then new_text << link_to(record.name_with_file(true), code_file_path(record.code_file, :anchor => "m#{record.id}"))
+                  when 'link_code_file' then new_text << link_to(record.full_path, dpath('project.code_file', :id => record.id))
+                  when 'link_code_file_name' then new_text << link_to(record.name_without_extension, dpath('project.code_file', :id => record.id))
+                  when 'link_code_file_name_pl' then new_text << link_to(record.name_without_extension(true), dpath('project.code_file', :id => record.id))
+                  when 'link_code_method' then new_text << link_to(record.name_with_file(true), dpath('project.code_file', :id => record.code_file.id, :anchor => "m#{record.id}"))
+                  when 'link_code_method_name' then new_text << link_to(record.name_with_file(true), dpath('project.code_file', :id => record.code_file.id, :anchor => "m#{record.id}"))
                 end
                 new_text << part_content
                 appended = true
@@ -105,7 +105,7 @@ module ApplicationHelper
         css_class << 'show' if menu_files_item_is_visible?(code_file, f)
         
         content << '<li class="' + css_class.join(' ') + '">'
-        content << link_icon_to(f.name, code_file_path(f), :icon => (f.is_directory? ? 'folder' : 'file'))
+        content << link_icon_to(f.name, dpath('project.code_file', :id => f.id), :icon => (f.is_directory? ? 'folder' : 'file'))
         content << '</li>'
       end
       content << '</ul>'
@@ -125,7 +125,7 @@ module ApplicationHelper
       content << '<ul class="tree">'
       documents.each do |doc|
         if not doc.path.to_s.empty? and doc.path != last_path
-          content << '<li class="level1">' + link_icon_to(doc.path, documents_folder_path(:folder_name => doc.path.parameterize), :icon => 'folder') + '</li>'
+          content << '<li class="level1">' + link_icon_to(doc.path, documents_folder_path(:project_id => current_project.id, :folder_name => doc.path.parameterize), :icon => 'folder') + '</li>'
           last_path = doc.path
         end
         
@@ -137,10 +137,10 @@ module ApplicationHelper
         if not doc.url.to_s.empty? and doc.description.empty?
           content << link_icon_to(doc.name, doc.url, :icon => 'file')
         else
-          content << link_icon_to(doc.name, document_path(doc), :icon => 'file')
+          content << link_icon_to(doc.name, dpath('project.document', :id => doc.id), :icon => 'file')
         end
-        content << link_icon_to('Modifier', edit_document_path(doc), :icon => 'edit', :class => 'operation')
-        content << link_icon_to('Supprimer', document_path(doc), :icon => 'delete', :class => 'operation', :method => :delete, :confirm => 'Êtes-vous sur de vouloir détruire ce document ?')
+        content << link_icon_to('Modifier', dpath('project.document', :id => doc.id, :action => 'edit'), :icon => 'edit', :class => 'operation')
+        content << link_icon_to('Supprimer', dpath('project.document', :id => doc.id), :icon => 'delete', :class => 'operation', :method => :delete, :confirm => 'Êtes-vous sur de vouloir détruire ce document ?')
         content << '</li>'
       end
       content << '</ul>'
@@ -161,7 +161,7 @@ module ApplicationHelper
         content << '<li>'
         content << '<span class="nature">' + relation[:nature] + '</span> '
         if relation[:code_file]
-          content << link_to(relation[:model_name], code_file_path(relation[:code_file])) 
+          content << link_to(relation[:model_name], dpath('project.code_file', :id => relation[:code_file])) 
         else
           content << '<span class="model_name">' + relation[:model_name] + '</span> '
         end

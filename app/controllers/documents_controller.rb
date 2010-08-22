@@ -9,7 +9,7 @@ class DocumentsController < ApplicationController
   def show
     @document = Document.first(:conditions => { :id => params[:id] })
     
-    redirect_to documents_path unless @document
+    dredirect_to('project.documents') unless @document
   end
   
   def new
@@ -22,7 +22,7 @@ class DocumentsController < ApplicationController
     @document = Document.new(params[:document])
     
     if @document.save
-      redirect_to new_document_path
+      dredirect_to('project.document', :action => 'new')
     else
       render :action => 'new'
     end
@@ -36,7 +36,7 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
     
     if @document.update_attributes(params[:document])
-      redirect_to document_path(@document)
+      dredirect_to('project.document', :id => @document.id)
     else
       render :action => "edit"
     end
@@ -44,6 +44,6 @@ class DocumentsController < ApplicationController
   
   def destroy
     Document.find(params[:id]).destroy
-    redirect_to documents_path
+    dredirect_to('project.documents')
   end
 end

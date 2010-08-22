@@ -13,9 +13,10 @@ class Task < ActiveRecord::Base
   #*************************************************************************************
   # PUBLIC CLASS METHODS
   #*************************************************************************************
-  def self.all_from_options(user, options)
+  def self.all_from_options(user, project, options)
     conditions = []
-    conditions << (options[:archive] ? 'ended_on != ""' : 'ended_on = "" OR ended_on IS NULL')
+    conditions << "project_id = #{project.id}"
+    conditions << (options[:archive] ? 'ended_on != ""' : '(ended_on = "" OR ended_on IS NULL)')
     parameters = []
     
     get_natures.each { |n| conditions << "nature = '#{n[1]}'" if options[:nature] == n[1] }

@@ -1,6 +1,6 @@
 <div class="method">
   <a name="m<%= m.id %>"></a>
-  <h4><%= link_to show_method_name(m), edit_code_file_code_method_path(:code_file_id => m.code_file_id, :id => m.id) %></h4>
+  <h4><%= link_to show_method_name(m), dpath('project.code_file.code_method', :code_file_id => m.code_file_id, :id => m.id, :action => 'edit') %></h4>
   <% if false #not m.parameters.to_s.empty? %>
     <div class="block">
       <%= show_method_parameters(m.parameters) %>

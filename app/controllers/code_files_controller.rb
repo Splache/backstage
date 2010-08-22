@@ -3,13 +3,13 @@ class CodeFilesController < ApplicationController
   layout 'standard'
   
   def index
-    @code_files = CodeFile.all
+    @code_files = CodeFile.all(:conditions => { :project_id => current_project.id })
   end
   
   def show
     @code_file = CodeFile.first(:conditions => { :id => params[:id] })
     
-    redirect_to code_files_path unless @code_file
+    dredirect_to('project.code_files') unless @code_file
   end
   
   def new
@@ -23,7 +23,7 @@ class CodeFilesController < ApplicationController
     @code_file = CodeFile.new(params[:code_file])
     
     if @code_file.save
-      redirect_to new_code_file_path
+      dredirect_to('project.code_file', :action => 'new') 
     else
       render :action => 'new'
     end
@@ -37,7 +37,7 @@ class CodeFilesController < ApplicationController
     @code_file = CodeFile.find(params[:id])
     
     if @code_file.update_attributes(params[:code_file])
-      redirect_to code_file_path(@code_file)
+      dredirect_to('project.code_file', :id => @code_file.id) 
     else
       render :action => "edit"
     end
@@ -45,6 +45,6 @@ class CodeFilesController < ApplicationController
   
   def destroy
     CodeFile.find(params[:id]).destroy
-    redirect_to code_files_path
+    dredirect_to('project.code_files')
   end
 end

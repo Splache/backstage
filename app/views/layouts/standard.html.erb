@@ -46,8 +46,8 @@
       <div class="logo"><%= image_tag('logo.png', :alt => 'Backstage') %></div>
       <h1><%= current_project.name %></h1>
       <div class="operation">
-        <%= link_icon_to('Ajouter un fichier', new_code_file_path, :icon => 'add') if in_section?('code') %>
-        <%= link_icon_to('Ajouter un document', new_document_path, :icon => 'add') if in_section?('documents') %>
+        <%= link_icon_to('Ajouter un fichier', dpath('project.code_file', :action => 'new'), :icon => 'add') if in_section?('code') %>
+        <%= link_icon_to('Ajouter un document', dpath('project.document', :action => 'new'), :icon => 'add') if in_section?('documents') %>
         <%= link_icon_to('Ajouter une tâche', dpath('project.task', :action => 'new'), :icon => 'add') if in_section?('tasks') %>
       </div>
     </div>
@@ -55,8 +55,8 @@
       <div class="navigations">
         <ul class="choices">
           <li class="first <%= in_section?('tasks') ? 'selected' : '' %>"><%= link_icon_to 'Tâches', dpath('project.tasks'), :icon => 'tasks' %></li>
-          <li class="<%= in_section?('code') ? 'selected' : '' %>"><%= link_icon_to 'Code', code_files_path, :icon => 'help' %></li>
-          <li class="<%= in_section?('documents') ? 'selected' : '' %>"><%= link_icon_to 'Documents', documents_path, :icon => 'help' %></li>
+          <li class="<%= in_section?('code') ? 'selected' : '' %>"><%= link_icon_to 'Code', dpath('project.code_files'), :icon => 'help' %></li>
+          <li class="<%= in_section?('documents') ? 'selected' : '' %>"><%= link_icon_to 'Documents', dpath('project.documents'), :icon => 'help' %></li>
         </ul>
         <%= show_menu_code(@code_file) if in_section?('code') %>
         <%= show_menu_documents(@document) if in_section?('documents') %>

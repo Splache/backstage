@@ -1,8 +1,8 @@
 <div class="file-header">
   <h2><span class="path"><%= @code_file.path %></span><%= @code_file.name %></h2>
   <ul class="operations">
-    <li><%= link_to 'Modifier le fichier', edit_code_file_path(@code_file) %></li>
-    <li><%= link_to 'Détruire le fichier', code_file_path(@code_file), :method => :delete, :confirm => 'Êtes-vous sur de vouloir détruire ce fichier ?' %></li>
+    <li><%= link_to 'Modifier le fichier', dpath('project.code_file', :id => @code_file.id, :action => 'edit') %></li>
+    <li><%= link_to 'Détruire le fichier', dpath('project.code_file', :id => @code_file.id), :method => :delete, :confirm => 'Êtes-vous sur de vouloir détruire ce fichier ?' %></li>
   </ul>
 </div>
 
@@ -25,9 +25,9 @@
     <h3>Méthodes de classe publiques</h3>
     <ul class="operations">
       <% if false %>
-        <li><%= link_to 'Ajouter une méthode', new_code_file_code_method_path(@code_file) %></li>
+        <li><%= link_to 'Ajouter une méthode', dpath('project.code_file.code_method', :action => 'new') %></li>
       <% end %>
-      <li><%= link_to 'Générer les méthodes', generate_code_file_code_methods_path(@code_file), :method => :post, :confirm => 'Cette opération effecera toutes les méthodes de ce fichier. Voulez-vous continuer ?' %></li>
+      <li><%= link_to 'Générer les méthodes', generate_project_code_file_code_methods_path(:project_id => current_project.id, :code_file_id => @code_file.id), :method => :post, :confirm => 'Cette opération effecera toutes les méthodes de ce fichier. Voulez-vous continuer ?' %></li>
     </ul>
   
     <% @code_file.code_methods.each do |m| %>

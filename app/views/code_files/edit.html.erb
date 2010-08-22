@@ -1,5 +1,5 @@
 <h2><span class="path"><%= @code_file.path %></span><%= @code_file.name %></h2>
 
-<%- form_for(@code_file) do |f| %>
+<%- form_for(@code_file, :url => dpath('project.code_file', :id => @code_file.id)) do |f| %>
   <%= render 'form', :f => f %>
 <%- end %>

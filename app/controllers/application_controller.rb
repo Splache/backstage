@@ -41,37 +41,6 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def admin_path(path, options={})    
-    path_parts = [:admin]
-    
-    if current.organisation and (current.organisation.id != current.user.organisation_id)
-      if path != 'organisation'
-        path_parts << :organisation      
-        options[:organisation_id] = current.organisation.id_external
-      elsif not options[:id]
-        options[:id] = current.organisation.id_external
-      else
-        options[:id] = Organisation.find_by_id_external(options[:id]).id_external
-      end
-    elsif current.organisation and path == 'organisation'
-      options[:id] = current.organisation.id_external if not options[:id]
-    end
-
-    path_parts += path.split('.')
-    
-    path_parts.each do |path_part|
-      if path_part == 'publication' and options[:action].to_s != 'new' 
-        if path_part == path_parts.last
-          options[:id] = current.publication.id if not options[:id]
-        else
-          options[:publication_id] = current.publication.id if not options[:publication_id]
-        end
-      end
-    end
-    
-    return polymorphic_path(path_parts, options)
-  end
-  
   def dpath(path, options={})
     path_parts = []
     

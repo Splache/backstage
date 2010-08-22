@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   layout 'standard'
   
   def index
-    @tasks = Task.all_from_options(current_user, session[:task_options])
+    @tasks = Task.all_from_options(current_user, current_project, session[:task_options])
     
     @comment = Comment.new
     @comment.user_id = current_user.id

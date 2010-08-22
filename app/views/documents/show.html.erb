@@ -1,8 +1,8 @@
 <div class="file-header">
   <h2><%= @document.name %></h2>
   <ul class="operations">
-    <li><%= link_to 'Modifier le document', edit_document_path(@document) %></li>
-    <li><%= link_to 'Détruire le document', document_path(@document), :method => :delete, :confirm => 'Êtes-vous sur de vouloir détruire ce document ?' %></li>
+    <li><%= link_to 'Modifier le document', dpath('project.document', :id => @document.id, :action => 'edit') %></li>
+    <li><%= link_to 'Détruire le document', dpath('project.document', :id => @document.id), :method => :delete, :confirm => 'Êtes-vous sur de vouloir détruire ce document ?' %></li>
   </ul>
 </div>
 
