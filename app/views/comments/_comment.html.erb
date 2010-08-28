@@ -23,7 +23,7 @@
   <% end %>
   
   <div class="form">
-    <% form_for(comment, :url => form_path, :html => { :class => 'form-comment', :id => nil }) do |f| %>
+    <%= form_for(comment, :url => form_path, :html => { :class => 'form-comment', :id => nil }) do |f| %>
       <%= f.text_area('description', :class => 'small') %>
       <%= submit_tag "Sauvegarder" %>
       <%= link_to('Annuler', '#', :class => 'cancel') if not comment.new_record? %>

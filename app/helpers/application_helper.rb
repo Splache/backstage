@@ -4,12 +4,14 @@ module ApplicationHelper
     form = Elements::FormCandy.new(self, name, record) 
     
     if block_given?
-      concat(form.open_form(options[:id]), block)
-      yield form 
-      concat(form.close_form, block)
+      concat(form.open_form(options[:id]))
+      yield form
+      concat(form.close_form)
     else
       return form
     end
+    
+    return ''
   end
   
   
@@ -18,7 +20,7 @@ module ApplicationHelper
     text = link_to_internal(text, 'code_file')
     text = link_to_internal(text, 'code_method')
     
-    return text
+    return text.html_safe
   end
   
   def icon(name, options={})

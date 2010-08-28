@@ -54,17 +54,7 @@ module TaskHelper
       content << task_line_detail('calendar', label, task.started_on.strftime("%d-%m-%Y"))
     end
     
-    return content.join
-  end
-  
-  def task_option_radio_tag(id, items, options)
-    content = []
-    
-    content << '<div class="radio-group group-' + id + '" >'
-    items.each do |item|
-      
-    end
-    content << '</div>'
+    return content.join.html_safe
   end
   
   def task_line_detail(icon, label, content, options={})
@@ -77,7 +67,7 @@ module TaskHelper
     line << content
     line << '</div></div>'
     
-    return line.join
+    return line.join.html_safe
   end
   
   def title_tasks_section(options)
@@ -89,8 +79,8 @@ module TaskHelper
       Task.get_natures.each { |t| text = t[0] if t[1] == options[:nature] }
     end
     
-    sub = options[:archive] ? '<span class="path">Archive</span>' + options[:archive].to_s : ''
+    sub = options[:archive] ? content_tag(:span, 'Archive', :class => 'path') : ''
     
-    return '<h2>' + sub + text + '</h2>'
+    return content_tag(:h2, sub + text)
   end
 end

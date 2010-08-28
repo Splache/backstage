@@ -17,7 +17,7 @@ class Elements::FormCandy
   end
   
   def close_form
-    return '</div>'
+    return '</div>'.html_safe
   end
   
   def combo_box(id, label, values)
@@ -36,7 +36,7 @@ class Elements::FormCandy
   
   def open_form(id)
     id = 'id="' + id + '"' if id
-    return '<div class="form-candy" ' + id + '>'
+    return ('<div class="form-candy" ' + id + '>').html_safe
   end
   
   def text_field(id, label)
@@ -53,7 +53,7 @@ class Elements::FormCandy
     content << field
     content << '</div>'
     
-    return content.join
+    return content.join.html_safe
   end
   
   private

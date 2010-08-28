@@ -108,7 +108,7 @@ BACKSTAGE.Tasks = function(){
       params += '&insert_first=1';
     }
     
-    $j.post(task_path(task), params, {}, 'json'); 
+    $j.post(task_path(task), params, function(){}, 'json'); 
   };
 };
 BACKSTAGE.Tasks = new BACKSTAGE.Tasks();

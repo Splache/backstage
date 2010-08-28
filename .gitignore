@@ -1,8 +1,10 @@
+.bundle
 .DS_Store
 config/database.yml
 config/environment.rb
 db/schema.rb
+db/*.sqlite3
 public/document_files
 public/document_files/*
-log/*
+log/*.log
 tmp/*

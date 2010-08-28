@@ -6,8 +6,8 @@ class Task < ActiveRecord::Base
   
   has_many :comments, :order => "created_at ASC", :dependent => :destroy
   
-  named_scope :active, :conditions => "ended_on = '' OR ended_on IS NULL", :order => 'priority ASC'
-  named_scope :archived, :conditions => "ended_on != '' AND ended_on IS NOT NULL"
+  scope :active, where("ended_on = '' OR ended_on IS NULL").order('priority ASC')
+  scope :archived, where("ended_on != '' OR ended_on IS NULL")
   
   
   #*************************************************************************************
@@ -63,17 +63,12 @@ class Task < ActiveRecord::Base
     options.reverse_merge!(:skip_task => nil)
     position = 1
     
-    conditions = ['project_id = ?', "ended_on = '' OR ended_on IS NULL"]
-    parameters = [project_id]
-    
-    if options[:skip_task]
-      conditions << 'id != ?'
-      parameters << options[:skip_task].id
-    end
-    
-    tasks = Task.all(:conditions => [conditions.join(' AND '), parameters].flatten, :order => 'priority ASC')
-    
-    tasks.each do |task|
+    tasks = Task.where('project_id = ?', project_id)
+    tasks = tasks.where("ended_on = '' OR ended_on IS NULL")
+    tasks = tasks.where("id != ?", options[:skip_task].id) if options[:skip_task]
+    tasks = tasks.order('priority ASC')
+
+    tasks.all.each do |task|
       position += 1 if options[:skip_task] and position == options[:skip_task].priority
       Task.update_all("priority = #{position}", "id = #{task.id}" ) 
       position += 1

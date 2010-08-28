@@ -1,26 +1,27 @@
-ActionController::Routing::Routes.draw do |map|
-  map.root :controller => :sessions, :action => :new
+Backstage::Application.routes.draw do |map|
+  root :to => "sessions#new"
   
-  map.resources :projects do |project|
-    project.resources :tasks do |task|
-      task.resources :comments
+  resources :projects do
+    resources :code_files do
+      resources :code_methods do
+        post :generate, :on => :collection
+      end
     end
-    
-    project.resources :code_files do |cf|
-      cf.resources :code_methods, :collection => {:generate => :post}
+    resources :code_methods
+    resources :documents
+    resources :tasks do
+      resources :comments
     end
-    project.resources :code_methods
-    project.resources :documents
   end
   
-  map.resources :code_files
-  map.resources :code_methods
-  map.documents_folder 'projects/:project_id/documents/folder/:folder_name.:format', :controller => 'documents', :action => 'index'
-  map.resources :documents
+  resources :code_files
+  resources :code_methods
+  match 'projects/:project_id/documents/folder/:folder_name.:format' => "documents#index", :as => :documents_folder
+  resources :documents
   
-  map.resources :tasks
-  map.resources :comments
+  resources :tasks
+  resources :comments
   
-  map.resources :sessions
-  map.resources :users
+  resources :sessions
+  resources :users
 end
