@@ -41,7 +41,7 @@ BACKSTAGE.Comments = function(){
     
     comments_box.update(box_title(), content);
     
-    nbr_comments = $j('#box-comments ul.comments li').length - 1;
+    nbr_comments = $j('#box-comments ul.comments li.comment').length - 1;
     task.find('a.open-comments').html('Commentaires (' + nbr_comments + ')');
 
     attach_events();
