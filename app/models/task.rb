@@ -111,7 +111,11 @@ class Task < ActiveRecord::Base
   end
   
   def set_archive_status!
-    prioritize_to((self.archived? ? 0 : 1))
+    if self.archived?
+      prioritize_to(0) if self.priority != 0
+    elsif self.priority == 0
+      prioritize_to(1)
+    end
   end
   
   def set_dates_from_params(params)
