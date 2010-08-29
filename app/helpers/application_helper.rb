@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def avatar(user)
+    return image_tag("users/avatar/#{user.id}.jpg", :alt => user.name, :class => 'avatar')
+  end
+  
   def candy_form(name, record, options={}, &block)
     options.reverse_merge!(:id => nil)
     form = Elements::FormCandy.new(self, name, record) 

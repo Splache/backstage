@@ -3,8 +3,18 @@
     <h3><%= icon('block-closed', :id => "toggle-task-#{task.id}") %><%= link_to content_tag(:span, task.identifier, :class => 'identifier') + " #{truncate(task.name, :length => 60)}", dpath('project.task', :id => task.id, :action => 'edit') %></h3>
     <div class="inner">
       <div class="wrapper-description"><div class="description"><%= htmlize(task.description) %></div></div>
-      <%= task_line_detail('user', 'Créé par', link_to(task.creator.name, user_path(task.creator))) %>
-      <%= task_line_detail('user', 'Assigné à', (task.worker ? link_to(task.worker.name, user_path(task.worker)) : '<span class="unassigned">Non assigné</span>')) %>
+      <div class="line">
+        <%= avatar(task.creator) %>
+        <div class="content"><label>Crée par</label><%= link_to(task.creator.name, user_path(task.creator)) %></div>
+      </div>
+      <% if task.worker %>
+        <div class="line">
+          <%= avatar(task.worker) %>
+          <div class="content"><label>Assigné à</label><%= link_to(task.worker.name, user_path(task.worker)) %></div>
+        </div>
+      <% else %>
+        <%= task_line_detail('user', 'Assigné à', content_tag(:span, 'Non assigné', :class => "unassigned")) %>
+      <% end %>
       <%= task_line_detail('comments', 'Voir les', link_to("Commentaires (#{task.comments.length})", '#', :class => 'open-comments'), :class => 'comments') %>
     </div>
   </div>

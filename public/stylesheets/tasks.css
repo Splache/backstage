@@ -32,6 +32,7 @@ div.main-content div.inner-space ul.tasks li.loading{background:url(../images/lo
 div.task{cursor:default;float:left;margin:15px 20px;width:770px;}
 div.task div.line{background:no-repeat 0px 4px;clear:both;color:#333333;float:left;font-size:11px;margin:0px 0px 10px 0px;}
 div.task div.line span.ico{float:left;margin:3px 5px 0px 0px;}
+div.task div.line img.avatar{float:left;margin:0px 5px 0px 0px;height:22px;}
 div.task div.line div.content{float:left;}
 div.task div.line label{color:#777777;display:block;float:none;font-size:9px;height:8px;width:auto;}
 div.task div.line span.unassigned{color:#9f2828;}
