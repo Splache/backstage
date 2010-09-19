@@ -52,6 +52,7 @@ div.main-content div.navigations ul.tree li.show{display:block;}
 
 div.main-content div.inner-space{float:left;margin:20px 0px 40px 0px;width:815px;}
 div.main-content div.inner-space h2{clear:both;width:100%;}
+div.main-content div.inner-space h2.form{width:794px;}
 div.main-content div.inner-space h2 span.path{clear:both;color:#999999;display:block;font-size:11px;width:100%;}
 div.main-content div.inner-space ul{margin:20px;}
 div.main-content div.inner-space ul li{list-style:none;margin:0px 0px 6px 0px;}
@@ -63,3 +64,12 @@ div.main-content div.inner-space ul.operations li a:hover{color:#555555;}
 div.main-content div.inner-space div.file-header{width:100%;}
 div.main-content div.inner-space div.file-header ul.operations{margin:-70px 0px 0px 0px;}
 div.main-content div.inner-space div.block{margin:0px 0px 30px 0px;}
+
+div#form-user div.column{float:left;margin:0px 0px 10px 0px;width:400px;}
+div#form-user ul.tap-list{float:left;margin:5px 0px 20px 0px;padding:0px;width:250px;}
+div#form-user ul.tap-list li{background-color:#f3f3f3;border:1px solid #eaeaea;color:#999999;cursor:pointer;float:left;margin:-1px 0px 0px 0px;padding:5px 10px 5px 10px;width:100%;}
+div#form-user ul.tap-list li img.avatar{float:left;margin:0px 10px 0px 0px;opacity:.7;width:25px;}
+div#form-user ul.tap-list li div.name{float:left;font-size:13px;margin:4px 0px 0px 0px;}
+div#form-user ul.tap-list li.selected{background-color:#ffffff;color:#444444;}
+div#form-user ul.tap-list li.selected img.avatar{opacity:1;}
+div#form-user ul.tap-list li:hover{border-left:4px solid #8fb048;padding-left:7px;}

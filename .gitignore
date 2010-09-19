@@ -1,5 +1,6 @@
 .bundle
 .DS_Store
+Gemfile.lock
 config/database.yml
 config/environment.rb
 db/schema.rb

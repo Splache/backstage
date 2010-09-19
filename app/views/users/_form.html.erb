@@ -1,19 +1,16 @@
-<label>Prénom :</label>
-<%= f.text_field('first_name', :class => 'focus medium') %>
-
-<label>Nom :</label>
-<%= f.text_field('last_name', :class => 'medium') %>
-
-<label>Courriel :</label>
-<%= f.text_field('email', :class => 'medium') %>
-
-<label>Nom d'usager :</label>
-<%= f.text_field('login', :class => 'medium') %>
-
-<label>Password :</label>
-<%= f.password_field('password', :class => 'medium') %>
-
-<div class="buttons">
-  <%= submit_tag "Sauvegarder" %>
-  <%= link_to 'Annuler', :back %>
+<div id="form-user">
+  <% form_for(@user) do |f| %>
+    <div id="profile" class="column">
+      <h3>Profil</h3>
+      <%= render 'form-profile', :f => f %>
+    </div>
+    <div id="report" class="column">
+      <h3>Rapport d'activité</h3>
+      <%= render 'form-notifications', :f => f %>
+    </div>
+    <div class="buttons">
+      <%= submit_tag "Sauvegarder" %>
+      <%= link_to 'Annuler', :back, :class => 'cancel' %>
+    </div>
+  <% end %>
 </div>

@@ -1,6 +1,7 @@
 body{background-color:#a5cccc;color:#333333;font-family:"Lucida Grande", Tahoma, Verdana;font-size:12px;margin:0px;padding:0px;}
 h1{color:#c6db9a;float:left;font-size:65px;font-weight:normal;margin:28px 0px 0px 20px;padding:0px;}
 h2{color:#8fb048;font-size:22px;margin:0px 0px 20px 0px;padding:0px;}
+h2.form{background-color:#e5edd2;border-bottom:1px solid #d2dabf;color:#222222;margin:-20px 0px 20px -40px;padding:20px 40px;}
 h3{color:#8dafb2;font-size:18px;margin:0px 0px 8px 0px;padding:0px;}
 h4{color:#333333;font-size:13px;font-weight:bold;margin:10px 0px 8px 0px;padding:0px;}
 a{color:#288a93;text-decoration:none;}
@@ -52,11 +53,3 @@ span.loading-bar{background:url(../images/loading-eeeeee.gif) no-repeat;float:le
 .ico-time{background-position:-144px 0px;}
 .ico-tasks{background-position:-256px 0px;}
 .ico-user{background-position:-192px 0px;}
-
-
-
-
-
-
-
-

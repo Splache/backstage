@@ -21,10 +21,6 @@ class Elements::FormCandy
   end
   
   def combo_box(id, label, values)
-    #if id == 'assigned_to'
-    #  raise values.inspect + @record[id.to_sym].inspect
-    #  raise options_for_select(values, :selected => @record[id])
-    #end
     field = select_tag("#{@form_id}[#{id}]", options_for_select(values, :selected => @record[id.to_sym]), :class => 'custom-combo', :id => "#{@form_id}-#{id}")
     
     return wrap_it(id, label, 'combo', field)

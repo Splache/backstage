@@ -31,6 +31,7 @@ class SessionsController < ApplicationController
   
 	def destroy
     session[:current_user] = nil
+    session[:task_options] = nil
     cookies.delete(:remember_me) if cookies[:remember_me]
     
     redirect_to root_path

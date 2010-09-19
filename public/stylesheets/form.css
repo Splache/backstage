@@ -2,6 +2,7 @@ label{clear:both;display:block;margin:0px 0px 3px 0px;}
 label.check{display:inline;margin:0px 0px 3px 10px;}
 label input{margin:0px 3px 0px 0px;}
 input{font-family:"Lucida Grande", Tahoma, Verdana;font-size:12px;margin:0px 0px 20px 0px;width:400px;}
+input.large{width:220px;}
 input.medium{width:150px;}
 input.small{width:70px;}
 input[type=submit]{margin:10px 20px 0px 0px;width:auto;}
@@ -12,6 +13,12 @@ textarea.small{height:100px;}
 select{font-family:"Lucida Grande", Tahoma, Verdana;font-size:12px;margin:0px 0px 20px 0px;width:400px;}
 select.medium{width:170px;}
 select.date{width:60px;}
+
+div.buttons{background-color:#e5edd2;border-top:1px solid #d2dabf;clear:both;color:#222222;margin:-20px 0px -40px -40px;padding:0px 0px;width:874px;}
+div.buttons input[type=submit]{background:url(../images/icon-save.png) no-repeat 40px 20px;background-color:#e5edd2;border:none;color:#444444;cursor:pointer;font-size:16px;font-weight:bold;margin:0px;padding:15px 40px 15px 60px;}
+div.buttons input:hover[type=submit]{background-color:#f1f6e5;}
+div.buttons a.cancel{color:#7d836e;font-size:16px;font-weight:normal;padding:15px 40px 15px 40px;}
+div.buttons a.cancel:hover{background-color:#f1f6e5;}
 
 div.custom-combo{cursor:default;float:left;height:20px;width:120px;}
 div.custom-combo div.selection{border:1px solid #eeeeee;color:#666666;float:left;height:15px;margin:0px 5px 0px -3px;overflow:hidden;padding:2px 3px;width:90px;white-space:nowrap;}

@@ -10,9 +10,14 @@ BACKSTAGE.Base = function(){
   };
   
   init_form = function(){
-    var combo;
+    var combo, tap_list;
     
     $j("input.focus").focus();
+    
+    $j("ul.tap-list").each(function(){
+      tap_list = new BACKSTAGE.Form.TapList();
+      tap_list.initialize($j(this));
+    });
     
     $j("select.custom-combo").each(function(){
       combo = new BACKSTAGE.Form.CustomCombo();

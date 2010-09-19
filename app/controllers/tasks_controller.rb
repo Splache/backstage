@@ -66,8 +66,8 @@ class TasksController < ApplicationController
   end
   
   def init_options
-    session[:task_options] = { :archive => 0, :assigned_to => current_user.id, :template => 'item-full' } if not session[:task_options]
-    
+    session[:task_options] = { :archive => false, :assigned_to => current_user.id, :template => false } if not session[:task_options]
+
     if params[:option]
       set_option(:assigned_to)
       set_option(:nature)

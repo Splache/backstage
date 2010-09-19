@@ -35,9 +35,10 @@ module ApplicationHelper
   
   def in_section?(name)
     case name
-      when 'code' then return (@code_files or @code_file) ? true : false
-      when 'documents' then return (@documents or @document) ? true : false
-      when 'tasks' then return (@tasks or @task) ? true : false
+      when 'code' then return (@code_files or @code_file)
+      when 'documents' then return (@documents or @document)
+      when 'tasks' then return (@tasks or @task)
+      when 'users' then return params[:controller].include?('users')
     end
   end
   
@@ -177,5 +178,17 @@ module ApplicationHelper
     end
     
     return content.join
+  end
+  
+  def show_side_bar
+    if in_section?('code')
+      return show_menu_code(@code_file)
+    elsif in_section?('documents')
+      return show_menu_documents(@document)
+    elsif in_section?('tasks')
+      return render "#{tasks_path}/options"
+    else
+      return content_tag(:div, '&nbsp;'.html_safe, :class => 'options')
+    end
   end
 end
