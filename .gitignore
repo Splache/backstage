@@ -1,10 +1,10 @@
 .bundle
 .DS_Store
-Gemfile.lock
 config/database.yml
 config/environment.rb
 db/schema.rb
 db/*.sqlite3
+public/images/users/*
 public/document_files
 public/document_files/*
 log/*.log
