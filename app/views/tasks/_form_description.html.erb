@@ -1,0 +1,18 @@
+<label>Nom :</label>
+<%= f.text_field('name') %>
+
+<label>Notes :</label>
+<%= f.text_area('description') %>
+
+<!-- <label>Collection :</label> -->
+<%# f.select("collection_id", Collection.all.collect {|c| [ c.name, c.id ] }, { :include_blank => true }, :class => 'medium') %>
+  
+<label>Classification :</label>
+<% if @task.new_record? %>
+  <%= f.select("nature", Task.get_natures, {}, :class => 'medium') %>
+<% else %>
+  <div class="form-text"><%= @task.nature_human %></div>
+<% end %>
+
+<label>Assigné à :</label>
+<%= f.select("assigned_to", User.all.collect {|u| [ u.name, u.id ] }, { :include_blank => true }, :class => 'medium') %>

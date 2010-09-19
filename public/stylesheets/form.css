@@ -14,6 +14,8 @@ select{font-family:"Lucida Grande", Tahoma, Verdana;font-size:12px;margin:0px 0p
 select.medium{width:170px;}
 select.date{width:60px;}
 
+div.form-text{margin:0px 0px 20px 0px;}
+
 div.buttons{background-color:#e5edd2;border-top:1px solid #d2dabf;clear:both;color:#222222;margin:-20px 0px -40px -40px;padding:0px 0px;width:874px;}
 div.buttons input[type=submit]{background:url(../images/icon-save.png) no-repeat 40px 20px;background-color:#e5edd2;border:none;color:#444444;cursor:pointer;font-size:16px;font-weight:bold;margin:0px;padding:15px 40px 15px 60px;}
 div.buttons input:hover[type=submit]{background-color:#f1f6e5;}

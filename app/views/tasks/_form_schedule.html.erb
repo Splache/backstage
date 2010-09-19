@@ -1,0 +1,14 @@
+<label>Heures estimées :</label>
+<%= f.text_field('hours_estimated', :class => 'small') %>
+
+<label>Heures réelles :</label>
+<%= f.text_field('hours_actual', :class => 'small') %>
+
+<label><%= check_box_tag 'show_due_on', 1, (@task.due_on ? true : false), :id => "show_due_on" %> Requis le :</label>
+<div id="fields_due_on" class="hidden-fields"><%= f.date_select('due_on', {:use_short_month => true, :order => [:day, :month, :year]}, {:class => 'date'}) %></div>
+
+<label><%= check_box_tag 'show_started_on', 1, (@task.started_on ? true : false), :id => "show_started_on" %> Débuté le :</label>
+<div id="fields_started_on" class="hidden-fields"><%= f.date_select('started_on', {:use_short_month => true, :order => [:day, :month, :year]}, {:class => 'date'}) %></div>
+
+<label><%= check_box_tag 'show_ended_on', 1, (@task.ended_on ? true : false), :id => "show_ended_on" %>Terminé le :</label>
+<div id="fields_ended_on" class="hidden-fields"><%= f.date_select('ended_on', {:use_short_month => true, :order => [:day, :month, :year]}, {:class => 'date'}) %></div>

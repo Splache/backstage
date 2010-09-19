@@ -1,3 +1,6 @@
+/********************************************************************************** 
+* FILTERS
+***********************************************************************************/
 div#task-options{margin:20px 20px;}
 div#task-options h5{color:#3c3c3c;float:left;font-size:18px;font-weight:normal;margin:20px 0px 10px 0px;padding:0px}
 div#task-options h5:first-child{margin-top:0px;}
@@ -23,11 +26,21 @@ div#task-options div.active input[type=text]{display:block;}
 div#task-options div:hover.active{background-position:bottom left;}
 
 
+/********************************************************************************** 
+* FORMS
+***********************************************************************************/
+form#form-task div.column{float:left;margin:0px 0px 10px 0px;width:300px;}
+form#form-task div#description{width:450px;}
+form#form-task #task_name{width:350px;}
+form#form-task #task_description{height:120px;width:350px;}
+
+/********************************************************************************** 
+* LIST
+***********************************************************************************/
 div.main-content div.inner-space ul.tasks{margin:0px;width:790px;}
 div.main-content div.inner-space ul.tasks li{border:1px solid #cccccc;float:left;margin:-1px 0px 0px 0px;width:100%;}
 div.main-content div.inner-space ul.tasks li.empty{border:none;}
 div.main-content div.inner-space ul.tasks li.loading{background:url(../images/loading.gif) no-repeat;border:none;height:30px;margin:0px 0px 0px -2px;}
-
 
 div.task{cursor:default;float:left;margin:15px 20px;width:770px;}
 div.task div.line{background:no-repeat 0px 4px;clear:both;color:#333333;float:left;font-size:11px;margin:0px 0px 10px 0px;}
@@ -60,7 +73,17 @@ li:hover div.task div.operations{display:block;float:right;margin-right:20px;wid
 li:hover div.task div.operations a.delete{color:#cccccc;float:right;font-family:Arial;font-size:15px;font-weight:700;}
 li:hover div.task div.operations a:hover.delete{color:#f25a5a;}
 
+div.task.preview div.details h3{float:left;margin:0px;width:auto;}
+ul.tasks.preview li div.task div.details h3 span.ico{display:block;}
+div.task.preview div.details div.inner{display:none;}
+div.task.preview div.overview{margin:0px;}
+div.task.preview div.line{display:none;}
+div.task.preview div.state{display:block;margin:0px;}
 
+
+/********************************************************************************** 
+* COMMENTS
+***********************************************************************************/
 div#box-comments h2{color:#288a93;}
 div#box-comments h2 span.identifier{color:#777777;}
 div#box-comments div.loading{background:url(../images/loading-bar.gif) no-repeat center top;color:#888888;font-size:14px;margin:175px 0px 0px 20px;padding:20px 0px 0px 0px;text-align:center;width:730px;}
@@ -84,10 +107,3 @@ div#box-comments ul.comments li.comment div.form textarea{border:1px solid #bbbb
 
 div#box-comments ul.comments li:hover.comment div.operations{display:block;}
 div#box-comments ul.comments li.new-comment div.form{display:block;}
-
-div.task.preview div.details h3{float:left;margin:0px;width:auto;}
-ul.tasks.preview li div.task div.details h3 span.ico{display:block;}
-div.task.preview div.details div.inner{display:none;}
-div.task.preview div.overview{margin:0px;}
-div.task.preview div.line{display:none;}
-div.task.preview div.state{display:block;margin:0px;}

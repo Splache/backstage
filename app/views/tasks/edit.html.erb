@@ -1,4 +1,4 @@
-<h2 class="form">Modifier la tâche</h2>
-<%- form_for(@task, :url => dpath('project.task', :id => @task.id), :html => { :id => 'form-task' }) do |f| %>
+<h2 class="form"><%= @task.identifier %>&nbsp;<%= truncate(@task.name, :length => 55) %></h2>
+<%= form_for(@task, :url => dpath('project.task', :id => @task.id), :html => { :id => 'form-task' }) do |f| %>
   <%= render 'form', :f => f %>
-<%- end %>
+<% end %>

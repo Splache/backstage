@@ -2,11 +2,11 @@
   <% form_for(@user) do |f| %>
     <div id="profile" class="column">
       <h3>Profil</h3>
-      <%= render 'form-profile', :f => f %>
+      <%= render 'form_profile', :f => f %>
     </div>
     <div id="report" class="column">
       <h3>Rapport d'activité</h3>
-      <%= render 'form-notifications', :f => f %>
+      <%= render 'form_notifications', :f => f %>
     </div>
     <div class="buttons">
       <%= submit_tag "Sauvegarder" %>
