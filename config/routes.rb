@@ -22,8 +22,11 @@ Backstage::Application.routes.draw do |map|
   resources :tasks
   resources :comments
   
+  
   resources :sessions
-  resources :users
+  resources :users do
+    resources :activity_reports
+  end
   
   match 'logout', :to => 'sessions#destroy'
 end

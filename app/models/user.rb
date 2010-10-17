@@ -72,7 +72,23 @@ class User < ActiveRecord::Base
   #*************************************************************************************
   # PUBLIC METHODS
   #*************************************************************************************
+  def local_time(datetime)
+    datetime = Time.parse(datetime.to_s) if not datetime.is_a? Time
+    return datetime.in_time_zone(self.time_zone)
+  end
   
+  #TODO Manage locals in a decent way
+  def local_time_f(datetime, format = :long)
+    month_names_fr = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
+    local = local_time(datetime)
+    
+    return case format
+      when :date_only then local.strftime('%d-%m-%Y')
+      when :short_date then local.strftime('%d ' + month_names_fr[local.month].downcase)
+      when :time_only then local.strftime('%H:%M')
+      else local.strftime('%d ' + month_names_fr[local.month].downcase + ' à %H:%M')
+    end
+  end
   
   #*************************************************************************************
   # PROTECTED METHODS

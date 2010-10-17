@@ -1,0 +1,19 @@
+<div style="background-color:#ffffff;border-bottom:1px solid #cccccc;padding:20px;width:100%;">
+  <h3 style="color:#288a93;font-size:14px;margin:0px 0px 10px 0px;padding:0px;"><span style="color:#777777;"><%= task.identifier %></span> <%= task.name %></h3>
+  <table style="color:#555555;font-size:11px;margin-bottom:10px;">
+    <tr><td width="70">Créé par</td><td width="600"><%= task.creator.name %> le <%= recipient.local_time_f(task.created_at) %></td></tr>
+    <tr><td width="70">Assigné à</td><td width="600"><%= task.worker ? task.worker.name : 'Inconnu' %></td></tr>
+    <% if state != 'archived' %>
+      <tr><td width="70">Statut</td><td width="600"><%= task.state_f %></td></tr>
+    <% end %>
+    <tr><td width="70">Requis le</td><td width="600"><%= task.due_on ? recipient.local_time_f(task.due_on, :short_date) : 'Indéterminé' %></td></tr>
+  </table>
+  <table style="color:#333333;font-size:12px;">
+    <% @report.comments_of(task).each do |comment| %>
+      <tr>
+        <td width="30" valign="top"><span style="color:#555555;font-size:11px;">[<%= recipient.local_time_f(comment.updated_at, :time_only) %>]</span></td>
+        <td width="570" valign="top"><strong><%= comment.user.name %></strong> : <%= comment.description.gsub("\n", '<br/>').html_safe %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

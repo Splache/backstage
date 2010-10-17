@@ -1,0 +1,5 @@
+Rapport d'activités <%= @report.total_tasks %> tâches
+    
+<%= render 'tasks', :tasks => @report.new_tasks, :recipient => @recipient, :state => 'created'  %>
+<%= render 'tasks', :tasks => @report.updated_tasks, :recipient => @recipient, :state => 'updated'  %>
+<%= render 'tasks', :tasks => @report.closed_tasks, :recipient => @recipient, :state => 'archived'  %>

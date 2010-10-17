@@ -34,13 +34,7 @@ module TaskHelper
   end
   
   def show_task_state(task)
-    if task.archived?
-      return task_line_detail('archived', '', 'Archivé', :class => 'state')
-    elsif task.started_on
-      return task_line_detail('started', '', 'En cours', :class => 'state')
-    else
-      return task_line_detail('stopped', '', 'Non démarré', :class => 'state')
-    end
+    return task_line_detail(task.state, '', task.state_f, :class => 'state')
   end
   
   def show_task_calendar(task)

@@ -7,6 +7,8 @@ gem 'rails', '3.0.0'
 
 gem 'mysql2'
 gem "RedCloth", ">= 4.0", :require => 'redcloth'
+gem 'whenever'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

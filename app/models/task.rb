@@ -13,6 +13,19 @@ class Task < ActiveRecord::Base
   #*************************************************************************************
   # PUBLIC CLASS METHODS
   #*************************************************************************************
+  def self.all_for_report(user, options={})
+    options.reverse_merge!(:begin_at => Time.now, :end_at => Time.now)
+    
+    user_targets = user.subscriptions.map{ |t| t.target_id }
+    user_targets << user.id
+    
+    tasks = Task.includes(:comments)
+    tasks = tasks.where('created_by IN (?) OR assigned_to IN (?)', user_targets, user_targets)
+    tasks = tasks.where('tasks.updated_at > ? OR comments.updated_at > ?', options[:begin_at], options[:begin_at])
+
+    return tasks
+  end
+  
   def self.all_from_options(user, project, options)
     conditions = []
     conditions << "project_id = #{project.id}"
@@ -132,6 +145,24 @@ class Task < ActiveRecord::Base
     if template
       self.identifier_no = template.identifier_no + 1
       self.save
+    end
+  end
+  
+  def state
+    if archived?
+      return 'archived'
+    elsif started_on
+      return 'started'
+    else
+      return 'stopped'
+    end
+  end
+  
+  def state_f
+    return case self.state
+      when 'archived' then 'Terminée'
+      when 'started' then 'En cours'
+      when 'stopped' then 'Non démarrée'
     end
   end
 end

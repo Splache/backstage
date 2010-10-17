@@ -1,0 +1,16 @@
+<% tasks_title = case state
+  when 'created' then 'Nouvelles tâches'
+  when 'updated' then 'Tâches mise à jour'
+  when 'archived' then 'Tâches terminées'
+end %>
+
+<% if tasks.length > 0 %>
+  <h2 style="background-color:#E5EDD2;color:#222222;font-size:15px;margin:0px;padding:10px 20px;width:100%;">
+    <span style="width:200px;"><%= tasks_title %></span> 
+    <span style="font-size:10px;margin-left:20px;"><%= tasks.length %> tâches</span>
+  </h2>
+      
+  <% tasks.each do |task| %>
+    <%= render 'task', :task => task, :recipient => recipient, :state => state %> 
+  <% end %>
+<% end %>

@@ -1,0 +1,15 @@
+
+<%= task.identifier %> <%= task.name %>
+
+  Créé par: <%= task.creator.name %> le <%= recipient.local_time_f(task.created_at) %>
+  Assigné à: <%= task.worker ? task.worker.name : 'Inconnu' %>
+  <% if state != 'archived' %>
+  Statut: <%= task.state_f %>
+  <% end %>
+  Requis le: <%= task.due_on ? recipient.local_time_f(task.due_on, :short_date) : 'Indéterminé' %>
+
+  <% @report.comments_of(task).each do |comment| %>
+  [<%= recipient.local_time_f(comment.updated_at, :time_only) %>] <%= comment.user.name %> : <%= comment.description %>
+  <% end %>
+  
+-------------------------------------------------------------------------------------------------------------

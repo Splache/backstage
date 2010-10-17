@@ -1,0 +1,10 @@
+<div style="background-color:#A5CCCC;color:#333333;font-size:11px;padding:10px 20px;text-align:left;">
+  <div style="overflow:hidden;margin:0px auto;width:700px;">
+    <h1 style="background-color:#8FB048;color:#E6EFD1;font-size:18px;margin:0px;padding:10px 20px;width:100%;"><span style="width:200px;">Rapport d'activités</span> <span style="font-size:12px;margin-left:20px;"><%= @report.total_tasks %> tâches</span></h1>
+    
+    <%= render 'tasks', :tasks => @report.new_tasks, :recipient => @recipient, :state => 'created'  %>
+    <%= render 'tasks', :tasks => @report.updated_tasks, :recipient => @recipient, :state => 'updated'  %>
+    <%= render 'tasks', :tasks => @report.closed_tasks, :recipient => @recipient, :state => 'archived'  %>
+    
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<% tasks_title = case state
+  when 'created' then 'Nouvelles tâches'
+  when 'updated' then 'Tâches mise à jour'
+  when 'archived' then 'Tâches terminées'
+end %>
+
+<% if tasks.length > 0 %>
+******************************************************************************************
+<%= tasks_title %> <%= tasks.length %> tâches
+******************************************************************************************
+<% tasks.each do |task| %>
+<%= render 'task', :task => task, :recipient => recipient, :state => state %> 
+<% end %>
+  
+<% end %>
