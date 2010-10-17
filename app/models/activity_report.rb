@@ -63,7 +63,8 @@ class ActivityReport
     frequency = user.send_report_every
     day = user.local_time(Time.now)
     current_hour = day.hour
-    
+    time_zone = Tools::Krono.gmt_offset(day)
+
     if frequency.include?('hourly')
       hour = (current_hour-1).to_s + ':00:00'
       day -= 1.hour
@@ -81,7 +82,7 @@ class ActivityReport
       hour = current_hour.to_s + ':00:00'
     end
     
-    return Time.parse("#{day.year}-#{day.month}-#{day.day} #{hour} #{day.gmt_offset}").utc
+    return Time.parse("#{day.year}-#{day.month}-#{day.day} #{hour} #{time_zone}").utc
   end
   
   def self.time_to_send?(user)
