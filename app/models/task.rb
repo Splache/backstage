@@ -34,14 +34,16 @@ class Task < ActiveRecord::Base
     
     get_natures.each { |n| conditions << "nature = '#{n[1]}'" if options[:nature] == n[1] }
     
-    conditions << "assigned_to = #{options[:assigned_to].to_i}" if options[:assigned_to]
-    
+    if options[:assigned_to]
+      conditions << (options[:assigned_to].to_i != 0 ? "assigned_to = #{options[:assigned_to].to_i}" : "assigned_to IS NULL")
+    end
+
     if options[:move]
       conditions << "(tasks.updated_at >= ? OR comments.updated_at >= ?)"
       parameters << Time.now - options[:move].to_i.days
       parameters << Time.now - options[:move].to_i.days
     end
-    
+        
     if options[:search]
       options[:search].split(' ').each do |term|
         unless term.empty?

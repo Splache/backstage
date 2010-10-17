@@ -24,9 +24,12 @@ div.buttons a.cancel:hover{background-color:#f1f6e5;}
 
 div.custom-combo{cursor:default;float:left;height:20px;width:120px;}
 div.custom-combo div.selection{border:1px solid #eeeeee;color:#666666;float:left;height:15px;margin:0px 5px 0px -3px;overflow:hidden;padding:2px 3px;width:90px;white-space:nowrap;}
+div.custom-combo div.selection span.special{color:#777777;font-style:italic;}
+
 div.custom-combo ul.options{background-color:#ffffff;border:1px solid #cccccc;display:none;margin:20px 0px 0px -3px;min-width:96px;position:absolute;overflow:hidden;z-index:20;}
 div.custom-combo ul.options li{padding:2px 6px;width:100%;}
 div.custom-combo ul.options li.selected{display:none;}
+div.custom-combo ul.options li span.special{color:#777777;font-style:italic;}
 
 div.custom-combo:hover div.selection{background-color:#ffffff;border:1px solid #999999;color:#555555;position:absolute;z-index:21;}
 div.custom-combo:hover ul.options{display:block;}

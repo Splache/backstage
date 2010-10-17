@@ -38,6 +38,13 @@ class User < ActiveRecord::Base
 	#*************************************************************************************
   # CLASS METHODS
   #*************************************************************************************
+  def self.assigned_to_choices
+    choices = [['[ Non assigné ]', '0']]
+    choices += User.all.collect{ |u| [u.name, u.id.to_s] }
+    
+    return choices
+  end
+  
   def self.authenticate(login, password)
     user = first(:conditions => {:login => login})
     

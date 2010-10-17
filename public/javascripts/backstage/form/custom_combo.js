@@ -21,18 +21,13 @@ BACKSTAGE.Form.CustomCombo = function(){
     if(field.hasClass('icons')){ skin_options.icons = true; }
 
     content.add('<div class="' + field.attr('class') + '">');
-    content.add('<div class="selection">');
-    if(skin_options.icons){ content.add('<span class="ico ico-' + options[selection].key + '">&nbsp;</span>'); }
-    content.add(options[selection].value);
-    if(skin_options.label){ content.add(' : '); }
-    content.add('</div>');
+    content.add('<div class="selection">' + generate_single_option(options[selection], true)  + '</div>');
     content.add('<ul class="options masked">');
     $j.each(options, function(i){
       content.add('<li class="option' + i);
       if(i === selection){ content.add(' selected'); }
       content.add('">');
-      if(skin_options.icons){ content.add('<span class="ico ico-' + options[i].key + '">&nbsp;</span>'); }
-      content.add(options[i].value);
+      content.add(generate_single_option(options[i], false));
       content.add('</li>');
     });
     content.add('</ul>');
@@ -47,6 +42,22 @@ BACKSTAGE.Form.CustomCombo = function(){
   };
   
   extract_position = function(class_name){ return class_name.replace('option', ''); };
+  
+  generate_single_option = function(option, label){
+    var option_html = '';
+    
+    if(skin_options.icons){ option_html += '<span class="ico ico-' + option.key + '">&nbsp;</span>'; }
+    
+    if(option.value.indexOf('[') == 0){
+      option_html += '<span class="special">' + option.value.replace('[', '').replace(']', '') + '</span>';
+    }else{
+      option_html += option.value;
+    }
+
+    if(skin_options.label && label){ option_html += ' : '; }
+    
+    return option_html;
+  };
   
   hide_options = function(){ 
     skin.find('ul').css('visibility','hidden');
