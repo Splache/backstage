@@ -63,6 +63,7 @@ div.task div.details div:hover.description{color:#444444;}
 div.task div.details div:hover.description p{color:#444444;}
 div.task div.details div.wrapper-description.full{height:auto;}
 div.task div.details div.line{clear:none;margin:0px 40px 0px 0px;}
+div.task div.details div.line div.content{color:#444444;}
 div.task div.details div.comments a{color:#5d540e;}
 
 div.task div.overview{float:left;width:110px;}

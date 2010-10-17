@@ -92,6 +92,7 @@ class User < ActiveRecord::Base
     return case format
       when :date_only then local.strftime('%d-%m-%Y')
       when :short_date then local.strftime('%d ' + month_names_fr[local.month].downcase)
+      when :long_date then local.strftime('%d ' + month_names_fr[local.month].downcase + ' %Y')
       when :time_only then local.strftime('%H:%M')
       else local.strftime('%d ' + month_names_fr[local.month].downcase + ' à %H:%M')
     end

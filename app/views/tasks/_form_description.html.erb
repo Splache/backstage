@@ -6,7 +6,12 @@
 
 <!-- <label>Collection :</label> -->
 <%# f.select("collection_id", Collection.all.collect {|c| [ c.name, c.id ] }, { :include_blank => true }, :class => 'medium') %>
-  
+
+<% if not @task.new_record? %>
+  <label>Créé le :</label>
+  <div class="form-text"><%= current_user.local_time_f(@task.created_at, :long_date) %></div>
+<% end %>
+
 <label>Classification :</label>
 <% if @task.new_record? %>
   <%= f.select("nature", Task.get_natures, {}, :class => 'medium') %>
