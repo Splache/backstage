@@ -1,5 +1,5 @@
 class ActivityReportMailer < ActionMailer::Base
-  default :from => "sebastien@demarque.com"
+  default :from => "production@demarque.com"
 
   def standard_report(report)
     @report = report
