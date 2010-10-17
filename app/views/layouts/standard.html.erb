@@ -10,9 +10,12 @@
   <%= stylesheet_link_tag "code_files.css" %>
   <%= stylesheet_link_tag "tasks.css" %>
   <%= stylesheet_link_tag "machines/expositor.css" %>
+  
   <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
   <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" %>
   <script type="text/javascript">var $j = jQuery.noConflict();</script>
+  
+  <%= javascript_include_tag "rails" %>
   <%= javascript_include_tag "backstage/base" %>
   <%= javascript_include_tag "backstage/tasks" %>
   <%= javascript_include_tag "backstage/comments" %>
@@ -23,7 +26,6 @@
   <%= javascript_include_tag "backstage/tools/base" %>
   <%= javascript_include_tag "backstage/tools/browser" %>
   <%= csrf_meta_tag %>
-  
 </head>
 
 <body>
