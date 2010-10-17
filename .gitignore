@@ -2,6 +2,7 @@
 .DS_Store
 config/database.yml
 config/environment.rb
+config/initializers/mailer.rb
 db/schema.rb
 db/*.sqlite3
 public/images/users/*
