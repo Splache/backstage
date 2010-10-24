@@ -2,10 +2,11 @@ class ActivityReport
   #*************************************************************************************
   # CONSTRUCTOR
   #*************************************************************************************
-  def initialize(user, tasks, begin_at)
+  def initialize(user, project, tasks, begin_at)
     @begin_at = begin_at
-    @tasks = tasks
+    @project = project
     @recipient = user
+    @tasks = tasks
   end
   
   
@@ -16,11 +17,13 @@ class ActivityReport
     options.reverse_merge!(:force => false, :start_at => self.report_start_at(user))
     
     if time_to_send?(user) or options[:force]
-      tasks = Task.all_for_report(user, :begin_at => options[:start_at])
+      Project.all.each do |project|
+        tasks = Task.all_for_report(user, project, :begin_at => options[:start_at])
 
-      if not tasks.empty?
-        report = self.new(user, tasks, options[:start_at])
-        ActivityReportMailer.standard_report(report).deliver
+        if not tasks.empty?
+          report = self.new(user, project, tasks, options[:start_at])
+          ActivityReportMailer.standard_report(report).deliver
+        end
       end
     end
   end
@@ -29,28 +32,42 @@ class ActivityReport
   #*************************************************************************************
   # PUBLIC METHODS
   #*************************************************************************************
-  def closed_tasks
-    @tasks.select{ |t| t.archived? }
+  def closed_tasks(category=nil)
+    tasks_for_category(category).select{ |t| t.archived? }
   end
   
   def comments_of(task)
     task.comments.select{ |c| c.updated_at >= @begin_at }
   end
   
-  def new_tasks
-    @tasks.select{ |t| t.created_at >= @begin_at and not t.archived? }
+  def new_tasks(category=nil)
+    tasks_for_category(category).select{ |t| t.created_at >= @begin_at and not t.archived? }
+  end
+  
+  def project
+    @project
   end
   
   def recipient
     @recipient
   end
   
-  def total_tasks
-    @tasks.length
+  def tasks_for_category(category=nil)
+    category = :all if not category
+    
+    return case category
+      when :all then @tasks
+      when :worker then @tasks.select{ |t| t.worker == @recipient }
+      when :team then @tasks.select{ |t| t.worker != @recipient }
+    end
   end
   
-  def updated_tasks
-    @tasks.select{ |t| t.created_at < @begin_at and not t.archived? }
+  def total_tasks(category=nil)
+    return tasks_for_category(category).length
+  end
+  
+  def updated_tasks(category=nil)
+    tasks_for_category(category).select{ |t| t.created_at < @begin_at and not t.archived? }
   end
   
   private

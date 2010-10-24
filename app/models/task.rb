@@ -13,7 +13,7 @@ class Task < ActiveRecord::Base
   #*************************************************************************************
   # PUBLIC CLASS METHODS
   #*************************************************************************************
-  def self.all_for_report(user, options={})
+  def self.all_for_report(user, project, options={})
     options.reverse_merge!(:begin_at => Time.now, :end_at => Time.now)
     
     user_targets = user.subscriptions.map{ |t| t.target_id }
@@ -22,7 +22,8 @@ class Task < ActiveRecord::Base
     tasks = Task.includes(:comments)
     tasks = tasks.where('created_by IN (?) OR assigned_to IN (?)', user_targets, user_targets)
     tasks = tasks.where('tasks.updated_at > ? OR comments.updated_at > ?', options[:begin_at], options[:begin_at])
-
+    tasks = tasks.where(:project_id => project.id)
+    
     return tasks
   end
   

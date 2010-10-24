@@ -1,0 +1,5 @@
+Rapport d'activités <%= (nature == :worker ? 'personnel' : 'de l\'équipe') %>  -  <%= pluralize(@report.total_tasks(nature), 'tâche') %>
+    
+<%= render 'tasks', :tasks => @report.new_tasks(nature), :recipient => @recipient, :state => 'created'  %>
+<%= render 'tasks', :tasks => @report.updated_tasks(nature), :recipient => @recipient, :state => 'updated'  %>
+<%= render 'tasks', :tasks => @report.closed_tasks(nature), :recipient => @recipient, :state => 'archived'  %>

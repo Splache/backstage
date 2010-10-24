@@ -1,5 +1,2 @@
-Rapport d'activités <%= @report.total_tasks %> tâches
-    
-<%= render 'tasks', :tasks => @report.new_tasks, :recipient => @recipient, :state => 'created'  %>
-<%= render 'tasks', :tasks => @report.updated_tasks, :recipient => @recipient, :state => 'updated'  %>
-<%= render 'tasks', :tasks => @report.closed_tasks, :recipient => @recipient, :state => 'archived'  %>
+<%= render 'tasks_categories', :nature => :worker if @report.total_tasks(:worker) > 0 %>
+<%= render 'tasks_categories', :nature => :team if @report.total_tasks(:team) > 0 %>

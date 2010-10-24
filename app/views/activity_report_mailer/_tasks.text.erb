@@ -6,7 +6,7 @@ end %>
 
 <% if tasks.length > 0 %>
 ******************************************************************************************
-<%= tasks_title %> <%= tasks.length %> tâches
+<%= tasks_title %> <%= pluralize(tasks.length, 'tâche') %>
 ******************************************************************************************
 <% tasks.each do |task| %>
 <%= render 'task', :task => task, :recipient => recipient, :state => state %> 
