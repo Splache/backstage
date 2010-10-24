@@ -10,7 +10,7 @@ BACKSTAGE.Form.Candy = function(){
     
     init_holder(root);
     
-    holders.fields.find('label').click(function(){ toggle_field($j(this).closest('div.' + name)); });
+    holders.fields.find('label.clickable').click(function(){ toggle_field($j(this).closest('div.' + name)); });
     holders.fields.find('input.custom-combo').bind('updated', function(){ apply_option($j(this).closest('div.option')); });
     holders.fields.find('input[type=text]').keypress(function(event){ 
       if (event.keyCode === 13) { apply_option($j(this).closest('div.option')); }

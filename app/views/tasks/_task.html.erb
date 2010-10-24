@@ -1,4 +1,4 @@
-<div class="task <%= @options[:template] ? 'preview' : '' %>">
+<div class="task <%= @options[:template] == 'preview' ? 'preview' : '' %>">
   <div class="details">
     <h3><%= icon('block-closed', :id => "toggle-task-#{task.id}") %><%= link_to content_tag(:span, task.identifier, :class => 'identifier') + " #{truncate(task.name, :length => 60)}", dpath('project.task', :id => task.id, :action => 'edit') %></h3>
     <div class="inner">

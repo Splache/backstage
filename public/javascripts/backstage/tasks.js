@@ -39,9 +39,13 @@ BACKSTAGE.Tasks = function(){
   
   init_list = function(){
     if($j('#list-tasks').hasClass('archived')){ 
-      is_sortable = false; 
+      is_sortable = false;
+      $j("#task-options div.sort").hide();
     }else{
-      $j('#list-tasks').sortable({ update: function(event, ui) { update_priority(ui.item); }});
+      if($j("#task-options div.sort input#option-sort").val() === 'priority'){
+        $j('#list-tasks').sortable({ update: function(event, ui) { update_priority(ui.item); }});
+      }
+      $j("#task-options div.sort").show();
     }
     
     $j('#list-tasks a.open-comments').click(function(){ open_comments($j(this).closest('div.task')); });

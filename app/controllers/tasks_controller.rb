@@ -66,14 +66,18 @@ class TasksController < ApplicationController
   end
   
   def init_options
-    session[:task_options] = { :archive => false, :assigned_to => current_user.id, :template => false } if not session[:task_options]
-
+    session[:task_options] = { :archive => false, :assigned_to => current_user.id, :template => 'complete' } if not session[:task_options]
+    
+    session[:task_options][:sort] = 'priority' if not session[:task_options][:sort]
+    session[:task_options][:template] = 'complete' if not session[:task_options][:template]
+    
     if params[:option]
       set_option(:assigned_to)
       set_option(:nature)
       set_option(:move)
       set_option(:archive)
       set_option(:search)
+      set_option(:sort)
       set_option(:template)
     end
     

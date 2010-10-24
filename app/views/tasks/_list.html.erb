@@ -1,4 +1,4 @@
-<ul class="tasks <%= @options[:archive] ? 'archived' : '' %>  <%= @options[:template] ? 'preview' : '' %>" id="list-tasks">
+<ul class="tasks <%= @options[:archive] ? 'archived' : '' %>  <%= @options[:template] == 'preview' ? 'preview' : '' %>" id="list-tasks">
   <% if tasks.empty? %>
     <li class="empty">Aucune tâche de disponible</li>
   <% else %>

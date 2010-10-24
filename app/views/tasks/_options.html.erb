@@ -8,10 +8,10 @@
     <%= f.checkbox('archive', 'Archives') %>
     <%= f.hidden_field_tag('ajax_path', dpath('project.tasks', :format => 'js'), :id => nil) %>
   <% end %>
-  
+
   <h5>Affichage</h5>
   <%= candy_form('option', @options, :id => 'task-show') do |f| %>
-    <%= f.checkbox('template', 'Aperçu') %>
-    <%# task_option_radio_tag('template', [['Compact', 'item-compact'], ['Complet', 'item-full']], @options) %>
+    <%= f.combo_box('sort', 'Trié par', [['Priorité', 'priority'], ['Date de remise', 'due_on'], ['Date de création', 'created_at']], :label_clickable => false) %>
+    <%= f.combo_box('template', 'Modèle', [['Complète', 'complete'], ['Liste', 'preview']], :label_clickable => false) %>
   <% end %>
 </div>

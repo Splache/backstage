@@ -20,14 +20,18 @@ class Elements::FormCandy
     return '</div>'.html_safe
   end
   
-  def combo_box(id, label, values)
+  def combo_box(id, label, values, options={})
+    options.reverse_merge!(:label_clickable => true)
+    
     field = select_tag("#{@form_id}[#{id}]", options_for_select(values, :selected => @record[id.to_sym]), :class => 'custom-combo', :id => "#{@form_id}-#{id}")
     
-    return wrap_it(id, label, 'combo', field)
+    return wrap_it(id, label, 'combo', field, options)
   end
   
-  def label_iconified(id, text)
-    return '<label><span class="ico ico-' + id + '">&nbsp;</span>' + text + '</label>'
+  def label_iconified(id, text, clickable=true)
+    css_class = clickable ? 'clickable' : nil
+    
+    return content_tag(:label, "<span class=\"ico ico-#{id}\">&nbsp;</span>#{text}".html_safe, :class => css_class)
   end
   
   def hidden(id, value)
@@ -45,11 +49,13 @@ class Elements::FormCandy
     return wrap_it(id, label, 'input', field)
   end
   
-  def wrap_it(id, label, nature, field=nil)
+  def wrap_it(id, label, nature, field=nil, options={})
+    options.reverse_merge!(:label_clickable => true)
+    
     content = []
 
     content << '<div class="' + base_css_class(id, nature) + '">'
-    content << label_iconified(id, label)
+    content << label_iconified(id, label, options[:label_clickable])
     content << field
     content << '</div>'
     

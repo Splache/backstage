@@ -5,7 +5,8 @@ div#task-options{margin:20px 20px;}
 div#task-options h5{color:#3c3c3c;float:left;font-size:18px;font-weight:normal;margin:20px 0px 10px 0px;padding:0px}
 div#task-options h5:first-child{margin-top:0px;}
 div#task-options div.option{background:no-repeat top left;clear:both;cursor:pointer;float:left;height:30px;margin:0px 0px 5px 0px;width:285px;}
-div#task-options div.option label{color:#666666;cursor:pointer;float:left;font-size:12px;height:16px;line-height:16px;margin:6px 0px 0px 8px;overflow:hidden;width:105px;}
+div#task-options div.option label{color:#666666;float:left;font-size:12px;height:16px;line-height:16px;margin:6px 0px 0px 8px;overflow:hidden;width:105px;}
+div#task-options div.option label.clickable{cursor:pointer;}
 div#task-options div.option label span.ico{height:32px;margin-top:-16px;}
 div#task-options div.option select{width:150px;}
 div#task-options div.option input{border:none;background:transparent;color:#444444;display:none;font-size:12px;height:20px;margin:2px 0px 0px 0px;padding-top:5px;width:150px;}

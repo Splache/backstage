@@ -27,38 +27,36 @@ class Task < ActiveRecord::Base
   end
   
   def self.all_from_options(user, project, options)
-    conditions = []
-    conditions << "project_id = #{project.id}"
-    conditions << (options[:archive] ? 'ended_on != ""' : '(ended_on = "" OR ended_on IS NULL)')
-    parameters = []
+    tasks = Task.includes(:comments)
+    tasks = tasks.where("project_id = ?", project.id)
+    tasks = tasks.where((options[:archive] ? 'ended_on != ""' : '(ended_on = "" OR ended_on IS NULL)'))
     
-    get_natures.each { |n| conditions << "nature = '#{n[1]}'" if options[:nature] == n[1] }
+    get_natures.each { |n| tasks = tasks.where("nature = ?", n[1]) if options[:nature] == n[1] }
     
-    if options[:assigned_to]
-      conditions << (options[:assigned_to].to_i != 0 ? "assigned_to = #{options[:assigned_to].to_i}" : "assigned_to IS NULL")
-    end
+    tasks = tasks.where((options[:assigned_to].to_i != 0 ? "assigned_to = #{options[:assigned_to].to_i}" : "assigned_to IS NULL")) if options[:assigned_to]
 
     if options[:move]
-      conditions << "(tasks.updated_at >= ? OR comments.updated_at >= ?)"
-      parameters << Time.now - options[:move].to_i.days
-      parameters << Time.now - options[:move].to_i.days
+      move = Time.now - options[:move].to_i.days
+      tasks = tasks.where("(tasks.updated_at >= ? OR comments.updated_at >= ?)", move, move)
     end
         
     if options[:search]
       options[:search].split(' ').each do |term|
-        unless term.empty?
-          conditions << '(name LIKE ? OR description LIKE ?)'
-          parameters << "%#{term}%"
-          parameters << "%#{term}%"
-        end
+        tasks = tasks.where('(name LIKE ? OR description LIKE ?)', "%#{term}%", "%#{term}%") unless term.empty?
       end
     end
     
-    order = options[:archive] ? 'ended_on DESC' : 'priority ASC'
-    
-    conditions = [conditions.join(' AND '), parameters].flatten
-    
-    return self.all(:conditions => conditions, :include => :comments, :order => order)
+    if options[:archive]
+      tasks = tasks.order('ended_on DESC')
+    elsif options[:sort] == 'created_at'
+      tasks = tasks.order("created_at DESC")
+    elsif options[:sort] == 'due_on'
+      tasks = tasks.order("(case WHEN due_on IS NULL THEN 1 ELSE 0 END), due_on ASC")
+    else
+      tasks = tasks.order("priority ASC")
+    end
+
+    return tasks
   end
   
   def self.get_natures
