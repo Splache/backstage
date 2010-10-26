@@ -118,7 +118,7 @@ module ApplicationHelper
       content << '</ul>'
     end
     
-    return content.join
+    return content.join.html_safe
   end
   
   def show_menu_documents(document_selected=nil)
@@ -132,7 +132,7 @@ module ApplicationHelper
       content << '<ul class="tree">'
       documents.each do |doc|
         if not doc.path.to_s.empty? and doc.path != last_path
-          content << '<li class="level1">' + link_icon_to(doc.path, documents_folder_path(:project_id => current_project.id, :folder_name => doc.path.parameterize), :icon => 'folder') + '</li>'
+          content << '<li class="level1">' + link_icon_to(doc.path, dpath('project.documents', :folder_name => doc.path.parameterize), :icon => 'folder') + '</li>'
           last_path = doc.path
         end
         
@@ -153,7 +153,7 @@ module ApplicationHelper
       content << '</ul>'
     end
     
-    return content.join
+    return content.join.html_safe
   end
   
   def show_relationships(code_file)
@@ -177,7 +177,7 @@ module ApplicationHelper
       content << '</ul>'
     end
     
-    return content.join
+    return content.join.html_safe
   end
   
   def show_side_bar
