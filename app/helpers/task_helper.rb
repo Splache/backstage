@@ -33,8 +33,8 @@ module TaskHelper
     return task_line_detail('time', 'Temps estimé', "#{task.hours_estimated} heures") if not task.archived? and task.hours_estimated.to_i > 0
   end
   
-  def show_task_state(task)
-    return task_line_detail(task.state, '', task.state_f, :class => 'state')
+  def show_task_step(task)
+    return task_line_detail(task.step, '', task.step_f, :class => 'step')
   end
   
   def show_task_calendar(task)

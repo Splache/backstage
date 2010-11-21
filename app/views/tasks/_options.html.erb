@@ -3,7 +3,8 @@
   <%= candy_form('option', @options, :id => 'task-filters') do |f| %>
     <%= f.combo_box('move', 'Mouvements', [['Dernières 24h', '1'], ['2 derniers jours', '2'], ['Dernière semaine', '7'], ['Dernier mois', '31']]) %>
     <%= f.combo_box('assigned_to', 'Assigné à', User.assigned_to_choices) %>
-    <%= f.combo_box('nature', 'Catégorie', Task.get_natures()) %>
+    <%= f.combo_box('step', 'Étape', Task.get_steps) %>
+    <%= f.combo_box('nature', 'Catégorie', Task.get_natures) %>
     <%= f.text_field('search', 'Recherche') %>
     <%= f.checkbox('archive', 'Archives') %>
     <%= f.hidden_field_tag('ajax_path', dpath('project.tasks', :format => 'js'), :id => nil) %>

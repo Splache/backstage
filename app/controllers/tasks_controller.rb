@@ -27,7 +27,6 @@ class TasksController < ApplicationController
     @task.created_by = current_user.id
     @task.project_id = current_project.id
     if @task.save
-      @task.set_dates_from_params(params)
       @task.set_identifier
       Task.regenerate_priorities(current_project.id, :skip_task => @task) if not @task.archived?
       dredirect_to('project.tasks')
@@ -50,7 +49,6 @@ class TasksController < ApplicationController
       @task.prioritize_to(1)
       render :text => {'success' => 1}.to_json
     elsif @task.update_attributes(params[:task])
-      @task.set_dates_from_params(params)
       @task.set_archive_status!
       dredirect_to('project.tasks')
     else
@@ -66,13 +64,14 @@ class TasksController < ApplicationController
   end
   
   def init_options
-    session[:task_options] = { :archive => false, :assigned_to => current_user.id, :template => 'complete' } if not session[:task_options]
+    session[:task_options] = { :archive => false, :assigned_to => current_user.id, :step => 'current_iteration', :template => 'complete' } if not session[:task_options]
     
     session[:task_options][:sort] = 'priority' if not session[:task_options][:sort]
     session[:task_options][:template] = 'complete' if not session[:task_options][:template]
     
     if params[:option]
       set_option(:assigned_to)
+      set_option(:step)
       set_option(:nature)
       set_option(:move)
       set_option(:archive)

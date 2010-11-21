@@ -6,6 +6,10 @@ class Task < ActiveRecord::Base
   
   has_many :comments, :order => "created_at ASC", :dependent => :destroy
   
+  attr_accessor :show_due_on, :show_started_on, :show_ended_on, :update_dates
+  
+  before_save :apply_step
+  
   scope :active, where("ended_on = '' OR ended_on IS NULL").order('priority ASC')
   scope :archived, where("ended_on != '' OR ended_on IS NULL")
   
@@ -31,6 +35,8 @@ class Task < ActiveRecord::Base
     tasks = Task.includes(:comments)
     tasks = tasks.where("project_id = ?", project.id)
     tasks = tasks.where((options[:archive] ? 'ended_on != ""' : '(ended_on = "" OR ended_on IS NULL)'))
+    
+    get_steps.each { |n| tasks = tasks.where("step = ?", n[1]) if options[:step] == n[1] }
     
     get_natures.each { |n| tasks = tasks.where("nature = ?", n[1]) if options[:nature] == n[1] }
     
@@ -73,6 +79,20 @@ class Task < ActiveRecord::Base
     return natures
   end
   
+  def self.get_steps
+    steps = []
+    steps << ['Futur lointain', 'far_away']
+    steps << ['Non commencée', 'pending']
+    steps << ['Prochaine itération', 'next_iteration']
+    steps << ['Itération courante', 'current_iteration']
+    steps << ['À tester', 'to_test']
+    steps << ['Pour production', 'production_ready']
+    steps << ['Terminée', 'completed']
+    steps << ['Reportée', 'on_hold']
+    
+    return steps
+  end
+  
   def self.regenerate_priorities(project_id, options={})
     options.reverse_merge!(:skip_task => nil)
     position = 1
@@ -93,6 +113,18 @@ class Task < ActiveRecord::Base
   #*************************************************************************************
   # PUBLIC METHODS
   #*************************************************************************************
+  def apply_step
+    if self.update_dates
+      self.due_on = '' if self.show_due_on != '1'
+      self.started_on = '' if self.show_started_on != '1'
+      self.ended_on = '' if self.show_ended_on != '1'
+    end
+     
+    self.ended_on = Time.now if self.step == 'completed' and not self.ended_on
+    
+    self.step = 'completed' if self.ended_on
+  end
+  
   def archived?
     return (self.ended_on.to_s.empty? ? false : true)
   end
@@ -132,14 +164,6 @@ class Task < ActiveRecord::Base
     end
   end
   
-  def set_dates_from_params(params)
-    self.due_on = '' if params[:show_due_on] != '1'
-    self.started_on = '' if params[:show_started_on] != '1'
-    self.ended_on = '' if params[:show_ended_on] != '1'
-    
-    self.save
-  end
-  
   def set_identifier
     template = Task.first(:conditions => {:project_id => self.project_id, :nature => self.nature }, :order => 'identifier_no DESC')
     
@@ -165,5 +189,11 @@ class Task < ActiveRecord::Base
       when 'started' then 'En cours'
       when 'stopped' then 'Non démarrée'
     end
+  end
+  
+  def step_f
+    Task.get_steps.each { |s| return s[0] if s[1] == self.step }
+    
+    return ''
   end
 end

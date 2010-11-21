@@ -51,7 +51,7 @@ div.task div.line div.content{float:left;}
 div.task div.line label{color:#777777;display:block;float:none;font-size:9px;height:8px;width:auto;}
 div.task div.line span.unassigned{color:#9f2828;}
 
-div.task div.details{float:left;margin:0px 20px 0px 0px;width:590px;}
+div.task div.details{float:left;margin:0px 20px 0px 0px;width:570px;}
 div.task div.details h3{float:left;font-size:13px;margin:0px 0px 5px 0px;}
 div.task div.details h3 span.identifier{color:#777777;display:inline;font-size:12px;font-weight:bold;margin-right:5px;}
 div.task div.details h3 span.ico{cursor:pointer;display:none;float:left;margin:0px 6px 0px 0px;}
@@ -67,8 +67,8 @@ div.task div.details div.line{clear:none;margin:0px 40px 0px 0px;}
 div.task div.details div.line div.content{color:#444444;}
 div.task div.details div.comments a{color:#5d540e;}
 
-div.task div.overview{float:left;width:110px;}
-div.task div.overview div.state div.content{height:16px;font-size:12px;font-weight:bold;margin-top:4px;}
+div.task div.overview{float:left;width:130px;}
+div.task div.overview div.step div.content{height:16px;font-size:11px;font-weight:bold;margin-top:4px;}
 
 li div.task div.operations{display:none;}
 li:hover div.task div.operations{display:block;float:right;margin-right:20px;width:30px;}
@@ -80,7 +80,7 @@ ul.tasks.preview li div.task div.details h3 span.ico{display:block;}
 div.task.preview div.details div.inner{display:none;}
 div.task.preview div.overview{margin:0px;}
 div.task.preview div.line{display:none;}
-div.task.preview div.state{display:block;margin:0px;}
+div.task.preview div.step{display:block;margin:0px;}
 
 
 /********************************************************************************** 
