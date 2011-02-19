@@ -49,7 +49,7 @@ class Task < ActiveRecord::Base
         
     if options[:search]
       options[:search].split(' ').each do |term|
-        tasks = tasks.where('(name LIKE ? OR description LIKE ?)', "%#{term}%", "%#{term}%") unless term.empty?
+        tasks = tasks.where('(tasks.name LIKE ? OR tasks.description LIKE ?)', "%#{term}%", "%#{term}%") unless term.empty?
       end
     end
     
