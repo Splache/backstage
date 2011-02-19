@@ -1,8 +1,8 @@
 <% if comment.new_record? %>
-  <% form_path = dpath('project.task.comments') %>
+  <% form_path = dpath('project.task.comments', :task_id => comment.task_id) %>
   <li class="comment new-comment" id="comment-new">
 <% else %>
-  <% form_path = dpath('project.task.comment', :id => comment.id) %>
+  <% form_path = dpath('project.task.comment', :id => comment.id, :task_id => comment.task_id) %>
   <li class="comment" id="comment-<%= comment.id %>">
 <% end %>
 
@@ -15,8 +15,8 @@
     <div class="date">Le <%= comment.created_at.strftime('%d-%m-%Y') %> à <%= comment.created_at.strftime('%H:%M') %></div>
     <% if comment.user.id == current_user.id %>
       <div class="operations">
-        <%= link_to 'Modifier', dpath('project.task.comment', :id => comment.id, :action => 'edit'), :class => 'ico ico-edit' %>
-        <%= link_to 'Supprimer', dpath('project.task.comment', :id => comment.id), :class => 'ico ico-delete' %>
+        <%= link_to 'Modifier', dpath('project.task.comment', :id => comment.id, :task_id => comment.task_id, :action => 'edit'), :class => 'ico ico-edit' %>
+        <%= link_to 'Supprimer', form_path, :class => 'ico ico-delete' %>
       </div>
     <% end %>
     <div class="text"><%= htmlize(comment.description) %></div>

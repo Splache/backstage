@@ -1,9 +1,3 @@
 <div id="wrapper-comments">
-  <ul class="comments">
-    <% @comments.each do |comment| %>
-      <%= render "comment", :comment => comment %>
-    <% end %>
-    
-    <%= render "comment", :comment => @new_comment %>
-  </ul>
+  <%= render 'list', :comments => @comments, :task_id => params[:task_id] %>
 </div>

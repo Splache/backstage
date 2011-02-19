@@ -1,0 +1,16 @@
+<div id="task-overview">
+  <div class="record-header">
+    <h2><span class="id"><%= @task.identifier %></span><%= truncate(@task.name, :length => 55) %></h2>
+    <div class="description"><%= htmlize(@task.description) %></div>
+  </div>
+  <div class="record-block">
+    <h3>Planification</h3>
+  </div>
+  <div class="record-block">
+    <h3>RSDE</h3>
+  </div>
+  <div class="record-block">
+    <h3>Commentaires</h3>
+    <%= render 'comments/list', :comments => @task.comments, :task_id => @task.id %>
+  </div>
+</div>

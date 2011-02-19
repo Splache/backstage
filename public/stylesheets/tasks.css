@@ -35,6 +35,7 @@ form#form-task div#description{width:450px;}
 form#form-task #task_name{width:350px;}
 form#form-task #task_description{height:120px;width:350px;}
 
+
 /********************************************************************************** 
 * LIST
 ***********************************************************************************/
@@ -90,22 +91,36 @@ div#box-comments h2{color:#288a93;}
 div#box-comments h2 span.identifier{color:#777777;}
 div#box-comments div.loading{background:url(../images/loading-bar.gif) no-repeat center top;color:#888888;font-size:14px;margin:175px 0px 0px 20px;padding:20px 0px 0px 0px;text-align:center;width:730px;}
 
-div#box-comments ul.comments{float:left;height:450px;margin:0px 0px 0px 0px;overflow:auto;padding:0px;width:734px;}
-div#box-comments ul.comments li.comment{border:none;float:left;margin:0px 0px 20px 0px;width:100%;}
-div#box-comments ul.comments li.comment div.details{float:left;margin:1px 0px 0px 10px;width:95px;}
-div#box-comments ul.comments li.comment div.details img.avatar{border:3px solid #dddddd;margin:0px 0px -3px 0px;width:65px;}
-div#box-comments ul.comments li.comment div.details div.name{background-color:#eeeeee;border:3px solid #dddddd;border-top:none;display:none;font-size:10px;margin:0px;text-align:center;width:65px;}
-div#box-comments ul.comments li.comment div:hover.details div.name{display:block;}
-div#box-comments ul.comments li.comment div.date{color:#288a93;float:left;font-size:11px;font-weight:bold;height:15px;margin:1px 0px 0px 0px;}
-div#box-comments ul.comments li.comment div.operations{display:none;float:left;margin:0px 0px 0px 20px;}
-div#box-comments ul.comments li.comment div.operations a.ico{cursor:pointer;margin:0px 8px 0px 0px;}
-div#box-comments ul.comments li.comment div.text{float:left;font-size:12px;margin:0px 0px 20px 0px;width:550px;}
-div#box-comments ul.comments li.comment div.text p{color:#555555;margin:0px 0px 10px 0px;}
-div#box-comments ul.comments li.comment div.text ol li{color:#555555;list-style:decimal;margin:0px 0px 5px 20px;}
-div#box-comments ul.comments li.comment div.text ul li{color:#555555;list-style:disc;margin:0px 0px 5px 20px;}
+ul.comments{float:left;height:450px;margin:0px 0px 0px 0px;overflow:auto;padding:0px;width:734px;}
+ul.comments li.comment{border:none;float:left;margin:0px 0px 20px 0px;width:100%;}
+ul.comments li.comment div.details{float:left;margin:1px 0px 0px 10px;width:95px;}
+ul.comments li.comment div.details img.avatar{border:3px solid #dddddd;margin:0px 0px -3px 0px;width:65px;}
+ul.comments li.comment div.details div.name{background-color:#eeeeee;border:3px solid #dddddd;border-top:none;display:none;font-size:10px;margin:0px;text-align:center;width:65px;}
+ul.comments li.comment div:hover.details div.name{display:block;}
+ul.comments li.comment div.date{color:#288a93;float:left;font-size:11px;font-weight:bold;height:15px;margin:1px 0px 0px 0px;}
+ul.comments li.comment div.operations{display:none;float:left;margin:0px 0px 0px 20px;}
+ul.comments li.comment div.operations a.ico{cursor:pointer;margin:0px 8px 0px 0px;}
+ul.comments li.comment div.text{float:left;font-size:12px;margin:0px 0px 20px 0px;width:550px;}
+ul.comments li.comment div.text p{color:#555555;margin:0px 0px 10px 0px;}
+ul.comments li.comment div.text ol li{color:#555555;list-style:decimal;margin:0px 0px 5px 20px;}
+ul.comments li.comment div.text ul li{color:#555555;list-style:disc;margin:0px 0px 5px 20px;}
 
-div#box-comments ul.comments li.comment div.form{display:none;float:left;margin:3px 0px 20px 0px;width:550px;}
-div#box-comments ul.comments li.comment div.form textarea{border:1px solid #bbbbbb;margin:0px 0px 10px 0px;width:550px;}
+ul.comments li.comment div.form{display:none;float:left;margin:3px 0px 20px 0px;width:550px;}
+ul.comments li.comment div.form textarea{border:1px solid #bbbbbb;margin:0px 0px 10px 0px;width:550px;}
 
-div#box-comments ul.comments li:hover.comment div.operations{display:block;}
-div#box-comments ul.comments li.new-comment div.form{display:block;}
+ul.comments li:hover.comment div.operations{display:block;}
+ul.comments li.new-comment div.form{display:block;}
+
+
+/********************************************************************************** 
+* SHOW
+***********************************************************************************/
+div#task-overview ul.comments{margin:0px;}
+div#task-overview ul.comments li.comment{margin:0px;}
+div#task-overview ul.comments li.comment div.details{width:70px;}
+div#task-overview ul.comments li.comment div.details img.avatar{width:40px;}
+div#task-overview ul.comments li.comment div:hover.details div.name{display:none;}
+
+
+
+

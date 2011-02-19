@@ -4,10 +4,7 @@ class CommentsController < ApplicationController
   
   def index
     @comments = Comment.all(:conditions => { :task_id => params[:task_id] })
-    
-    @new_comment = Comment.new
-    @new_comment.user_id = current_user.id
-    
+
     render :layout => false
   end
   

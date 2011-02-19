@@ -1,0 +1,7 @@
+<ul class="comments">
+  <% comments.each do |comment| %>
+    <%= render 'comments/comment', :comment => comment %>
+  <% end %>
+  
+  <%= render 'comments/comment', :comment => Comment.new(:task_id => task_id, :user_id => current_user.id) %>
+</ul>
