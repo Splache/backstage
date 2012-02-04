@@ -1,6 +1,6 @@
 <h2>Veuillez vous identifier</h2>
 <div class="form">
-  <%- form_tag(sessions_path, :method => :post) do %>
-    <%= render 'form' %>
-  <%- end %>
+  <%= form_tag(sessions_path, :method => :post) do %>
+    <% render :partial =>'form' %>
+  <% end %>
 </div>
