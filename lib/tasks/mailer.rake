@@ -1,6 +1,6 @@
 namespace :mailer do
   desc "Send an activity report for user"
-  task :send_activity_report, :user_id, :needs => :environment do |t, args|
+  task :send_activity_report, [:user_id] => :environment do |t, args|
     args.with_defaults(:user_id => 0)
   
     if args[:user_id] == 0
