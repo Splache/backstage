@@ -115,12 +115,40 @@ ul.comments li.new-comment div.form{display:block;}
 /********************************************************************************** 
 * SHOW
 ***********************************************************************************/
+div#task-overview div.task-id{color:#666666;font-size:13px;font-weight:bold;margin:0px 0px 3px 0px;}
 div#task-overview ul.comments{margin:0px;}
 div#task-overview ul.comments li.comment{margin:0px;}
 div#task-overview ul.comments li.comment div.details{width:70px;}
 div#task-overview ul.comments li.comment div.details img.avatar{width:40px;}
 div#task-overview ul.comments li.comment div:hover.details div.name{display:none;}
 
+div#task-overview h4{font-size:14px;font-weight:normal;margin:0px 0px 5px 0px;}
+div#task-overview div.blocks{float:left;width:100%;}
+div#task-overview div.blocks div.block{float:left;margin:0px 50px 0px 0px;}
+div#task-overview div.blocks div.block:last-child{margin-right:0px;}
+div#task-overview div.blocks.double div.block{width:363px;}
+div#task-overview div.blocks.triple div.block{width:225px;}
 
+div#task-overview div#planification h4{margin:0px 0px 15px 0px;}
+div#task-overview div#planification div.line{float:left;margin:0px 0px 10px 0px;width:100%;}
+div#task-overview div#planification div.line div.icon-wrapper{float:left;width:35px;}
+div#task-overview div#planification div.line div.icon-wrapper .ico{margin:5px;}
+div#task-overview div#planification div.line img.avatar{width:25px;}
+div#task-overview div#planification div.line div.content{float:left;width:185px;}
+div#task-overview div#planification div.line div.content label{color:#5a5a5a;font-size:10px;margin:0px;}
 
+div#task-overview div#rsde{float:left;margin:0px 0px 20px 0px;width:100%;}
+div#task-overview div#rsde div.block label{display:block;margin:0px 0px 5px 0px;}
+div#task-overview div#rsde div.block div.text-content p{color:#5a5a5a;width:350px;}
+div#task-overview div#rsde div.block div.text-field textarea{border-color:#eeeeee;color:#5a5a5a;margin:-1px 0px 15px -1px;padding:0px;width:350px;}
+div#task-overview div#rsde input#empty-rsde{display:none;}
 
+div#task-overview div#rsde.empty div.block h4{display:none;}
+div#task-overview div#rsde.empty input#empty-rsde{display:block;}
+
+div#task-overview div#rsde.show div.block div.text-field{display:none;}
+div#task-overview div#rsde.show div.buttons{display:none;}
+
+div#task-overview div#rsde.edit div.block div.text-content{display:none;}
+div#task-overview div#rsde.edit div.block div.text-field{display:block;}
+div#task-overview div#rsde.edit div.buttons{display:block;}

@@ -19,9 +19,6 @@ div.main-header div.shadow{background:url(../images/head-shadow.png) top left re
 div.main-header div.logo{float:left;height:90px;margin:0px 0px 0px 10px;overflow:hidden;}
 div.main-header div.logo img{margin:-8px 0px 0px 0px;}
 div.main-header div.operation{float:right;margin:32px 20px 0px 20px;position:relative;z-index:6;}
-div.main-header div.operation a{background:#a1c651;border:1px solid #82a636;color:#333333;display:block;font-size:13px;font-weight:normal;padding:5px 15px 5px 0px;text-decoration:none;}
-div.main-header div.operation a span{margin:0px 5px 0px 10px;}
-div.main-header div.operation a:hover{border:1px solid #bdd784;}
 
 div.main-content{background:url(../images/main-content.gif) repeat-y top left;border-bottom:1px solid #999999;min-height:400px;}
 
@@ -55,8 +52,8 @@ div.main-content div.inner-space div.record-header{background-color:#e5edd2;bord
 div.main-content div.inner-space div.record-header h2{color:#222222;font-size:17px;margin:0px 0px 5px 0px;}
 div.main-content div.inner-space div.record-header h2 span.id{color:#444444;margin:0px 10px 0px 0px;}
 div.main-content div.inner-space div.record-header div.description{color:#555555;margin:0px;padding:0px;}
-div.main-content div.inner-space div.record-block{margin:0px 0px 40px 0px;}
-div.main-content div.inner-space div.record-block h3{border-bottom:1px solid #dddddd;margin:0px 0px 20px 0px;padding-bottom:6px;}
+div.main-content div.inner-space div.record-block{float:left;margin:0px 0px 40px 0px;width:790px;}
+div.main-content div.inner-space div.record-block h3{border-bottom:1px solid #dddddd;margin:0px 0px 15px 0px;padding-bottom:6px;}
 div.main-content div.inner-space h2{clear:both;width:100%;}
 div.main-content div.inner-space h2.form{width:794px;}
 div.main-content div.inner-space h2 span.path{clear:both;color:#999999;display:block;font-size:11px;width:100%;}

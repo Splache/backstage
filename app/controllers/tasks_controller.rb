@@ -50,7 +50,7 @@ class TasksController < ApplicationController
       render :text => {'success' => 1}.to_json
     elsif @task.update_attributes(params[:task])
       @task.set_archive_status!
-      dredirect_to('project.tasks')
+      dredirect_to('project.task')
     else
       render :action => "edit"
     end

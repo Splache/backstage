@@ -11,8 +11,8 @@
   <%= stylesheet_link_tag "tasks.css" %>
   <%= stylesheet_link_tag "machines/expositor.css" %>
   
-  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
-  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js" %>
+  <%= javascript_include_tag "jquery.js" %>
+  <%= javascript_include_tag "jquery-ui.js" %>
   <script type="text/javascript">var $j = jQuery.noConflict();</script>
   
   <%= javascript_include_tag "rails" %>
@@ -52,9 +52,9 @@
         <h1><%= current_project.name %></h1>
       <% end %>
       <div class="operation">
-        <%= link_icon_to('Ajouter un fichier', dpath('project.code_file', :action => 'new'), :icon => 'add') if in_section?('code') %>
-        <%= link_icon_to('Ajouter un document', dpath('project.document', :action => 'new'), :icon => 'add') if in_section?('documents') %>
-        <%= link_icon_to('Ajouter une tâche', dpath('project.task', :action => 'new'), :icon => 'add') if in_section?('tasks') %>
+        <%= link_to('Ajouter un fichier', dpath('project.code_file', :action => 'new'), :class => 'btn-standard green') if in_section?('code') %>
+        <%= link_to('Ajouter un document', dpath('project.document', :action => 'new'), :class => 'btn-standard green') if in_section?('documents') %>
+        <%= link_to('Ajouter une tâche', dpath('project.task', :action => 'new'), :class => 'btn-standard green') if in_section?('tasks') %>
       </div>
     </div>
     <div class="main-content">

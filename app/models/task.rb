@@ -156,6 +156,10 @@ class Task < ActiveRecord::Base
     Task.regenerate_priorities(self.project_id, :skip_task => self)
   end
   
+  def rsde?
+    (self.rsde_obstacles.to_s.empty? and self.rsde_work.to_s.empty?) ? false : true
+  end
+  
   def set_archive_status!
     if self.archived?
       prioritize_to(0) if self.priority != 0

@@ -1,13 +1,65 @@
 <div id="task-overview">
+  
   <div class="record-header">
-    <h2><span class="id"><%= @task.identifier %></span><%= truncate(@task.name, :length => 55) %></h2>
+    <div class="task-id"><%= @task.identifier %></div>
+    <h2><%= truncate(@task.name, :length => 55) %></h2>
     <div class="description"><%= htmlize(@task.description) %></div>
   </div>
-  <div class="record-block">
+  
+  <div class="record-block" id="planification">
     <h3>Planification</h3>
+    <div class="blocks triple">
+      <div class="block">
+        <h4>Préparation</h4>
+        <div class="line">
+          <div class="icon-wrapper"><%= avatar(@task.creator) %></div>
+          <div class="content"><label>Créer par</label><%= @task.creator.name %></div>
+        </div>
+        <div class="line">
+          <div class="icon-wrapper"><%= icon('time') %></div>
+          <div class="content"><label>Temps estimées</label><%= @task.hours_estimated %> heures</div>
+        </div>
+        <div class="line">
+          <div class="icon-wrapper"><%= icon('target') %></div>
+          <div class="content"><label>À remettre le</label><%= @task.due_on %></div>
+        </div>
+      </div>
+      
+      <div class="block">
+        <h4>Dévelopement</h4>
+      </div>
+      
+      <div class="block">
+        <h4>Tests et corrections</h4>
+      </div>
+    </div>
+    
   </div>
   <div class="record-block">
     <h3>RSDE</h3>
+    <div id="rsde" class="show <%= @task.rsde? ? '' : 'empty' %>">
+      <%= form_for(@task, :url => dpath('project.task', :id => @task.id), :html => { :id => 'form-task' }) do |f| %>
+        <div class="blocks double">
+          <div class="block">
+            <h4>Avancement technologique</h4>
+            <div class="text-content"><%= htmlize(@task.rsde_work.to_s) %></div>
+            <div class="text-field"><%= f.text_area('rsde_work', :class => (@task.rsde? ? '' : 'empty')) %></div>
+          </div>
+          <div class="block">
+            <h4>Obstacles rencontrés</h4>
+            <div class="text-content"><%= htmlize(@task.rsde_obstacles.to_s) %></div>
+            <div class="text-field"><%= f.text_area('rsde_obstacles') %></div>
+          </div>
+        </div>
+        <div class="buttons">
+          <%= f.submit('Sauvegarder', :class => 'btn-standard green', :id => 'save-rsde') %>
+          <%= link_to 'Annuler', dpath('project.task', :id => @task.id), :id => 'cancel-rsde' %>
+        </div>
+      <% end %>
+      
+      <input type="button" class="btn-standard green" value="Entrer une description RSDE »" id="empty-rsde" />
+    </div>
+    
   </div>
   <div class="record-block">
     <h3>Commentaires</h3>

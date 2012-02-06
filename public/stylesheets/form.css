@@ -7,7 +7,7 @@ input.medium{width:150px;}
 input.small{width:70px;}
 input[type=submit]{margin:10px 20px 0px 0px;width:auto;}
 input[type=checkbox]{width:auto;}
-textarea{font-family:"Lucida Grande", Tahoma, Verdana;font-size:12px;height:200px;margin:0px 0px 20px 0px;width:700px;}
+textarea{border:1px solid #cccccc;color:#444444;font-family:"Lucida Grande", Tahoma, Verdana;font-size:12px;height:200px;line-height:18px;margin:0px 0px 20px 0px;padding:5px 0px 5px 10px;width:700px;}
 textarea#document_description{height:400px;}
 textarea.small{height:100px;}
 select{font-family:"Lucida Grande", Tahoma, Verdana;font-size:12px;margin:0px 0px 20px 0px;width:400px;}
@@ -16,11 +16,12 @@ select.date{width:60px;}
 
 div.form-text{margin:0px 0px 20px 0px;}
 
-div.buttons{background-color:#e5edd2;border-top:1px solid #d2dabf;clear:both;color:#222222;margin:-20px 0px -40px -40px;padding:0px 0px;width:874px;}
-div.buttons input[type=submit]{background:url(../images/icon-save.png) no-repeat 40px 20px;background-color:#e5edd2;border:none;color:#444444;cursor:pointer;font-size:16px;font-weight:bold;margin:0px;padding:15px 40px 15px 60px;}
-div.buttons input:hover[type=submit]{background-color:#f1f6e5;}
-div.buttons a.cancel{color:#7d836e;font-size:16px;font-weight:normal;padding:15px 40px 15px 40px;}
-div.buttons a.cancel:hover{background-color:#f1f6e5;}
+div.buttons{margin:0px 0px 30px 0px;}
+div.buttons.bottom{background-color:#e5edd2;border-top:1px solid #d2dabf;clear:both;color:#222222;margin:-20px 0px -40px -40px;padding:0px 0px;width:874px;}
+div.buttons.bottom input[type=submit]{background:url(../images/icon-save.png) no-repeat 40px 20px;background-color:#e5edd2;border:none;color:#444444;cursor:pointer;font-size:16px;font-weight:bold;margin:0px;padding:15px 40px 15px 60px;}
+div.buttons.bottom input:hover[type=submit]{background-color:#f1f6e5;}
+div.buttons.bottom a.cancel{color:#7d836e;font-size:16px;font-weight:normal;padding:15px 40px 15px 40px;}
+div.buttons.bottom a.cancel:hover{background-color:#f1f6e5;}
 
 div.custom-combo{cursor:default;float:left;height:20px;width:120px;}
 div.custom-combo div.selection{border:1px solid #eeeeee;color:#666666;float:left;height:15px;margin:0px 5px 0px -3px;overflow:hidden;padding:2px 3px;width:90px;white-space:nowrap;}
@@ -34,3 +35,12 @@ div.custom-combo ul.options li span.special{color:#777777;font-style:italic;}
 div.custom-combo:hover div.selection{background-color:#ffffff;border:1px solid #999999;color:#555555;position:absolute;z-index:21;}
 div.custom-combo:hover ul.options{display:block;}
 div.custom-combo:hover ul.options li:hover{background-color:#eaeaea;}
+
+
+.btn-standard{background: #222222 url(../images/button.png) repeat-x;border:none;border-bottom: 1px solid rgba(0,0,0,0.25);color:#ffffff;cursor:pointer;display:inline-block;font-size:12px;font-weight:bold;line-height:15px;outline:0;padding:5px 12px 5px 12px;position:relative;text-decoration:none;text-shadow:0 -1px 1px rgba(0,0,0,0.25);-moz-border-radius: 7px; -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);-webkit-border-radius: 7px;-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);width:auto;}
+.btn-standard:hover{background-color:#111111;color:#ffffff;}
+.btn-standard:active{top:1px;outline:none;}
+.btn-standard span.ico{float:left;margin-right:5px;}
+
+.btn-standard.green{background-color:#79a31f;}
+.btn-standard.green:hover{background-color:#93c526;}
