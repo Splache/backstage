@@ -1,5 +1,5 @@
 <h2><span class="path"><%= @code_method.code_file.full_path %></span><%= @code_method.name %></h2>
 
-<%- form_for(@code_method, :url => dpath('project.code_file.code_method', :id => @code_method.id)) do |f| %>
+<%= form_for(@code_method, :url => dpath('project.code_file.code_method', :id => @code_method.id)) do |f| %>
   <%= render 'form', :f => f %>
-<%- end %>
+<% end %>
