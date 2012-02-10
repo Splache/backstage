@@ -1,4 +1,4 @@
-Backstage::Application.routes.draw do |map|
+Backstage::Application.routes.draw do
   root :to => "sessions#new"
   
   resources :projects do
@@ -16,7 +16,7 @@ Backstage::Application.routes.draw do |map|
   
   resources :code_files
   resources :code_methods
-  match 'projects/:project_id/documents/folder/:folder_name.:format' => "documents#index", :as => :documents_folder
+  get 'projects/:project_id/documents/folder/:folder_name.:format' => "documents#index", :as => :documents_folder
   resources :documents
   
   resources :tasks
@@ -28,5 +28,5 @@ Backstage::Application.routes.draw do |map|
     resources :activity_reports
   end
   
-  match 'logout', :to => 'sessions#destroy'
+  get 'logout', :to => 'sessions#destroy'
 end

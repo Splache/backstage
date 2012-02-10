@@ -1,4 +1,4 @@
 <h2>Ajouter un document</h2>
-<%- form_for(@document, :url => dpath('project.documents')) do |f| %>
+<%= form_for(@document, :url => dpath('project.documents')) do |f| %>
   <%= render 'form', :f => f %>
-<%- end %>
+<% end %>
