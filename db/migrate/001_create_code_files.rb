@@ -4,11 +4,11 @@ class CreateCodeFiles < ActiveRecord::Migration
 			t.column "name", :string, :null => false
 			t.column "path", :string
 			t.column "description", :text
-	
+
       t.timestamps
 		end
 	end
-	
+
 	def self.down
 		drop_table :code_files
 	end

@@ -29,12 +29,12 @@
       <% end %>
       <li><%= link_to 'Générer les méthodes', generate_project_code_file_code_methods_path(:project_id => current_project.id, :code_file_id => @code_file.id), :method => :post, :confirm => 'Cette opération effecera toutes les méthodes de ce fichier. Voulez-vous continuer ?' %></li>
     </ul>
-  
+
     <% @code_file.code_methods.each do |m| %>
       <%= render "#{code_methods_path}/code_method", :m => m if not m.is_private? and m.nature == 'class' %>
     <% end %>
   </div>
-  
+
   <div class="block">
     <h3>Méthodes d'instance publiques</h3>
     <% @code_file.code_methods.each do |m| %>

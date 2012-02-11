@@ -12,8 +12,8 @@
   <% ['morning', 'morning;noon', 'morning;noon;evening', 'hourly', 'never'].each do |frequency| %>
     <%= (f.object.send_report_every != frequency ? '<li>' : '<li class="selected">').html_safe %>
     <%= hidden_field_tag("frequency", frequency, :class => 'item-state', :id => nil) %>
-    <div class="name"><%= 
-      case frequency 
+    <div class="name"><%=
+      case frequency
         when 'morning' then 'Matin'
         when 'morning;noon' then 'Matin et midi'
         when 'morning;noon;evening' then 'Matin, midi et soir'
@@ -22,6 +22,6 @@
       end
     %></div>
   <% end %>
-  
+
   <%= f.hidden_field("send_report_every", :class => 'list-value') %>
 </ul>

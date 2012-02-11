@@ -4,11 +4,11 @@ class CreateDocuments < ActiveRecord::Migration
 			t.column "project_id", :integer, :default => 0
 			t.column "name", :string, :null => false
 			t.column "description", :text
-	
+
       t.timestamps
 		end
 	end
-	
+
 	def self.down
 		drop_table :documents
 	end

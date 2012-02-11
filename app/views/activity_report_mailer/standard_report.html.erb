@@ -1,6 +1,6 @@
 <div style="background-color:#A5CCCC;color:#333333;font-size:11px;padding:10px 20px;text-align:left;">
   <div style="overflow:hidden;margin:0px auto;width:700px;">
     <%= render 'tasks_categories', :nature => :worker if @report.total_tasks(:worker) > 0 %>
-    <%= render 'tasks_categories', :nature => :team if @report.total_tasks(:team) > 0 %>    
+    <%= render 'tasks_categories', :nature => :team if @report.total_tasks(:team) > 0 %>
   </div>
 </div>

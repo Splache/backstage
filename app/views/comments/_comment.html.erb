@@ -10,7 +10,7 @@
     <%= image_tag("users/avatar/#{comment.user.id}.jpg", :alt => comment.user.name, :class => 'avatar') %>
     <div class="name"><%= comment.user.first_name %></div>
   </div>
-  
+
   <% if not comment.new_record? %>
     <div class="date">Le <%= comment.created_at.strftime('%d-%m-%Y') %> à <%= comment.created_at.strftime('%H:%M') %></div>
     <% if comment.user.id == current_user.id %>
@@ -21,7 +21,7 @@
     <% end %>
     <div class="text"><%= htmlize(comment.description) %></div>
   <% end %>
-  
+
   <div class="form">
     <%= form_for(comment, :url => form_path, :html => { :class => 'form-comment', :id => nil }) do |f| %>
       <%= f.text_area('description', :class => 'small') %>

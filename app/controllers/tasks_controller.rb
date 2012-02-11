@@ -1,26 +1,26 @@
 class TasksController < ApplicationController
   before_filter :authenticated?, :init_options
   layout 'standard'
-  
+
   def index
     @tasks = Task.all_from_options(current_user, current_project, session[:task_options])
-    
+
     @comment = Comment.new
     @comment.user_id = current_user.id
   end
-  
+
   def show
     @task = Task.find(params[:id])
   end
-  
+
   def new
     template = Task.last(:order => 'id ASC')
-    
+
     @task = current_project.tasks.build
     @task.nature = template.nature
     @task.assigned_to = template.assigned_to
   end
-  
+
   def create
     @task = Task.new(params[:task])
     @task.priority = 1
@@ -34,14 +34,14 @@ class TasksController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @task = Task.find(params[:id])
   end
-  
+
   def update
     @task = Task.first(:conditions => { :id => params[:id] })
-    
+
     if params[:insert_after]
       @task.insert_after(params[:insert_after])
       render :text => {'success' => params[:insert_after]}.to_json
@@ -55,20 +55,20 @@ class TasksController < ApplicationController
       render :action => "edit"
     end
   end
-  
+
   def destroy
     Task.find(params[:id]).destroy
     Task.regenerate_priorities(current_project.id)
-    
+
     dredirect_to('project.tasks')
   end
-  
+
   def init_options
     session[:task_options] = { :archive => false, :assigned_to => current_user.id, :step => 'current_iteration', :template => 'complete' } if not session[:task_options]
-    
+
     session[:task_options][:sort] = 'priority' if not session[:task_options][:sort]
     session[:task_options][:template] = 'complete' if not session[:task_options][:template]
-    
+
     if params[:option]
       set_option(:assigned_to)
       set_option(:step)
@@ -79,13 +79,13 @@ class TasksController < ApplicationController
       set_option(:sort)
       set_option(:template)
     end
-    
+
     @options = session[:task_options]
   end
-  
+
   def set_option(option)
     if params[:option][option]
-      session[:task_options][option] = params[:option][option] == '$remove$' ? nil : params[:option][option] 
+      session[:task_options][option] = params[:option][option] == '$remove$' ? nil : params[:option][option]
     end
   end
 end

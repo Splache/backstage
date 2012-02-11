@@ -3,7 +3,7 @@
 <head>
   <title>Backstage</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  
+
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
@@ -18,7 +18,7 @@
             <li><%= link_to p.name, dpath('project', :id => p.id) %></li>
           <% end %>
         </ul>
-        
+
         <% if current_user %>
           <ul class="users">
             <li><%= link_to 'Éditer mon profil', edit_user_path(current_user) %></li>
@@ -49,11 +49,11 @@
         <% end %>
         <%= show_side_bar %>
       </div>
-      
+
       <div class="inner-space">
         <%= yield %>
       </div>
-      
+
       <div style="clear:both"></div>
     </div>
   </div>

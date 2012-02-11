@@ -1,4 +1,4 @@
-/********************************************************************************** 
+/**********************************************************************************
 * FILTERS
 ***********************************************************************************/
 div#task-options{margin:20px 20px;}
@@ -27,7 +27,7 @@ div#task-options div.active input[type=text]{display:block;}
 div#task-options div:hover.active{background-position:bottom left;}
 
 
-/********************************************************************************** 
+/**********************************************************************************
 * FORMS
 ***********************************************************************************/
 form#form-task div.column{float:left;margin:0px 0px 10px 0px;width:300px;}
@@ -36,7 +36,7 @@ form#form-task #task_name{width:350px;}
 form#form-task #task_description{height:120px;width:350px;}
 
 
-/********************************************************************************** 
+/**********************************************************************************
 * LIST
 ***********************************************************************************/
 div.main-content div.inner-space ul.tasks{margin:0px;width:790px;}
@@ -84,7 +84,7 @@ div.task.preview div.line{display:none;}
 div.task.preview div.step{display:block;margin:0px;}
 
 
-/********************************************************************************** 
+/**********************************************************************************
 * COMMENTS
 ***********************************************************************************/
 div#box-comments h2{color:#288a93;}
@@ -112,7 +112,7 @@ ul.comments li:hover.comment div.operations{display:block;}
 ul.comments li.new-comment div.form{display:block;}
 
 
-/********************************************************************************** 
+/**********************************************************************************
 * SHOW
 ***********************************************************************************/
 div#task-overview ul.comments{margin:0px;}
@@ -120,7 +120,3 @@ div#task-overview ul.comments li.comment{margin:0px;}
 div#task-overview ul.comments li.comment div.details{width:70px;}
 div#task-overview ul.comments li.comment div.details img.avatar{width:40px;}
 div#task-overview ul.comments li.comment div:hover.details div.name{display:none;}
-
-
-
-

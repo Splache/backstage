@@ -5,11 +5,11 @@ class CreateCodeMethods < ActiveRecord::Migration
 			t.column "name", :string, :null => false
 			t.column "nature", :string
 			t.column "description", :text
-	    
+
       t.timestamps
 		end
 	end
-	
+
 	def self.down
 		drop_table :code_methods
 	end

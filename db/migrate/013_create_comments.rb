@@ -4,11 +4,11 @@ class CreateComments < ActiveRecord::Migration
 		  t.column "task_id", :integer, :default => 0
 		  t.column "user_id", :integer, :default => 0
 			t.column "description", :text
-	    
+
       t.timestamps
 		end
 	end
-	
+
 	def self.down
 		drop_table :comments
 	end

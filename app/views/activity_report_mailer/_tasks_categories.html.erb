@@ -1,5 +1,5 @@
 <h1 style="background-color:#8FB048;color:#E6EFD1;font-size:18px;margin:0px;padding:10px 20px;width:100%;">
-  <span style="width:200px;">Rapport d'activités <%= (nature == :worker ? 'personnel' : 'de l\'équipe') %></span> 
+  <span style="width:200px;">Rapport d'activités <%= (nature == :worker ? 'personnel' : 'de l\'équipe') %></span>
   <span style="font-size:12px;margin-left:20px;"><%= pluralize(@report.total_tasks(nature), 'tâche') %></span>
 </h1>
 <%= render 'tasks', :tasks => @report.new_tasks(nature), :recipient => @recipient, :state => 'created'  %>

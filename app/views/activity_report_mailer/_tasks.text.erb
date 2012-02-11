@@ -9,7 +9,7 @@ end %>
 <%= tasks_title %> <%= pluralize(tasks.length, 'tâche') %>
 ******************************************************************************************
 <% tasks.each do |task| %>
-<%= render 'task', :task => task, :recipient => recipient, :state => state %> 
+<%= render 'task', :task => task, :recipient => recipient, :state => state %>
 <% end %>
-  
+
 <% end %>

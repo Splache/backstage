@@ -6,12 +6,12 @@ class CreateUsers < ActiveRecord::Migration
 			t.column 'salt', :string, :null => false
 			t.column 'last_name', :string
 			t.column 'first_name', :string
-			t.column 'email', :string, :null => false, :unique => true			
-      
+			t.column 'email', :string, :null => false, :unique => true
+
       t.timestamps
 		end
 	end
-	
+
 	def self.down
 		drop_table :users
 	end

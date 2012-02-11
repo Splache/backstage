@@ -15,11 +15,11 @@ class CreateTasks < ActiveRecord::Migration
 	    t.column "due_on", :date
 	    t.column "started_on", :date
 	    t.column "ended_on", :date
-	    
+
       t.timestamps
 		end
 	end
-	
+
 	def self.down
 		drop_table :tasks
 	end

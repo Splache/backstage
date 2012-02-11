@@ -1,4 +1,3 @@
-
 <%= task.identifier %> <%= task.name %>
 
   Créé par: <%= task.creator.name %> le <%= recipient.local_time_f(task.created_at) %>
@@ -11,5 +10,5 @@
   <% @report.comments_of(task).each do |comment| %>
   [<%= recipient.local_time_f(comment.updated_at, :time_only) %>] <%= comment.user.name %> : <%= comment.description %>
   <% end %>
-  
+
 -------------------------------------------------------------------------------------------------------------
