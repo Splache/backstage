@@ -55,7 +55,7 @@ module Tools::Babel
   end
 
   def self.enumerate(terms)
-	  last_element = terms.pop;
+    last_element = terms.pop;
 
     if terms.length == 0
       return last_element;
@@ -64,20 +64,20 @@ module Tools::Babel
     end
   end
 
-	def self.extract_first_quotes(value)
-	  if value.index('"')
-	    return value.split('"')[1]
-	  else
-	    return ''
-	  end
+  def self.extract_first_quotes(value)
+    if value.index('"')
+      return value.split('"')[1]
+    else
+      return ''
+    end
   end
 
-	def self.extract_first_tag(value)
-	  if value.index('<') and value.index('>')
-	    return value[value.index('<') + 2, value.rindex('>') - value.index('<')-2]
-	  else
-	    return ''
-	  end
+  def self.extract_first_tag(value)
+    if value.index('<') and value.index('>')
+      return value[value.index('<') + 2, value.rindex('>') - value.index('<')-2]
+    else
+      return ''
+    end
   end
 
   def self.from_strange_encoding(value)
@@ -97,29 +97,29 @@ module Tools::Babel
   end
 
   def self.random_string(size)
-		chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
-		content = ""
-		1.upto(size) { |i| content << chars[rand(chars.size-1)] }
+    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+    content = ""
+    1.upto(size) { |i| content << chars[rand(chars.size-1)] }
 
-		return content
+    return content
   end
 
   def self.strip_html(value)
     return (value) ? value.to_s.gsub(/<\/?[^>]*>/, "") : value
   end
 
-	def self.to_cost(amount, unit='')
-	  cost = sprintf("%0.02f", (amount.to_f / 100)).gsub('.', ',')
+  def self.to_cost(amount, unit='')
+    cost = sprintf("%0.02f", (amount.to_f / 100)).gsub('.', ',')
 
-	  case unit
+    case unit
       when 'cad', 'usd' then cost += ' $'
       when 'eur' then cost += ' €'
-	  end
+    end
 
-	  return cost
+    return cost
   end
 
-	def self.to_latin_encoded(value)
+  def self.to_latin_encoded(value)
     latin_table = self.get_latin_table
     value_encoded = ''
 
@@ -128,12 +128,12 @@ module Tools::Babel
     return value_encoded
   end
 
-	# TODO : Finish the method
-	def self.to_iso3166_1(country_code, options={})
-	  options.reverse_merge!(:to_alpha => '3')
+  # TODO : Finish the method
+  def self.to_iso3166_1(country_code, options={})
+    options.reverse_merge!(:to_alpha => '3')
 
-	  if options[:to_alpha] == '3'
-	    return case country_code.to_s.downcase
+    if options[:to_alpha] == '3'
+      return case country_code.to_s.downcase
         when 'ca' then return 'can'
         when 'us' then return 'usa'
         when 'fr' then return 'fra'
@@ -143,22 +143,22 @@ module Tools::Babel
     return nil
   end
 
-	# TODO : Finish the method
-	def self.to_iso639_2(language, options={})
-	  options.reverse_merge!(:from => '639-1')
+  # TODO : Finish the method
+  def self.to_iso639_2(language, options={})
+    options.reverse_merge!(:from => '639-1')
 
-	  if options[:from] == '639-1'
-	    return case language.to_s.downcase
+    if options[:from] == '639-1'
+      return case language.to_s.downcase
         when "fre" then "fr"
         when "eng" then "en"
         when "spa" then "sp"
       end
-	  end
+    end
 
     return nil
   end
 
-	def self.to_roman(numeric)
+  def self.to_roman(numeric)
     numerals = [
       { :roman => 'M', :arab => 1000 },
       { :roman => 'CM', :arab => 900 },
@@ -188,8 +188,8 @@ module Tools::Babel
   def self.to_utf8(value, from='ISO-8859-1')
     value = Iconv.conv('utf-8', from, value) if not value.to_s.isutf8
 
-		return value
-		# If the string is too long it will loop eternaly in a hell hole. Need to be corrected.
+    return value
+    # If the string is too long it will loop eternaly in a hell hole. Need to be corrected.
     #value_conv = ""
     #value.each_char do |s|
     #  if s[0] == 194
@@ -198,6 +198,6 @@ module Tools::Babel
     #    value_conv += s
     #  end
     #end
-		#return value_conv
-	end
+    #return value_conv
+  end
 end

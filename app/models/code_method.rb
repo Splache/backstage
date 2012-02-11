@@ -2,10 +2,10 @@ class CodeMethod < ActiveRecord::Base
   belongs_to :code_file
 
 
-	#*************************************************************************************
+  #*************************************************************************************
   # PUBLIC CLASS METHODS
   #*************************************************************************************
-	def self.create_method_from_line(line, code_file_id, is_private=false)
+  def self.create_method_from_line(line, code_file_id, is_private=false)
     line = line.strip.gsub('def ', '')
 
     cm = CodeMethod.new
@@ -24,12 +24,12 @@ class CodeMethod < ActiveRecord::Base
   end
 
   def self.extract_from_file(code_file_id)
-	  code_file = CodeFile.first(:conditions => { :id => code_file_id })
+    code_file = CodeFile.first(:conditions => { :id => code_file_id })
 
-	  is_private = false
+    is_private = false
 
-	  if code_file and File.file?(code_file.full_path_with_root)
-	    File.open(code_file.full_path_with_root, "r") do |f|
+    if code_file and File.file?(code_file.full_path_with_root)
+      File.open(code_file.full_path_with_root, "r") do |f|
         while (line = f.gets)
           if line_declare_new_method?(line)
             create_method_from_line(line, code_file_id, is_private)

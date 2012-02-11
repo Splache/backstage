@@ -1,14 +1,14 @@
 class CreateCollections < ActiveRecord::Migration
-	def self.up
-		create_table :collections do |t|
-		  t.column "project_id", :integer, :default => 0
-			t.column "name", :string, :null => false
+  def self.up
+    create_table :collections do |t|
+      t.column "project_id", :integer, :default => 0
+      t.column "name", :string, :null => false
 
       t.timestamps
-		end
-	end
+    end
+  end
 
-	def self.down
-		drop_table :collections
-	end
+  def self.down
+    drop_table :collections
+  end
 end

@@ -1,13 +1,13 @@
 class CodeFile < ActiveRecord::Base
   belongs_to :project
-	has_many :code_methods, :order => "nature ASC, name ASC", :dependent => :destroy
+  has_many :code_methods, :order => "nature ASC, name ASC", :dependent => :destroy
 
 
-	#*************************************************************************************
+  #*************************************************************************************
   # PUBLIC METHODS
   #*************************************************************************************
-	def full_path
-	  return [self.path, self.name].delete_if{|f| f.empty? }.join('/')
+  def full_path
+    return [self.path, self.name].delete_if{|f| f.empty? }.join('/')
   end
 
   def full_path_with_root

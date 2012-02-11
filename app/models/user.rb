@@ -1,21 +1,21 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-	has_many :assignments, :class_name => 'Task', :foreign_key => 'assigned_to'
-	has_many :comments, :order => "created_at ASC", :dependent => :destroy
-	has_many :tasks, :class_name => 'Task', :foreign_key => 'created_by'
-	has_many :subscriptions, :class_name => 'Subscription', :foreign_key => 'recipient_id'
-	has_many :followers, :class_name => 'Subscription', :foreign_key => 'target_id'
+  has_many :assignments, :class_name => 'Task', :foreign_key => 'assigned_to'
+  has_many :comments, :order => "created_at ASC", :dependent => :destroy
+  has_many :tasks, :class_name => 'Task', :foreign_key => 'created_by'
+  has_many :subscriptions, :class_name => 'Subscription', :foreign_key => 'recipient_id'
+  has_many :followers, :class_name => 'Subscription', :foreign_key => 'target_id'
 
-	validates_presence_of :email, :first_name, :last_name, :login
-	validates_presence_of :password, :if => :password_required?
-	validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
-	validates_uniqueness_of :email, :login
-	validates_length_of :login, :within => 5..12
-	validates_length_of :password, :within => 6..12, :if => :password_required?
-	validates_confirmation_of :password, :if => :password_required?
+  validates_presence_of :email, :first_name, :last_name, :login
+  validates_presence_of :password, :if => :password_required?
+  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
+  validates_uniqueness_of :email, :login
+  validates_length_of :login, :within => 5..12
+  validates_length_of :password, :within => 6..12, :if => :password_required?
+  validates_confirmation_of :password, :if => :password_required?
 
-	attr_accessor :password, :password_confirmation
+  attr_accessor :password, :password_confirmation
   attr_accessible :email, :first_name, :last_name, :login, :password, :send_report_every
 
 
@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
 
-	#*************************************************************************************
+  #*************************************************************************************
   # CLASS METHODS
   #*************************************************************************************
   def self.assigned_to_choices
@@ -101,17 +101,17 @@ class User < ActiveRecord::Base
   #*************************************************************************************
   # PROTECTED METHODS
   #*************************************************************************************
-	protected
+  protected
 
   def self.encrypted_cookie(timestamp)
-	  return Digest::SHA1.hexdigest(timestamp + 'asKgjhFLhjhKJHgkGy5765gjy56tD5kFhM')
+    return Digest::SHA1.hexdigest(timestamp + 'asKgjhFLhjhKJHgkGy5765gjy56tD5kFhM')
   end
 
-	def self.encrypted_password(pass, salt)
-		return Digest::SHA1.hexdigest(pass + salt)
-	end
+  def self.encrypted_password(pass, salt)
+    return Digest::SHA1.hexdigest(pass + salt)
+  end
 
-	def password_required?
+  def password_required?
     return (!self.id or !password.blank?)
-	end
+  end
 end
